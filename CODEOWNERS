@@ -1,0 +1,33 @@
+# CODEOWNERS
+#
+# Maps repository areas to the owning role, per the ownership model defined in
+# docs/10_PROJECT_STRUCTURE.md §3 and docs/02_PRODUCT_DESIGN_MANUAL.md §12.
+# Roles are placeholders until named individuals are assigned in the team's
+# actual review tooling — replace role comments with real GitHub handles
+# once the team is staffed, without changing the ownership boundaries below.
+
+# Governance layer — whole-team concern, changes require a DECISIONS.md entry
+/docs/                          # @vp-engineering @principal-architect
+/DECISIONS.md                   # @vp-engineering
+/PROJECT_PRINCIPLES.md          # @vp-engineering @enterprise-pm
+/ROADMAP.md                     # @enterprise-pm @vp-engineering
+
+# Design system — two-person review required (docs/02 §12.3)
+/src/components/                # @design-system-architect @staff-frontend-engineer
+/docs/04_COMPONENT_SYSTEM.md    # @design-system-architect @staff-frontend-engineer
+/docs/09_DESIGN_TOKENS.md       # @design-system-architect
+/docs/05_MOTION_SYSTEM.md       # @principal-product-designer @staff-frontend-engineer
+
+# Information architecture & product
+/docs/01_PROJECT_SSOT.md        # @enterprise-pm @vp-engineering
+/docs/03_INFORMATION_ARCHITECTURE.md   # @solutions-architect @ux-director
+
+# Copy & content
+/docs/06_COPY_GUIDELINES.md     # @technical-writer @enterprise-pm
+/docs/08_DEMO_DATA_GUIDE.md     # @solutions-architect @technical-writer
+
+# Engineering architecture
+/docs/07_IMPLEMENTATION_RULES.md   # @principal-architect @staff-frontend-engineer
+/docs/10_PROJECT_STRUCTURE.md      # @principal-architect @vp-engineering
+/src/lib/                          # @principal-architect
+/src/data/                         # @solutions-architect
