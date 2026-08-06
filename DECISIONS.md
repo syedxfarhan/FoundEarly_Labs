@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-009 — 2026-08-06 — Demo 01 Corporate Website as a workspace
+
+**Decision:** Ship Demo 01 (premium Al-Buraq Horizon corporate website) as an available workspace in the existing registry/shell (`corporate-website`), with section routes for Home / About / Services / Projects / Careers / Contact. Credibility Landing remains the root entry; the website demo does not replace it. Marketing fixtures stay under Al-Buraq Horizon (D-002), including portfolio projects from `docs/08` plus one additional completed warehouse package (`P-1102`) for a six-project showcase.
+
+**Context / alternatives considered:** A standalone route outside the shell was rejected — the brief requires Showcase Mode inside the application shell. Inventing a second fictional company for the website was rejected under D-002. Building ContractorOS or AI Assistant demos in the same change was rejected as out of scope.
+
+**Consequences:** Future demos plug into the workspace registry the same way. Website chrome suppresses the standard workspace page header so the site sticky nav can lead. `P-1102` is marketing-only until operational fixtures expand in later phases.
+
+---
+
 ## D-008 — 2026-08-06 — Phase 2.1 Credibility Landing as root entry
 
 **Decision:** Serve the Credibility Landing at `/` as a narrative entry surface outside `WorkspaceShell`. Interactive Showcase CTAs deep-link into `/workspace/project-command/overview`. Mode Selector remains deferred until Discovery Simulator work begins.

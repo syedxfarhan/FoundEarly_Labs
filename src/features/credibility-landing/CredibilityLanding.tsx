@@ -27,6 +27,7 @@ import { t, type ContentKey } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 const SHOWCASE_HREF = workspaceHref("project-command", "overview");
+const WEBSITE_DEMO_HREF = workspaceHref("corporate-website", "home");
 
 const TRUST_KEYS: ContentKey[] = [
   "landing.trust.customSoftware",
@@ -276,17 +277,33 @@ export function CredibilityLanding() {
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {BUILD.map((item, index) => {
                 const Icon = item.icon;
+                const isWebsiteDemo = item.titleKey === "landing.build.websites.title";
+                const card = (
+                  <article className="flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-colors duration-fast ease-enter hover:border-border-strong">
+                    <Icon
+                      className="size-icon-lg text-brand"
+                      strokeWidth={1.5}
+                      aria-hidden
+                    />
+                    <h3 className="type-h3 text-foreground">{t(item.titleKey)}</h3>
+                    <p className="type-body text-muted-foreground">{t(item.bodyKey)}</p>
+                    {isWebsiteDemo ? (
+                      <span className="mt-auto inline-flex items-center gap-2 pt-2 type-body font-medium text-brand">
+                        {t("landing.build.websites.cta")}
+                        <ArrowRight className="size-icon-sm" strokeWidth={1.5} aria-hidden />
+                      </span>
+                    ) : null}
+                  </article>
+                );
                 return (
                   <Reveal key={item.titleKey} delay={Math.min(index, 5) * 0.03}>
-                    <article className="flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-6">
-                      <Icon
-                        className="size-icon-lg text-brand"
-                        strokeWidth={1.5}
-                        aria-hidden
-                      />
-                      <h3 className="type-h3 text-foreground">{t(item.titleKey)}</h3>
-                      <p className="type-body text-muted-foreground">{t(item.bodyKey)}</p>
-                    </article>
+                    {isWebsiteDemo ? (
+                      <Link href={WEBSITE_DEMO_HREF} className="block h-full rounded-lg">
+                        {card}
+                      </Link>
+                    ) : (
+                      card
+                    )}
                   </Reveal>
                 );
               })}

@@ -1,5 +1,6 @@
 "use client";
 
+import { CorporateWebsite } from "@/features/corporate-website";
 import { WorkspaceEmpty } from "@/features/workspace/WorkspaceEmpty";
 import { WorkspaceLoader } from "@/features/workspace/WorkspaceLoader";
 import { useWorkspaceEngine } from "@/features/workspace/WorkspaceEngine";
@@ -28,6 +29,14 @@ export function WorkspaceCanvas({ children }: { children?: React.ReactNode }) {
         <p className="sr-only">
           {tKey(workspace.labelKey)} — {tKey(section.labelKey)}
         </p>
+      </PageContainer>
+    );
+  }
+
+  if (workspace.id === "corporate-website") {
+    return (
+      <PageContainer className="p-0 md:p-0">
+        <CorporateWebsite />
       </PageContainer>
     );
   }
