@@ -1,0 +1,62 @@
+---
+description: Architecture, folder ownership, feature boundaries, state, imports, and scalability rules
+globs:
+  - "src/**/*.{ts,tsx}"
+  - "docs/07_*.md"
+  - "docs/10_*.md"
+  - "docs/03_*.md"
+alwaysApply: false
+---
+
+# Architecture Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Preserve the layered architecture so Phase 1 stays demo-safe and Phase 6 design-system extraction remains mechanical.
+
+## Scope
+
+Folder structure, imports, ownership, state management, data access, and dependency choices. Canonical sources: `docs/07_IMPLEMENTATION_RULES.md`, `docs/10_PROJECT_STRUCTURE.md`, `docs/03_INFORMATION_ARCHITECTURE.md`.
+
+## Mandatory Rules
+
+1. Dependency direction: `app → features → components → lib`. Never invert.
+2. `components/` must not import from `features/`, `app/`, or `data/`.
+3. Features must not import other features' internals; share via `providers/` or `lib/`.
+4. Fixture data lives in `data/` per `docs/08_DEMO_DATA_GUIDE.md`; components receive data via props.
+5. State categories only: fixture (static), cross-cutting Context in `providers/`, local UI state — no Redux/Zustand/React Query in Phase 1 (`DECISIONS.md` D-004).
+6. Path aliases (`@/components`, `@/features`, `@/data`, `@/lib`) — no deep relative cross-boundary imports.
+7. Named exports only for components; barrels only at top of `components/` and `data/`.
+8. Single Next.js app (not a monorepo) until a second design-system consumer exists.
+9. Routes in `app/` stay thin — compose from `features/`.
+10. URL-addressable workspace/section/project state required.
+
+## Forbidden Patterns
+
+- Business logic inside `components/`
+- Feature-to-feature deep imports
+- Global state libraries "for future use"
+- Fetching libraries without a real backend need
+- Hardcoding a second fictional company/world
+- Putting narrative/Simulator logic inside design-system components
+- Changing folder ownership boundaries without updating `docs/10_PROJECT_STRUCTURE.md`
+
+## Examples
+
+**Good:** `features/project-dashboard/OverviewSection.tsx` imports `KPIStat` from `@/components` and projects from `@/data`.
+**Bad:** `components/KPIStat.tsx` imports `@/data/projects` or `@/features/discovery-simulator`.
+
+**Good:** Presentation Mode state in `providers/PresentationModeProvider`.
+**Bad:** A Zustand store for the whole app in Phase 1.
+
+## Quality Checklist
+
+- [ ] Import boundaries respected
+- [ ] No new top-level folder without `docs/10` update
+- [ ] State lives in the correct category
+- [ ] IA hierarchy still matches routes
+- [ ] Offline/fixture assumptions intact
+
+## Escalation
+
+Architecture changes require `docs/07` and/or `docs/10` updates plus a `DECISIONS.md` entry. Scalability arguments ("we might need X later") are not sufficient to violate Phase 1 constraints.

@@ -4,6 +4,32 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Phase 0 Hardening] — 2026-08-06 — Enterprise hardening pass
+
+### Added
+- `docs/11_DOCUMENTATION_MAP.md` — ownership map and conflict resolution.
+- `docs/12_DESIGN_REVIEW_CHECKLIST.md` — official design approval gate (with WHY per section).
+- `docs/13_CONSTRUCTION_DOMAIN_GUIDE.md` — full construction terminology handbook.
+- `docs/14_ICONOGRAPHY_GUIDE.md` — icon constitution.
+- `docs/15_DATA_VISUALIZATION_GUIDE.md` — dashboard/chart constitution.
+- `docs/16_PRESENTATION_MODE_GUIDE.md` — live presentation handbook.
+- `docs/17_PHASE1_DEFINITION_OF_DONE.md` — gate before implementation starts.
+- `docs/18_LIVE_DEMO_RUNBOOK.md` — in-room incident procedures.
+- `docs/19_BRAND_AND_I18N_CONVENTIONS.md` — brand application + i18n key naming.
+- `.cursor/rules/` — `design`, `architecture`, `coding`, `motion`, `copywriting`, `enterprise-ui`, `construction-domain`.
+- `docs/02_PRODUCT_DESIGN_MANUAL.md` §13 — Enterprise Design Anti-Patterns.
+- `DECISIONS.md` D-005 — hardening pass rationale.
+
+### Changed
+- Cross-links clarified: design review (`02` §11 self-check vs `12` gate); construction glossary (`06` §10 vs `13`); Presentation Mode (`03` §6 → `16`); icons (`02` §7 → `14`).
+- `README.md`, `CONTRIBUTING.md`, PR template, `CODEOWNERS` updated for new docs.
+
+### Notes
+- Still no application code. Hardening is documentation/process only.
+- Repository audit found no architecture reversals required; changes were additive clarification and gap-fill.
+
+---
+
 ## [Phase 0] — 2026-08-05 — Repository Governance Initialized
 
 ### Added

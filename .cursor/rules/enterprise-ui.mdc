@@ -1,0 +1,64 @@
+---
+description: Enterprise UX standards for tables, forms, dashboards, search, filters, density, and approvals
+globs:
+  - "src/**/*.{ts,tsx}"
+  - "docs/02_*.md"
+  - "docs/04_*.md"
+  - "docs/12_*.md"
+  - "docs/15_*.md"
+  - "docs/16_*.md"
+alwaysApply: false
+---
+
+# Enterprise UI Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Operational surfaces must feel as serious as Primavera/ACC/SAP while being better designed. Density, predictability, and recovery matter more than novelty.
+
+## Scope
+
+Tables, forms, dashboards, search/filter patterns, workspace chrome, approval UIs, Presentation Mode behavior. Canonical sources: `docs/02_PRODUCT_DESIGN_MANUAL.md`, `docs/04_COMPONENT_SYSTEM.md`, `docs/15_DATA_VISUALIZATION_GUIDE.md`, `docs/16_PRESENTATION_MODE_GUIDE.md`, `docs/12_DESIGN_REVIEW_CHECKLIST.md`.
+
+## Mandatory Rules
+
+1. Every async action has loading/success/error states before ship.
+2. Exactly one primary action per screen.
+3. No dead ends — clear forward and back; Esc closes top overlay only.
+4. Tables are first-class: sticky headers, tabular numerals, right-aligned currency, virtualization when large, EmptyState slot.
+5. Filters/search preserve understandable state; prefer URL sync for workspace views.
+6. Approval chains show real hierarchy depth (Engineer → PM → Director → client), never a toy two-step.
+7. Dashboards: KPIs first, then primary chart, then supporting detail/table (`docs/15`).
+8. Information density matches job: airy narrative vs dense operational logs.
+9. Presentation Mode quiets chrome, guards illustrative-only controls, keeps recovery paths (`docs/16`).
+10. Destructive actions require `Dialog` confirmation.
+
+## Forbidden Patterns
+
+- Nested cards; nested modal stacks
+- Hover-only critical actions (tablet/presentation reality)
+- Charts without units/legends/reconcilable data
+- Placeholder lorem/TODO on client-reachable paths
+- Consumer empty states ("Nothing here yet — start your journey!")
+- Flattened approval UIs
+- Dashboard "soup" (many equal-weight charts, no hierarchy)
+
+## Examples
+
+**Good:** Dense RFI `DataTable` with `StatusChip`, sort, SLA columns, Drawer detail.
+**Bad:** RFI "cards" in a masonry grid with hover-only actions.
+
+**Good:** Submittal timeline showing sent-back-for-revision cycle.
+**Bad:** Single green "Approved" checkmark with no history.
+
+## Quality Checklist
+
+- [ ] States complete (loading/empty/error)
+- [ ] Table/dashboard rules met
+- [ ] Approvals show real depth
+- [ ] Presentation recovery exists
+- [ ] `docs/12` enterprise UX + dashboard sections pass
+
+## Escalation
+
+New enterprise patterns (e.g., bulk edit, complex filter builders) must be specified in `docs/04` before implementation. Presentation behavior changes go through `docs/16`.

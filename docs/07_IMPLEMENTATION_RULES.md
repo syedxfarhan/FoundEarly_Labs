@@ -147,7 +147,8 @@ Copied into the PR template (`CONTRIBUTING.md`). A PR may not merge until every 
 - [ ] Import boundaries respected (§5.1–5.2); lint passes with zero warnings, not just zero errors.
 - [ ] No `any`, no unexplained lint-disables (§6.2).
 - [ ] Keyboard-only pass completed by author (§10).
-- [ ] Design Quality Checklist (`02_PRODUCT_DESIGN_MANUAL.md` §11) completed for any new/changed screen.
+- [ ] Design Quality Checklist (`02_PRODUCT_DESIGN_MANUAL.md` §11) completed for any new/changed screen; design reviewer uses `12_DESIGN_REVIEW_CHECKLIST.md` for final approval.
+- [ ] No Enterprise Design Anti-Patterns (`02_PRODUCT_DESIGN_MANUAL.md` §13).
 - [ ] Motion durations/easing match `05_MOTION_SYSTEM.md` §2–3; reduced-motion verified.
 - [ ] Fixture data changes pass the consistency test (§11.5) and remain internally consistent with `08_DEMO_DATA_GUIDE.md`.
 - [ ] No new dependency added without justification in the PR description (§9).

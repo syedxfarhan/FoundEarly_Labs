@@ -1,0 +1,62 @@
+---
+description: TypeScript, naming, errors, performance, accessibility, and testing expectations
+globs:
+  - "src/**/*.{ts,tsx}"
+  - "docs/07_*.md"
+alwaysApply: false
+---
+
+# Coding Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Keep implementation strict, predictable, and live-demo-safe. A TypeScript escape hatch that blows up mid-presentation is unacceptable.
+
+## Scope
+
+All application TypeScript/React code. Canonical source: `docs/07_IMPLEMENTATION_RULES.md`.
+
+## Mandatory Rules
+
+1. TypeScript `strict` including `noUncheckedIndexedAccess`; no `any` (use `unknown` + narrowing).
+2. Closed vocabularies are string union types (statuses, variants) matching `docs/06_COPY_GUIDELINES.md` and `docs/04_COMPONENT_SYSTEM.md`.
+3. Naming: `PascalCase.tsx` components, `camelCase.ts` hooks/utils, `use` prefix on hooks, domain types match `docs/08_DEMO_DATA_GUIDE.md`.
+4. Props interfaces exported as `{Component}Props` and aligned with the component spec.
+5. Errors/empty states use designed UI (`EmptyState`, `InlineAlert`) — not optional chaining to em-dashes as a substitute.
+6. Performance: TTI ≤2s; interactions <100ms unless intentionally simulated; virtualize tables roughly >100 rows.
+7. Accessibility: semantic elements/ARIA, `eslint-plugin-jsx-a11y` clean, keyboard paths, focus rings, ≥40×40 hit targets.
+8. All user-facing strings in the centralized content layer (i18n-ready) — no inline concatenated sentences.
+9. Tests prioritized for: Simulator state machine, status transitions, design-system interactions, fixture consistency, visual regression on core screens.
+10. New dependencies require PR justification against first-party alternative.
+
+## Forbidden Patterns
+
+- `any`, unchecked index access used to "keep moving"
+- Placeholder-as-label inputs
+- `outline: none` without a replacement focus style
+- Silent `data?.x ?? '—'` where an EmptyState is required
+- Adding Redux/React Query/etc. in Phase 1
+- Default exports for components
+- Arbitrary Tailwind values (`w-[423px]`, `text-[15px]`)
+- Network calls in the core demo path
+
+## Examples
+
+**Good:** `type RfiStatus = 'Open' | 'Pending Response' | 'Answered' | 'Closed' | 'Overdue'`
+**Bad:** `status: string` with free-form labels.
+
+**Good:** Fixture consistency test fails CI when BOQ total ≠ contract value.
+**Bad:** Hand-waving mismatched numbers as "just demo data."
+
+## Quality Checklist
+
+- [ ] Strict types; no `any`
+- [ ] Import boundaries + lint clean (zero warnings)
+- [ ] A11y keyboard pass for touched components
+- [ ] Strings centralized
+- [ ] Tests for state machines / fixtures when touched
+- [ ] `docs/07` §15 PR checklist considered
+
+## Escalation
+
+If a coding rule blocks a legitimate need, update `docs/07_IMPLEMENTATION_RULES.md` and `DECISIONS.md`. Do not disable lint rules without an explanatory comment and reviewer acknowledgment.

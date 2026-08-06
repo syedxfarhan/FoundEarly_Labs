@@ -125,7 +125,7 @@ These are assumptions the whole documentation set is built on. If any assumption
 
 ## 9. Scope Boundary for "Phase 1 Implementation" (forward-looking, not started here)
 
-Phase 0 (this repository initialization) defines governance only. When Phase 1 implementation begins, it is expected to deliver, at minimum, the modules described as in-scope in `03_INFORMATION_ARCHITECTURE.md` — a landing/credibility surface, a Discovery Simulator presentation flow, and at least one deep-dive workspace (e.g., a project dashboard) built entirely from the token and component systems defined here. Anything beyond that is Phase 2+ per the roadmap below.
+Phase 0 (this repository initialization + hardening) defines governance only. **Do not begin Phase 1 implementation until `17_PHASE1_DEFINITION_OF_DONE.md` is signed.** When Phase 1 begins, it is expected to deliver, at minimum, the modules described as in-scope in `03_INFORMATION_ARCHITECTURE.md` — a landing/credibility surface, a Discovery Simulator presentation flow, and at least one deep-dive workspace (e.g., a project dashboard) built entirely from the token and component systems defined here. Anything beyond that is Phase 2+ per the roadmap below.
 
 ## 10. Future Roadmap (Directional, Not Committed)
 

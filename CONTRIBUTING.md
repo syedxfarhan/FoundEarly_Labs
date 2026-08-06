@@ -5,7 +5,7 @@ This repository is currently in **Phase 0 (Governance)**. This guide covers how 
 ## Before You Do Anything
 
 1. Read `docs/01_PROJECT_SSOT.md`, then `PROJECT_PRINCIPLES.md`. If a proposed change conflicts with either, resolve that conflict explicitly (usually by updating the SSOT via `DECISIONS.md`, not by quietly working around it) before writing code or docs.
-2. Identify which `/docs` file governs the area you're touching. There should always be exactly one owning document per concern (design → `02`, IA → `03`, components → `04`, motion → `05`, copy → `06`, code → `07`, data → `08`, tokens → `09`, structure → `10`). If you can't find the owning document, that's a gap — flag it, don't guess.
+2. Identify which `/docs` file governs the area you're touching. Use [`docs/11_DOCUMENTATION_MAP.md`](docs/11_DOCUMENTATION_MAP.md) if unsure. Ownership summary: design → `02` + `12`; IA → `03` + `16`; components → `04`; motion → `05`; copy → `06`; domain terms → `13`; code → `07`; data → `08`; tokens → `09`; structure → `10`; icons → `14`; charts → `15`. If you can't find the owning document, that's a gap — flag it, don't guess.
 
 ## Branching
 
@@ -41,7 +41,10 @@ Every PR must include, in its description:
 Copy this into every PR description once implementation begins:
 
 ```markdown
-## Design Quality Checklist (docs/02_PRODUCT_DESIGN_MANUAL.md §11)
+## Design Quality Checklist (docs/02_PRODUCT_DESIGN_MANUAL.md §11 + docs/12_DESIGN_REVIEW_CHECKLIST.md)
+
+- [ ] Author self-check (docs/02 §11) complete
+- [ ] Design reviewer ran docs/12 (or N/A with reason)
 - [ ] Spacing/type/tokens used exclusively — no raw values
 - [ ] Currency/date formatting matches docs/02 §10
 - [ ] Primary action is singular and unambiguous
@@ -50,6 +53,7 @@ Copy this into every PR description once implementation begins:
 - [ ] Keyboard nav + focus states verified
 - [ ] Contrast checked (light + dark)
 - [ ] Motion durations/easing match docs/05; reduced-motion verified
+- [ ] No Enterprise Design Anti-Patterns (docs/02 §13)
 - [ ] No console errors on load/interact/idle
 
 ## Implementation Checklist (docs/07_IMPLEMENTATION_RULES.md §15)

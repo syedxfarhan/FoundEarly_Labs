@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-005 — 2026-08-06 — Phase 0 enterprise hardening pass (docs 11–18 + Cursor rules)
+
+**Decision:** Before Phase 1 implementation, extend governance with: documentation map (`11`), official design review checklist (`12`), construction domain handbook (`13`), iconography guide (`14`), data visualization guide (`15`), presentation mode guide (`16`), Phase 1 definition of done (`17`), live demo runbook (`18`), brand/i18n conventions (`19`), Enterprise Design Anti-Patterns in `02` §13, and `.cursor/rules/` mirrors for AI-assisted work.
+
+**Context / alternatives considered:** Leaving Phase 0 at docs 01–10 risked duplicate guidance (short vs long design checklists), improvised construction terminology by AI/humans, underspecified live-meeting operations, and no machine-enforced rules for Cursor agents. Rewriting 01–10 was rejected — hardening must be additive unless a contradiction is found.
+
+**Consequences:** `docs/11_DOCUMENTATION_MAP.md` is the conflict-resolution index. Design approval requires `12` in addition to author self-check in `02` §11. Domain terminology disputes defer to `13`. Presentation behavior details defer to `16`/`18`. Phase 1 must not start until `17` is signed. Cursor rules must stay aligned with `/docs` (docs win on conflict).
+
+---
+
 ## D-001 — 2026-08-05 — Initialize repository governance layer before any implementation
 
 **Decision:** Phase 0 of this project produces exclusively documentation (`/docs`) and root governance files (this file, `README.md`, `CONTRIBUTING.md`, `PROJECT_PRINCIPLES.md`, `ROADMAP.md`, `CHANGELOG.md`). No application code, UI, or components are implemented in this phase.

@@ -95,7 +95,7 @@ Per `01_PROJECT_SSOT.md` §6.6, AI-assisted moments in this product must demonst
 
 ## 10. Construction Terminology (Reference Glossary)
 
-Writers and engineers must use these terms exactly as defined — this list is the arbiter in any disagreement about phrasing:
+Writers and engineers must use these terms exactly as defined — this short list covers the highest-frequency UI terms. **For the full handbook (NCR, MIR, WIR, RFQ, PTW, HSE, document lifecycle, approval hierarchies, Saudi/Aramco usage), see `13_CONSTRUCTION_DOMAIN_GUIDE.md` — that document is canonical for domain meaning.** If a term appears in both places and ever diverges, fix them in the same PR; `13` wins on definitional depth, this section wins on UI-facing brevity for the terms listed below.
 
 | Term | Definition as used in this product |
 |---|---|
@@ -109,7 +109,7 @@ Writers and engineers must use these terms exactly as defined — this list is t
 | **LM / MT / EA / m² / m³** | Linear meter / metric ton / each / square meter / cubic meter — standard units of measure; never abbreviate differently across the product. |
 | **Punch List** | The list of outstanding defects/incomplete items identified near project completion. |
 
-This glossary must be extended, not overridden, when `08_DEMO_DATA_GUIDE.md` introduces new workflow concepts (e.g., Purchase Orders, approval chains) — every new domain term used anywhere in the UI gets an entry here.
+This glossary must be extended in **both** this section (if the term is UI-frequent) and `13_CONSTRUCTION_DOMAIN_GUIDE.md` when `08_DEMO_DATA_GUIDE.md` introduces new workflow concepts — every new domain term used anywhere in the UI gets an entry.
 
 ## 11. Arabic Translation Strategy
 

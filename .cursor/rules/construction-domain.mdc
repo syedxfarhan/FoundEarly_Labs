@@ -1,0 +1,66 @@
+---
+description: Construction terminology, document relationships, workflows, procurement, approvals, Saudi/Aramco context
+globs:
+  - "src/**/*.{ts,tsx}"
+  - "src/data/**/*"
+  - "docs/08_*.md"
+  - "docs/13_*.md"
+  - "docs/06_*.md"
+alwaysApply: false
+---
+
+# Construction Domain Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Prevent invented or misused construction terminology. One wrong word (calling an RFI a "ticket") can end credibility with a Project Director.
+
+## Scope
+
+Any copy, fixture data, AI output, labels, statuses, or workflows touching construction/EPC/oil & gas domain concepts. Canonical sources: `docs/13_CONSTRUCTION_DOMAIN_GUIDE.md`, `docs/08_DEMO_DATA_GUIDE.md`, `docs/06_COPY_GUIDELINES.md` §6 and §10.
+
+## Mandatory Rules
+
+1. Use terms exactly as defined in `docs/13_CONSTRUCTION_DOMAIN_GUIDE.md` — BOQ, RFI, RFQ, NCR, MIR, WIR, Submittal, Shop Drawing, Method Statement, VO, PO, Punch List, PTW, etc.
+2. Never invent Aramco standard numbers or approval codes beyond `docs/08_DEMO_DATA_GUIDE.md` / `docs/13`.
+3. Single fictional world: Al-Buraq Horizon Contracting Co. and its portfolio only (`DECISIONS.md` D-002).
+4. IDs follow documented schemes (`RFI-1042-014`, `PO-…`, drawing numbers, etc.).
+5. Status transitions must be workflow-plausible; only closed vocabulary strings render in UI.
+6. BOQ totals reconcile to contract values; dates chronological; actors exist on the roster.
+7. Approval hierarchy: Site/Project Engineer → PM → Project Director → client approver.
+8. Currency SAR; dates `DD MMM YYYY`; metric units only; real Saudi cities from the demo guide.
+9. AI must not improvise domain terms — if missing, add to `docs/13` first.
+10. Punch List is canonical (not Snag List) unless explicitly quoting regional usage.
+
+## Forbidden Patterns
+
+| Don't say | Say |
+|---|---|
+| Ticket / Issue | RFI, NCR, or specific type |
+| Invoice (for scope change) | Variation Order |
+| Chat / Question | RFI |
+| Folder (for controlled docs) | Drawing/Document register |
+| Snag List (as default) | Punch List |
+| Random fake cities | Al-Khobar, Dammam, Jubail, Riyadh, Dhahran, Yanbu |
+| USD / $ | SAR |
+| Imperial units | m², m³, LM, MT, EA |
+
+## Examples
+
+**Good:** `RFI-1042-013` Overdue, raised by Sara Al-Qahtani, SLA 7 days.
+**Bad:** `Issue #913` "Waiting," assignee "John Doe," due "03/14/26."
+
+**Good:** Submittal `Approved with Comments` after `Under Review`.
+**Bad:** Submittal jumps from `Pending Submission` to `Approved with Comments` with no review step.
+
+## Quality Checklist
+
+- [ ] Terms match `docs/13`
+- [ ] Statuses match `docs/06` §6
+- [ ] Fixtures match `docs/08` consistency rules
+- [ ] No invented Aramco/standards references
+- [ ] Hierarchy depth preserved
+
+## Escalation
+
+New domain concepts require `docs/13` (+ `docs/06` / `docs/08` as needed) in the same PR. When unsure of industry meaning, do not guess — leave a stub and escalate to Solutions Architect / domain review.

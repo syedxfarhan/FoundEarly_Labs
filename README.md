@@ -18,33 +18,52 @@ We are in **Phase 0: Repository Governance**. This phase produces zero applicati
 
 ## Start Here
 
-Read documents in this order. Each one assumes the ones before it.
+If you do not know which document owns a question, open [`docs/11_DOCUMENTATION_MAP.md`](docs/11_DOCUMENTATION_MAP.md) first.
 
-1. [`docs/01_PROJECT_SSOT.md`](docs/01_PROJECT_SSOT.md) — the master vision, goals, non-goals, audience, and philosophy. **Read this first, always.**
-2. [`docs/02_PRODUCT_DESIGN_MANUAL.md`](docs/02_PRODUCT_DESIGN_MANUAL.md) — the design constitution.
-3. [`docs/03_INFORMATION_ARCHITECTURE.md`](docs/03_INFORMATION_ARCHITECTURE.md) — the application's shape and flows.
-4. [`docs/04_COMPONENT_SYSTEM.md`](docs/04_COMPONENT_SYSTEM.md) — every reusable UI component, specified (not implemented).
+Otherwise read in this order:
+
+1. [`docs/01_PROJECT_SSOT.md`](docs/01_PROJECT_SSOT.md) — master vision. **Read this first, always.**
+2. [`docs/02_PRODUCT_DESIGN_MANUAL.md`](docs/02_PRODUCT_DESIGN_MANUAL.md) — design constitution (includes Enterprise Design Anti-Patterns).
+3. [`docs/03_INFORMATION_ARCHITECTURE.md`](docs/03_INFORMATION_ARCHITECTURE.md) — application shape and flows.
+4. [`docs/04_COMPONENT_SYSTEM.md`](docs/04_COMPONENT_SYSTEM.md) — component specs (not implemented).
 5. [`docs/05_MOTION_SYSTEM.md`](docs/05_MOTION_SYSTEM.md) — animation rules.
-6. [`docs/06_COPY_GUIDELINES.md`](docs/06_COPY_GUIDELINES.md) — voice, tone, and writing rules.
+6. [`docs/06_COPY_GUIDELINES.md`](docs/06_COPY_GUIDELINES.md) — voice, tone, status vocabulary.
 7. [`docs/07_IMPLEMENTATION_RULES.md`](docs/07_IMPLEMENTATION_RULES.md) — coding conventions and architecture.
-8. [`docs/08_DEMO_DATA_GUIDE.md`](docs/08_DEMO_DATA_GUIDE.md) — the fictional construction company ecosystem every demo references.
-9. [`docs/09_DESIGN_TOKENS.md`](docs/09_DESIGN_TOKENS.md) — the production-ready design token spec.
-10. [`docs/10_PROJECT_STRUCTURE.md`](docs/10_PROJECT_STRUCTURE.md) — the target repository/folder structure.
+8. [`docs/08_DEMO_DATA_GUIDE.md`](docs/08_DEMO_DATA_GUIDE.md) — fictional construction company ecosystem.
+9. [`docs/09_DESIGN_TOKENS.md`](docs/09_DESIGN_TOKENS.md) — design tokens.
+10. [`docs/10_PROJECT_STRUCTURE.md`](docs/10_PROJECT_STRUCTURE.md) — repository structure.
 
-Then read the root governance files:
+### Hardening layer (required before Phase 1)
 
-- [`PROJECT_PRINCIPLES.md`](PROJECT_PRINCIPLES.md) — the non-negotiable operating principles for everyone who touches this repo.
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to actually contribute: branching, review, the PR checklist.
-- [`DECISIONS.md`](DECISIONS.md) — the log of every material architectural/design decision and why it was made.
-- [`ROADMAP.md`](ROADMAP.md) — where this goes after Phase 1.
-- [`CHANGELOG.md`](CHANGELOG.md) — what has actually shipped, phase by phase.
+11. [`docs/11_DOCUMENTATION_MAP.md`](docs/11_DOCUMENTATION_MAP.md) — doc ownership and conflict resolution.
+12. [`docs/12_DESIGN_REVIEW_CHECKLIST.md`](docs/12_DESIGN_REVIEW_CHECKLIST.md) — official design approval gate.
+13. [`docs/13_CONSTRUCTION_DOMAIN_GUIDE.md`](docs/13_CONSTRUCTION_DOMAIN_GUIDE.md) — construction terminology handbook.
+14. [`docs/14_ICONOGRAPHY_GUIDE.md`](docs/14_ICONOGRAPHY_GUIDE.md) — icon handbook.
+15. [`docs/15_DATA_VISUALIZATION_GUIDE.md`](docs/15_DATA_VISUALIZATION_GUIDE.md) — dashboard/chart constitution.
+16. [`docs/16_PRESENTATION_MODE_GUIDE.md`](docs/16_PRESENTATION_MODE_GUIDE.md) — live presentation handbook.
+17. [`docs/17_PHASE1_DEFINITION_OF_DONE.md`](docs/17_PHASE1_DEFINITION_OF_DONE.md) — gate to begin implementation.
+18. [`docs/18_LIVE_DEMO_RUNBOOK.md`](docs/18_LIVE_DEMO_RUNBOOK.md) — in-room incident procedures.
+19. [`docs/19_BRAND_AND_I18N_CONVENTIONS.md`](docs/19_BRAND_AND_I18N_CONVENTIONS.md) — brand application + i18n key conventions.
+
+### Cursor AI rules
+
+[`.cursor/rules/`](.cursor/rules/) — `design`, `architecture`, `coding`, `motion`, `copywriting`, `enterprise-ui`, `construction-domain`. These enforce `/docs` during AI-assisted Phase 1 work.
+
+### Root governance
+
+- [`PROJECT_PRINCIPLES.md`](PROJECT_PRINCIPLES.md)
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- [`DECISIONS.md`](DECISIONS.md)
+- [`ROADMAP.md`](ROADMAP.md)
+- [`CHANGELOG.md`](CHANGELOG.md)
 
 ## Who This Is For
 
-- **Engineers joining the project:** the `/docs` directory is your onboarding material. It is written so a competent engineer with zero prior context can implement Phase 1 correctly without asking a single clarifying question.
-- **FoundEarly Labs leadership:** `docs/01_PROJECT_SSOT.md` and `ROADMAP.md` are your reference for what's being built and why.
-- **Anyone reviewing this repository as a credibility signal itself:** that's an intended use case. This repository is expected to hold up to scrutiny from a technically literate reviewer, because the product it governs will be scrutinized the same way, in person, by people deciding whether to trust FoundEarly Labs with real work.
+- **Engineers joining the project:** `/docs` + `.cursor/rules` are onboarding. A competent engineer should implement Phase 1 without clarifying questions on settled topics.
+- **FoundEarly Labs leadership:** `docs/01_PROJECT_SSOT.md`, `ROADMAP.md`, and `docs/17_PHASE1_DEFINITION_OF_DONE.md`.
+- **Demo representatives:** `docs/16_PRESENTATION_MODE_GUIDE.md` and `docs/18_LIVE_DEMO_RUNBOOK.md`.
+- **Reviewers of this repository as a credibility signal:** intended use case — this governance layer should itself withstand technical scrutiny.
 
 ## Repository State
 
-No application code exists yet. The current contents of this repository are exclusively the governance layer described above. See [`CHANGELOG.md`](CHANGELOG.md) for phase-by-phase status.
+No application code exists yet. Contents are the governance layer above. See [`CHANGELOG.md`](CHANGELOG.md) and [`docs/17_PHASE1_DEFINITION_OF_DONE.md`](docs/17_PHASE1_DEFINITION_OF_DONE.md) for readiness status.
