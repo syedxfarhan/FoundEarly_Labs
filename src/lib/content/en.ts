@@ -38,6 +38,16 @@ export const en = {
   "workspace.projectCommand.section.documents": "Documents",
   "workspace.projectCommand.section.team": "Team",
 
+  "workspace.corporateWebsite.label": "Corporate Website",
+  "workspace.corporateWebsite.description":
+    "Demo 01 — premium company website for Al-Buraq Horizon Contracting.",
+  "workspace.corporateWebsite.section.home": "Home",
+  "workspace.corporateWebsite.section.about": "About",
+  "workspace.corporateWebsite.section.services": "Services",
+  "workspace.corporateWebsite.section.projects": "Projects",
+  "workspace.corporateWebsite.section.careers": "Careers",
+  "workspace.corporateWebsite.section.contact": "Contact",
+
   "workspace.procurement.label": "Procurement & BOQ",
   "workspace.procurement.description": "Bill of quantities and procurement workflows.",
   "workspace.procurement.section.overview": "Overview",
@@ -151,6 +161,7 @@ export const en = {
   "landing.build.support": "Practical systems for the office, the site, and the executive table.",
   "landing.build.websites.title": "Corporate Websites",
   "landing.build.websites.body": "Credible web presence that reflects how your company actually wins work.",
+  "landing.build.websites.cta": "Open Demo 01",
   "landing.build.contractor.title": "Contractor Management Systems",
   "landing.build.contractor.body": "Internal platforms for projects, teams, vendors, and day-to-day control.",
   "landing.build.ai.title": "AI Assistants",
@@ -182,6 +193,136 @@ export const en = {
   "landing.cta.title": "Let's build software around your business.",
   "landing.cta.support": "Open the Interactive Capability Showcase to see how we design enterprise construction software.",
   "landing.cta.action": "Open Interactive Showcase",
+
+  "website.nav.label": "Company website",
+  "website.nav.home": "Home",
+  "website.nav.about": "About",
+  "website.nav.services": "Services",
+  "website.nav.projects": "Projects",
+  "website.nav.careers": "Careers",
+  "website.nav.contact": "Contact",
+  "website.nav.contactCta": "Contact",
+  "website.nav.open": "Open menu",
+  "website.nav.close": "Close menu",
+
+  "website.footer.offices": "Head office",
+  "website.footer.contact": "Contact",
+  "website.footer.demoNote": "Illustrative Demo 01 — FoundEarly Labs Showcase",
+
+  "website.home.hero.title": "Construction delivery for industrial and civil clients.",
+  "website.home.hero.support":
+    "Al-Buraq Horizon Contracting plans and executes complex packages across the Eastern Province and Riyadh — with the discipline industrial owners expect.",
+  "website.home.hero.ctaPrimary": "View projects",
+  "website.home.hero.ctaSecondary": "Request a meeting",
+
+  "website.home.intro.title": "Company introduction",
+  "website.home.intro.body":
+    "Founded in 2009 and headquartered in Al-Khobar, Al-Buraq Horizon is a Grade 2 general contractor with MEP self-execution capability. We serve industrial, commercial, and infrastructure clients who need clear reporting, controlled interfaces, and site teams that treat safety as a delivery system.",
+
+  "website.home.services.title": "Core services",
+  "website.home.services.support": "Disciplined packages from enabling works through MEP and handover.",
+  "website.home.services.cta": "All services",
+
+  "website.home.projects.title": "Featured projects",
+  "website.home.projects.support": "A sample of active and completed work across our portfolio.",
+
+  "website.home.why.title": "Why choose us",
+  "website.home.why.support": "What clients evaluate when they select a contractor for industrial work.",
+
+  "website.home.clients.title": "Selected clients",
+
+  "website.home.cta.title": "Discuss your next package.",
+  "website.home.cta.support":
+    "Speak with our Al-Khobar team about scope, schedule, and delivery approach for your project.",
+  "website.home.cta.action": "Contact Al-Buraq Horizon",
+
+  "website.about.eyebrow": "About",
+  "website.about.title": "Built for industrial-grade delivery.",
+  "website.about.support":
+    "Seventeen years of contracting discipline across civil, industrial, and MEP packages in Saudi Arabia.",
+
+  "website.about.story.title": "Company story",
+  "website.about.story.p1":
+    "Al-Buraq Horizon Contracting Co. was established in 2009 in Al-Khobar to serve industrial and commercial clients who needed a contractor that could coordinate civil and MEP work without losing schedule control.",
+  "website.about.story.p2":
+    "Today we employ approximately 940 professionals and operate across Al-Khobar, Dammam, Jubail, Dhahran, Riyadh, and Yanbu — delivering facilities, utilities, and enabling works under Grade 2 and Aramco-aligned requirements.",
+
+  "website.about.mission.title": "Mission",
+  "website.about.mission.body":
+    "Deliver construction packages with predictable schedule, transparent commercial control, and zero compromise on site safety.",
+
+  "website.about.vision.title": "Vision",
+  "website.about.vision.body":
+    "Be the preferred mid-market industrial contractor in the Eastern Province — measured by repeat clients, clean audits, and teams that grow with every project.",
+
+  "website.about.leadership.title": "Leadership",
+  "website.about.leadership.support":
+    "A core leadership team reused across the portfolio — the same names clients meet on every major package.",
+
+  "website.about.safety.title": "Safety commitment",
+  "website.about.safety.body":
+    "Every site operates under permit-to-work discipline, daily toolbox talks, and stop-work authority for any unsafe condition. Safety KPIs are reported with the same seriousness as schedule and cost.",
+
+  "website.about.quality.title": "Quality commitment",
+  "website.about.quality.body":
+    "Inspection and test plans, MIR/WIR workflows, and NCR close-out are controlled through project quality registers. We do not treat quality as paperwork after the fact.",
+
+  "website.about.certs.title": "Certifications",
+
+  "website.services.eyebrow": "Services",
+  "website.services.title": "Capabilities matched to how packages are actually tendered.",
+  "website.services.support":
+    "Civil, industrial, MEP, infrastructure, maintenance, and project management — structured for clear interfaces.",
+
+  "website.projects.eyebrow": "Projects",
+  "website.projects.title": "Portfolio across industrial, commercial, and enabling works.",
+  "website.projects.support":
+    "Six representative packages from the Al-Buraq Horizon portfolio. Values shown in Saudi Riyal.",
+  "website.projects.meta.location": "Location",
+  "website.projects.meta.value": "Value",
+  "website.projects.meta.year": "Completion year",
+  "website.projects.meta.scope": "Scope type",
+
+  "website.careers.eyebrow": "Careers",
+  "website.careers.title": "Build with a team that takes delivery seriously.",
+  "website.careers.support":
+    "Open roles across projects, engineering, quality, and document control.",
+
+  "website.careers.culture.title": "Company culture",
+  "website.careers.culture.body":
+    "We hire people who communicate clearly, respect site protocols, and treat documentation as part of the work — not an afterthought. Teams rotate between office planning and site execution with accountable supervisors.",
+
+  "website.careers.benefits.title": "Benefits",
+  "website.careers.open.title": "Open positions",
+  "website.careers.open.support": "Current openings. Applications are illustrative in this demo.",
+
+  "website.careers.apply.title": "Apply",
+  "website.careers.apply.support":
+    "Send your CV and a short note on relevant project experience to our careers inbox, or use the contact form.",
+  "website.careers.apply.cta": "Contact careers",
+
+  "website.contact.eyebrow": "Contact",
+  "website.contact.title": "Speak with our head office team.",
+  "website.contact.support":
+    "Project inquiries, vendor introductions, and careers — directed from Al-Khobar.",
+
+  "website.contact.office.title": "Office",
+  "website.contact.details.title": "Direct lines",
+  "website.contact.phone": "Phone",
+  "website.contact.email": "Email",
+  "website.contact.map.title": "Map placeholder",
+  "website.contact.map.support":
+    "Al-Khobar head office location. Live map embedding is not required for this showcase.",
+
+  "website.contact.form.title": "Send a message",
+  "website.contact.form.support": "UI-only form — no backend submission in this demo.",
+  "website.contact.form.name": "Full name",
+  "website.contact.form.email": "Work email",
+  "website.contact.form.company": "Company",
+  "website.contact.form.message": "Message",
+  "website.contact.form.submit": "Send message",
+  "website.contact.form.note": "Illustrative only — nothing is transmitted.",
+  "website.contact.form.success": "Message recorded locally for this demo session.",
 } as const;
 
 export type ContentKey = keyof typeof en;

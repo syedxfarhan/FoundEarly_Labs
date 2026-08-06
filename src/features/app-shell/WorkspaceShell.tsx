@@ -126,6 +126,8 @@ function WorkspaceChrome({ children }: { children: React.ReactNode }) {
     );
   }
 
+  const isWebsiteDemo = workspace.id === "corporate-website";
+
   const crumbs: BreadcrumbItem[] = [
     {
       id: "workspace",
@@ -141,11 +143,13 @@ function WorkspaceChrome({ children }: { children: React.ReactNode }) {
   return (
     <WorkspaceLayout
       header={
-        <WorkspaceHeader
-          breadcrumb={<Breadcrumb items={crumbs} aria-label={t("nav.breadcrumb")} />}
-          title={tKey(section.labelKey)}
-          description={`${tKey(workspace.labelKey)} · ${projectCode}`}
-        />
+        isWebsiteDemo ? undefined : (
+          <WorkspaceHeader
+            breadcrumb={<Breadcrumb items={crumbs} aria-label={t("nav.breadcrumb")} />}
+            title={tKey(section.labelKey)}
+            description={`${tKey(workspace.labelKey)} · ${projectCode}`}
+          />
+        )
       }
     >
       <WorkspaceTransition transitionKey={`${workspace.id}:${section.id}`}>
@@ -166,11 +170,15 @@ function RegisterShellCommands() {
     const offGd = registerShortcut("g+d", () => {
       router.push(workspaceHref("project-command"));
     });
+    const offGw = registerShortcut("g+w", () => {
+      router.push(workspaceHref("corporate-website"));
+    });
     const offGh = registerShortcut("g+h", () => {
       router.push("/");
     });
     return () => {
       offGd();
+      offGw();
       offGh();
     };
   }, [registerShortcut, router]);
@@ -192,6 +200,14 @@ function RegisterShellCommands() {
         keywords: ["dashboard", "workspace"],
         shortcutHint: "G D",
         run: () => router.push(workspaceHref("project-command")),
+      }),
+      registerCommand({
+        id: "nav.corporate-website",
+        label: tKey("workspace.corporateWebsite.label"),
+        section: "navigation",
+        keywords: ["website", "demo", "alburaq", "corporate"],
+        shortcutHint: "G W",
+        run: () => router.push(workspaceHref("corporate-website")),
       }),
       registerCommand({
         id: "nav.about",

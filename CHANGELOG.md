@@ -4,6 +4,22 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Demo 01] — 2026-08-06 — Premium Corporate Website
+
+### Added
+- Corporate Website workspace (`corporate-website`) with Home, About, Services, Projects, Careers, Contact
+- Feature module `src/features/corporate-website` — sticky site chrome, six pages, subtle fade reveals
+- Marketing fixtures `src/data/corporateWebsite.ts` for Al-Buraq Horizon Contracting Co.
+- Landing “Corporate Websites” card deep-links into Demo 01
+- Command / shortcut `G W` opens the website demo
+
+### Notes
+- Lives inside the Interactive Showcase shell; Credibility Landing at `/` is unchanged.
+- No CMS, no backend. Contact form is UI-only.
+- ContractorOS and AI Assistant demos remain out of scope.
+
+---
+
 ## [Phase 2.1] — 2026-08-06 — Credibility Landing
 
 ### Added

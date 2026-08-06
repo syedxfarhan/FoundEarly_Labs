@@ -16,6 +16,7 @@ export type LocaleCode = "en" | "ar";
 /** Workspace identifiers — registry is the source of truth. */
 export type WorkspaceId =
   | "project-command"
+  | "corporate-website"
   | "procurement"
   | "document-control"
   | "rfi-submittals";
