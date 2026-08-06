@@ -6,12 +6,14 @@ import { EmptyState } from "@/components/empty/EmptyState";
 import { OverlayLayer } from "@/components/layout/OverlayLayer";
 import { ShellControl } from "@/components/layout/ShellControl";
 import { overlayIds } from "@/config/constants";
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import { useNotifications } from "@/providers/NotificationProvider";
 import { useShellUi } from "@/providers/ShellUiProvider";
 import { cn } from "@/utils/cn";
 
 export function NotificationBadge() {
+  const t = useT();
+
   const { unreadCount } = useNotifications();
   const { toggleOverlay, isOverlayOpen } = useShellUi();
 
@@ -36,6 +38,8 @@ export function NotificationBadge() {
 }
 
 export function NotificationCenter() {
+  const t = useT();
+
   const { isOverlayOpen, closeOverlay } = useShellUi();
   const open = isOverlayOpen(overlayIds.notificationCenter);
   const { notifications, unreadCount, markAllRead, markRead } = useNotifications();

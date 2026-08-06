@@ -16,7 +16,7 @@ import { getNavItemsForGroup } from "@/config/navigation";
 import { WORKSPACE_REGISTRY, workspaceHref } from "@/config/workspaces";
 import { ShellControl } from "@/components/layout/ShellControl";
 import { useWorkspaceEngine } from "@/features/workspace/WorkspaceEngine";
-import { t, tKey } from "@/lib/content";
+import { useT, useTKey } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -30,6 +30,9 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export function WorkspaceSwitcher() {
+  const t = useT();
+  const tKey = useTKey();
+
   const { workspaceId, navigateToWorkspace } = useWorkspaceEngine();
   const items = getNavItemsForGroup("workspaces");
 
@@ -75,6 +78,9 @@ export function WorkspaceSwitcher() {
 }
 
 export function SectionNav() {
+  const t = useT();
+  const tKey = useTKey();
+
   const { workspace, section, navigateToSection } = useWorkspaceEngine();
 
   return (
@@ -114,6 +120,8 @@ export function SectionNav() {
 }
 
 export function UtilityNav() {
+  const tKey = useTKey();
+
   const items = getNavItemsForGroup("utility");
   return (
     <ul className="space-y-1" data-nav="utility">
@@ -140,6 +148,8 @@ export function UtilityNav() {
 
 /** Quick switcher foundation — opens via command palette destinations. */
 export function QuickSwitcherTrigger({ onOpen }: { onOpen: () => void }) {
+  const t = useT();
+
   return (
     <ShellControl aria-label={t("nav.workspaceSwitcher")} onClick={onOpen}>
       <LayoutDashboard className="size-icon-md" strokeWidth={1.5} aria-hidden />

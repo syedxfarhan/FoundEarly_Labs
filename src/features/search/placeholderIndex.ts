@@ -1,9 +1,12 @@
 import { WORKSPACE_REGISTRY, workspaceHref } from "@/config/workspaces";
-import { tKey } from "@/lib/content";
+import type { TranslateKeyFn } from "@/lib/content";
+import { createKeyTranslator } from "@/lib/content";
 import type { SearchHit } from "@/providers/SearchProvider";
 
 /** Placeholder search index — no real indexing (Phase 1.2 shell only). */
-export function buildPlaceholderSearchIndex(): SearchHit[] {
+export function buildPlaceholderSearchIndex(
+  tKey: TranslateKeyFn = createKeyTranslator("en"),
+): SearchHit[] {
   const hits: SearchHit[] = [];
 
   for (const workspace of WORKSPACE_REGISTRY) {
@@ -27,9 +30,9 @@ export function buildPlaceholderSearchIndex(): SearchHit[] {
 
   hits.push({
     id: "project-P-1042",
-    title: "P-1042 Jubail Process Utility Upgrade",
+    title: `P-1042 ${tKey("fixture.project.P-1042.name")}`,
     category: "projects",
-    description: "Default active project after Demo Reset",
+    description: tKey("search.project.defaultDescription"),
   });
 
   return hits;

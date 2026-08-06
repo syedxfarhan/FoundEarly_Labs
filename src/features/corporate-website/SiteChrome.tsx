@@ -7,7 +7,7 @@ import * as React from "react";
 
 import { COMPANY } from "@/data/corporateWebsite";
 import { workspaceHref } from "@/config/workspaces";
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 const NAV = [
@@ -24,6 +24,8 @@ function navHref(section: string) {
 }
 
 export function SiteHeader() {
+  const t = useT();
+
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
 
@@ -131,16 +133,20 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const t = useT();
+
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-content gap-8 px-4 py-10 md:grid-cols-12 md:px-6">
         <div className="md:col-span-5">
           <p className="type-label text-brand">{COMPANY.wordmark}</p>
-          <p className="mt-3 max-w-sm type-body text-muted-foreground">{COMPANY.tagline}</p>
+          <p className="mt-3 max-w-sm type-body text-muted-foreground">
+            {t("website.company.tagline")}
+          </p>
         </div>
         <div className="md:col-span-3">
           <p className="type-label text-muted-foreground">{t("website.footer.offices")}</p>
-          <p className="mt-3 type-body text-foreground">{COMPANY.headquarters}</p>
+          <p className="mt-3 type-body text-foreground">{t("website.company.headquarters")}</p>
         </div>
         <div className="md:col-span-4">
           <p className="type-label text-muted-foreground">{t("website.footer.contact")}</p>

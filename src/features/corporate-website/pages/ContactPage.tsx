@@ -4,7 +4,7 @@ import * as React from "react";
 import { MapPin } from "lucide-react";
 
 import { COMPANY } from "@/data/corporateWebsite";
-import { t } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import {
   PageIntro,
   Reveal,
@@ -19,7 +19,16 @@ const fieldClassName = cn(
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 );
 
+const ADDRESS_KEYS = [
+  null,
+  "website.company.address.street",
+  "website.company.address.city",
+  "website.company.address.country",
+] as const satisfies ReadonlyArray<ContentKey | null>;
+
 export function ContactPage() {
+  const t = useT();
+
   const [submitted, setSubmitted] = React.useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -43,11 +52,14 @@ export function ContactPage() {
             <Reveal>
               <h2 className="type-h3 text-foreground">{t("website.contact.office.title")}</h2>
               <address className="mt-4 not-italic type-body text-muted-foreground">
-                {COMPANY.addressLines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
+                {COMPANY.addressLines.map((line, index) => {
+                  const key = ADDRESS_KEYS[index];
+                  return (
+                    <span key={line} className="block">
+                      {key ? t(key) : line}
+                    </span>
+                  );
+                })}
               </address>
             </Reveal>
             <Reveal delay={0.04}>

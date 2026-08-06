@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { slideUpVariants } from "@/animations/presets";
 import { useMotion } from "@/hooks/useMotion";
+import { useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 export function Reveal({
@@ -120,12 +121,13 @@ export function KpiCard({
   );
 }
 
-export function ProgressBar({ value }: { value: number }) {
+export function ProgressBar({ value, label }: { value: number; label?: string }) {
+  const t = useT();
   const clamped = Math.max(0, Math.min(100, value));
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between gap-2">
-        <span className="type-body-sm text-muted-foreground">Progress</span>
+        <span className="type-body-sm text-muted-foreground">{label ?? t("common.progress")}</span>
         <span className="type-body-sm font-medium text-foreground" data-numeric="true">
           {clamped}%
         </span>

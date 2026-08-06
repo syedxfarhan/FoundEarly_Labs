@@ -33,7 +33,7 @@ import {
   WorkspaceTransition,
   useWorkspaceEngine,
 } from "@/features/workspace";
-import { t, tKey } from "@/lib/content";
+import { useT, useTKey } from "@/lib/content";
 import { useCommands } from "@/providers/CommandProvider";
 import { useKeyboardShortcuts } from "@/providers/KeyboardShortcutProvider";
 import { usePresentation } from "@/providers/PresentationProvider";
@@ -42,6 +42,8 @@ import { useShellUi } from "@/providers/ShellUiProvider";
 import type { BreadcrumbItem } from "@/types/navigation";
 
 function BrandMark() {
+  const t = useT();
+
   return (
     <Link
       href={workspaceHref("project-command")}
@@ -59,6 +61,7 @@ function BrandMark() {
 }
 
 function ShellTopActions() {
+  const t = useT();
   const { toggleOverlay } = useShellUi();
 
   return (
@@ -84,6 +87,8 @@ function ShellTopActions() {
 }
 
 function ShellNavigation() {
+  const t = useT();
+
   return (
     <NavigationRail
       aria-label={t("nav.sectionNav")}
@@ -98,6 +103,7 @@ function ShellNavigation() {
 }
 
 function RightUtilityRegion() {
+  const t = useT();
   const { isPresentationMode } = usePresentation();
   return (
     <div className="flex h-full flex-col p-4" aria-label={t("shell.rightUtility")}>
@@ -112,6 +118,8 @@ function RightUtilityRegion() {
 }
 
 function WorkspaceChrome({ children }: { children: React.ReactNode }) {
+  const t = useT();
+  const tKey = useTKey();
   const pathname = usePathname();
   const isWorkspaceRoute = pathname.startsWith("/workspace/");
   const { workspace, section, projectCode } = useWorkspaceEngine();
@@ -160,6 +168,8 @@ function WorkspaceChrome({ children }: { children: React.ReactNode }) {
 }
 
 function RegisterShellCommands() {
+  const t = useT();
+  const tKey = useTKey();
   const { registerCommand } = useCommands();
   const { registerShortcut } = useKeyboardShortcuts();
   const router = useRouter();
@@ -246,14 +256,14 @@ function RegisterShellCommands() {
       }),
       registerCommand({
         id: "workspace.default-project",
-        label: "Set active project P-1042",
+        label: t("command.setActiveProject", { code: "P-1042" }),
         section: "workspace",
         keywords: ["project", "P-1042"],
         run: () => setActiveProjectCode("P-1042"),
       }),
     ];
     return () => disposers.forEach((off) => off());
-  }, [registerCommand, router, toggleOverlay, setActiveProjectCode]);
+  }, [registerCommand, router, toggleOverlay, setActiveProjectCode, t, tKey]);
 
   return null;
 }
@@ -264,7 +274,8 @@ function RegisterShellCommands() {
  */
 export function WorkspaceShell({ children }: { children?: React.ReactNode }) {
   const { isPresentationMode } = usePresentation();
-  const searchIndex = React.useMemo(() => buildPlaceholderSearchIndex(), []);
+  const tKey = useTKey();
+  const searchIndex = React.useMemo(() => buildPlaceholderSearchIndex(tKey), [tKey]);
 
   return (
     <SearchProvider index={searchIndex}>

@@ -2,7 +2,7 @@
 
 import { LoaderCircle } from "lucide-react";
 
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 export type WorkspaceLoaderProps = {
@@ -12,6 +12,8 @@ export type WorkspaceLoaderProps = {
 
 /** Bounded loading indicator for workspace transitions — never a full-page blocker. */
 export function WorkspaceLoader({ className, label }: WorkspaceLoaderProps) {
+  const t = useT();
+
   return (
     <div
       className={cn(

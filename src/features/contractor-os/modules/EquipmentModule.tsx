@@ -3,7 +3,16 @@
 import * as React from "react";
 
 import { OS_EQUIPMENT, getProjectName } from "@/data/contractorOs";
-import { t } from "@/lib/content";
+import {
+  equipmentNameKey,
+  projectNameKey,
+  projectNameShortKey,
+  resolveContentKey,
+  translateEquipmentType,
+  translateLocation,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   DataTable,
   ModuleToolbar,
@@ -12,7 +21,17 @@ import {
   scheduleTone,
 } from "@/features/contractor-os/ui";
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 export function EquipmentModule() {
+  const t = useT();
+
   const [search, setSearch] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState("all");
 
@@ -42,9 +61,9 @@ export function EquipmentModule() {
         filterLabel={t("os.filter.status")}
         filterOptions={[
           { value: "all", label: t("os.filter.all") },
-          { value: "Assigned", label: "Assigned" },
-          { value: "Available", label: "Available" },
-          { value: "Maintenance", label: "Maintenance" },
+          { value: "Assigned", label: translateStatus("Assigned", t) },
+          { value: "Available", label: translateStatus("Available", t) },
+          { value: "Maintenance", label: translateStatus("Maintenance", t) },
         ]}
       />
 
@@ -65,16 +84,27 @@ export function EquipmentModule() {
               className="border-b border-border last:border-b-0 transition-colors duration-fast ease-enter hover:bg-surface-muted/60"
             >
               <td className="px-table-x py-3">
-                <p className="type-body font-medium text-foreground">{item.name}</p>
+                <p className="type-body font-medium text-foreground">
+                  {resolveContentKey(equipmentNameKey(item.id), item.name, t)}
+                </p>
                 <p className="type-body-sm text-muted-foreground">{item.id}</p>
               </td>
-              <td className="px-table-x py-3 type-body text-foreground">{item.type}</td>
-              <td className="px-table-x py-3">
-                <StatusBadge label={item.status} tone={scheduleTone(item.status)} />
+              <td className="px-table-x py-3 type-body text-foreground">
+                {translateEquipmentType(item.type, t)}
               </td>
-              <td className="px-table-x py-3 type-body text-muted-foreground">{item.location}</td>
+              <td className="px-table-x py-3">
+                <StatusBadge
+                  label={translateStatus(item.status, t)}
+                  tone={scheduleTone(item.status)}
+                />
+              </td>
               <td className="px-table-x py-3 type-body text-muted-foreground">
-                {item.projectId ? getProjectName(item.projectId) : "—"}
+                {translateLocation(item.location, t)}
+              </td>
+              <td className="px-table-x py-3 type-body text-muted-foreground">
+                {item.projectId
+                  ? translateOsProjectName(item.projectId, getProjectName(item.projectId), t)
+                  : "—"}
               </td>
               <td className="px-table-x py-3 type-body text-foreground" data-numeric="true">
                 {item.nextMaintenance}

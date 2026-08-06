@@ -19,7 +19,16 @@ import {
 } from "@/data/contractorOs";
 import { workspaceHref } from "@/config/workspaces";
 import { formatCount, formatPercent, formatSar } from "@/lib/formatters";
-import { t } from "@/lib/content";
+import {
+  activityLabelKey,
+  deadlineLabelKey,
+  projectNameKey,
+  projectNameShortKey,
+  resolveContentKey,
+  translateLocation,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   KpiCard,
   ProgressBar,
@@ -34,7 +43,17 @@ function href(section: string) {
   return workspaceHref("contractor-os", section);
 }
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 export function DashboardModule() {
+  const t = useT();
+
   const active = OS_PROJECTS.filter((p) => p.status !== "Complete");
 
   return (
@@ -102,10 +121,17 @@ export function DashboardModule() {
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="type-label text-muted-foreground">{project.id}</p>
-                      <p className="mt-1 type-body font-medium text-foreground">{project.name}</p>
-                      <p className="mt-1 type-body-sm text-muted-foreground">{project.location}</p>
+                      <p className="mt-1 type-body font-medium text-foreground">
+                        {translateOsProjectName(project.id, project.name, t)}
+                      </p>
+                      <p className="mt-1 type-body-sm text-muted-foreground">
+                        {translateLocation(project.location, t)}
+                      </p>
                     </div>
-                    <StatusBadge label={project.status} tone={scheduleTone(project.status)} />
+                    <StatusBadge
+                      label={translateStatus(project.status, t)}
+                      tone={scheduleTone(project.status)}
+                    />
                   </div>
                   <div className="mt-4">
                     <ProgressBar value={project.progress} />
@@ -124,7 +150,9 @@ export function DashboardModule() {
                 {OS_ACTIVITY.map((item) => (
                   <li key={item.id} className="border-s-2 border-brand ps-3">
                     <p className="type-label text-muted-foreground">{item.time}</p>
-                    <p className="type-body font-medium text-foreground">{item.label}</p>
+                    <p className="type-body font-medium text-foreground">
+                      {resolveContentKey(activityLabelKey(item.id), item.label, t)}
+                    </p>
                     <p className="type-body-sm text-muted-foreground">{item.detail}</p>
                   </li>
                 ))}
@@ -142,9 +170,11 @@ export function DashboardModule() {
                     className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-3 last:border-b-0 last:pb-0"
                   >
                     <div>
-                      <p className="type-body font-medium text-foreground">{item.label}</p>
+                      <p className="type-body font-medium text-foreground">
+                        {resolveContentKey(deadlineLabelKey(item.id), item.label, t)}
+                      </p>
                       <p className="type-body-sm text-muted-foreground">
-                        {getProjectName(item.projectId)}
+                        {translateOsProjectName(item.projectId, getProjectName(item.projectId), t)}
                       </p>
                     </div>
                     <p className="type-body-sm text-muted-foreground" data-numeric="true">

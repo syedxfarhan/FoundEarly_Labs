@@ -5,14 +5,36 @@ import { ArrowRight } from "lucide-react";
 
 import { BENEFITS, COMPANY, OPEN_ROLES } from "@/data/corporateWebsite";
 import { workspaceHref } from "@/config/workspaces";
-import { t } from "@/lib/content";
+import {
+  type ContentKey,
+  translateLocation,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   PageIntro,
   Reveal,
   primaryButtonClassName,
 } from "@/features/corporate-website/ui";
 
+const BENEFIT_KEYS = [
+  "website.benefit.1",
+  "website.benefit.2",
+  "website.benefit.3",
+  "website.benefit.4",
+  "website.benefit.5",
+] as const satisfies ReadonlyArray<ContentKey>;
+
+const ROLE_CONTENT_IDS: Record<string, string> = {
+  "pm-riyadh": "pmRiyadh",
+  "pe-jubail": "peJubail",
+  "qa-dammam": "qaDammam",
+  "dc-khobar": "dcKhobar",
+};
+
 export function CareersPage() {
+  const t = useT();
+
   return (
     <div data-website-page="careers">
       <section className="border-b border-border bg-surface">
@@ -41,9 +63,9 @@ export function CareersPage() {
           </Reveal>
           <ul className="grid gap-3 md:grid-cols-2">
             {BENEFITS.map((benefit, index) => (
-              <Reveal key={benefit} delay={Math.min(index, 5) * 0.02}>
+              <Reveal key={BENEFIT_KEYS[index] ?? benefit} delay={Math.min(index, 5) * 0.02}>
                 <li className="rounded-md border border-border bg-background px-4 py-4 type-body text-foreground">
-                  {benefit}
+                  {BENEFIT_KEYS[index] ? t(BENEFIT_KEYS[index]) : benefit}
                 </li>
               </Reveal>
             ))}
@@ -58,21 +80,35 @@ export function CareersPage() {
             <p className="type-body text-muted-foreground">{t("website.careers.open.support")}</p>
           </Reveal>
           <div className="flex flex-col gap-3">
-            {OPEN_ROLES.map((role, index) => (
-              <Reveal key={role.id} delay={Math.min(index, 5) * 0.03}>
-                <article className="rounded-lg border border-border bg-surface p-5 transition-colors duration-fast ease-enter hover:border-border-strong md:p-6">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <h3 className="type-h3 text-foreground">{role.title}</h3>
-                      <p className="mt-1 type-body text-muted-foreground">
-                        {role.department} · {role.location} · {role.type}
-                      </p>
+            {OPEN_ROLES.map((role, index) => {
+              const contentId = ROLE_CONTENT_IDS[role.id];
+              const title = contentId
+                ? t(`fixture.role.${contentId}.title` as ContentKey)
+                : role.title;
+              const department = contentId
+                ? t(`fixture.role.${contentId}.department` as ContentKey)
+                : role.department;
+              const summary = contentId
+                ? t(`fixture.role.${contentId}.summary` as ContentKey)
+                : role.summary;
+
+              return (
+                <Reveal key={role.id} delay={Math.min(index, 5) * 0.03}>
+                  <article className="rounded-lg border border-border bg-surface p-5 transition-colors duration-fast ease-enter hover:border-border-strong md:p-6">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h3 className="type-h3 text-foreground">{title}</h3>
+                        <p className="mt-1 type-body text-muted-foreground">
+                          {department} · {translateLocation(role.location, t)} ·{" "}
+                          {translateStatus(role.type, t)}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <p className="mt-3 max-w-3xl type-body text-muted-foreground">{role.summary}</p>
-                </article>
-              </Reveal>
-            ))}
+                    <p className="mt-3 max-w-3xl type-body text-muted-foreground">{summary}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

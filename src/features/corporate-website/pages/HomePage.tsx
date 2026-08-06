@@ -7,12 +7,19 @@ import {
   COMPANY,
   CLIENTS,
   SERVICES,
-  WHY_CHOOSE,
   getFeaturedProjects,
 } from "@/data/corporateWebsite";
 import { workspaceHref } from "@/config/workspaces";
 import { formatSar } from "@/lib/formatters";
-import { t } from "@/lib/content";
+import {
+  type ContentKey,
+  projectScopeKey,
+  resolveContentKey,
+  translateLocation,
+  translateProjectName,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   Reveal,
   primaryButtonClassName,
@@ -24,7 +31,23 @@ function href(section: string) {
   return workspaceHref("corporate-website", section);
 }
 
+const WHY_CHOOSE_KEYS = [
+  { title: "website.why.delivery.title", body: "website.why.delivery.body" },
+  { title: "website.why.industrial.title", body: "website.why.industrial.body" },
+  { title: "website.why.mep.title", body: "website.why.mep.body" },
+  { title: "website.why.safety.title", body: "website.why.safety.body" },
+] as const satisfies ReadonlyArray<{ title: ContentKey; body: ContentKey }>;
+
+const STAT_KEYS = [
+  "website.company.stat.years",
+  "website.company.stat.projects",
+  "website.company.stat.professionals",
+  "website.company.stat.cities",
+] as const satisfies ReadonlyArray<ContentKey>;
+
 export function HomePage() {
+  const t = useT();
+
   const featured = getFeaturedProjects();
 
   return (
@@ -64,11 +87,13 @@ export function HomePage() {
                 className="pointer-events-none absolute inset-y-0 end-0 w-1/3 border-s border-brand-foreground/15 bg-brand-foreground/5"
                 aria-hidden
               />
-              <p className="type-label text-brand-foreground/80">{COMPANY.industry}</p>
+              <p className="type-label text-brand-foreground/80">{t("website.company.industry")}</p>
               <p className="mt-2 max-w-sm type-h3 text-brand-foreground">
-                {COMPANY.headquarters}
+                {t("website.company.headquarters")}
               </p>
-              <p className="mt-4 type-body text-brand-foreground/80">{COMPANY.classification}</p>
+              <p className="mt-4 type-body text-brand-foreground/80">
+                {t("website.company.classification")}
+              </p>
             </div>
           </Reveal>
         </div>
@@ -99,8 +124,12 @@ export function HomePage() {
             {SERVICES.map((service, index) => (
               <Reveal key={service.id} delay={Math.min(index, 5) * 0.03}>
                 <article className="flex h-full flex-col gap-3 rounded-lg border border-border bg-background p-6 transition-colors duration-fast ease-enter hover:border-border-strong">
-                  <h3 className="type-h3 text-foreground">{service.title}</h3>
-                  <p className="type-body text-muted-foreground">{service.summary}</p>
+                  <h3 className="type-h3 text-foreground">
+                    {t(`website.service.${service.id}.title` as ContentKey)}
+                  </h3>
+                  <p className="type-body text-muted-foreground">
+                    {t(`website.service.${service.id}.summary` as ContentKey)}
+                  </p>
                 </article>
               </Reveal>
             ))}
@@ -127,13 +156,19 @@ export function HomePage() {
                 <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors duration-fast ease-enter hover:border-border-strong">
                   <ProjectVisual project={project} />
                   <div className="flex flex-1 flex-col gap-3 p-5">
-                    <p className="type-label text-muted-foreground">{project.location}</p>
-                    <h3 className="type-h3 text-foreground">{project.name}</h3>
-                    <p className="type-body text-muted-foreground">{project.scope}</p>
+                    <p className="type-label text-muted-foreground">
+                      {translateLocation(project.location, t)}
+                    </p>
+                    <h3 className="type-h3 text-foreground">
+                      {translateProjectName(project.id, project.name, t)}
+                    </h3>
+                    <p className="type-body text-muted-foreground">
+                      {resolveContentKey(projectScopeKey(project.id), project.scope, t)}
+                    </p>
                     <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 type-body-sm text-muted-foreground">
                       <span data-numeric="true">{formatSar(project.valueSar)}</span>
                       <span>{project.completionYear}</span>
-                      <span>{project.status}</span>
+                      <span>{translateStatus(project.status, t)}</span>
                     </div>
                   </div>
                 </article>
@@ -151,11 +186,11 @@ export function HomePage() {
             <p className="type-body text-muted-foreground">{t("website.home.why.support")}</p>
           </Reveal>
           <div className="grid gap-6 md:grid-cols-2">
-            {WHY_CHOOSE.map((item, index) => (
+            {WHY_CHOOSE_KEYS.map((item, index) => (
               <Reveal key={item.title} delay={Math.min(index, 5) * 0.03}>
                 <div className="border-s-2 border-brand ps-5">
-                  <h3 className="type-h3 text-foreground">{item.title}</h3>
-                  <p className="mt-2 type-body text-muted-foreground">{item.body}</p>
+                  <h3 className="type-h3 text-foreground">{t(item.title)}</h3>
+                  <p className="mt-2 type-body text-muted-foreground">{t(item.body)}</p>
                 </div>
               </Reveal>
             ))}
@@ -167,12 +202,14 @@ export function HomePage() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-content gap-6 px-4 py-16 sm:grid-cols-2 md:px-6 md:py-20 lg:grid-cols-4">
           {COMPANY.stats.map((stat, index) => (
-            <Reveal key={stat.label} delay={Math.min(index, 5) * 0.03}>
+            <Reveal key={STAT_KEYS[index]} delay={Math.min(index, 5) * 0.03}>
               <div className="space-y-2">
                 <p className="type-numeric-lg text-foreground" data-numeric="true">
                   {stat.value}
                 </p>
-                <p className="type-body text-muted-foreground">{stat.label}</p>
+                <p className="type-body text-muted-foreground">
+                  {STAT_KEYS[index] ? t(STAT_KEYS[index]) : stat.label}
+                </p>
               </div>
             </Reveal>
           ))}

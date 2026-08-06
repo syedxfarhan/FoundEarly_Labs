@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import { Languages, Monitor, Moon, Sun } from "lucide-react";
 
 import { ShellControl } from "@/components/layout/ShellControl";
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import { useLocale } from "@/providers/LocaleProvider";
 import type { LocaleCode, ThemeMode } from "@/types/workspace";
 import { cn } from "@/utils/cn";
@@ -17,6 +17,8 @@ const THEME_CYCLE: ThemeMode[] = ["light", "dark", "system"];
  * and a short color transition during the change.
  */
 export function ThemeSwitch() {
+  const t = useT();
+
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -58,21 +60,22 @@ export function ThemeSwitch() {
   );
 }
 
-/** Language + RTL foundation switch — English copy; direction persists. */
+/** Language switch — updates translations and document direction. */
 export function LanguageSwitch() {
-  const { locale, setLocale } = useLocale();
+  const t = useT();
+  const { language, setLanguage } = useLocale();
 
-  const next: LocaleCode = locale === "en" ? "ar" : "en";
+  const next: LocaleCode = language === "en" ? "ar" : "en";
 
   return (
     <ShellControl
-      aria-label={`${t("shell.languageSwitch")}: ${locale === "en" ? t("shell.language.en") : t("shell.language.ar")}`}
+      aria-label={`${t("shell.languageSwitch")}: ${language === "en" ? t("shell.language.en") : t("shell.language.ar")}`}
       title={t("shell.language.hint")}
-      onClick={() => setLocale(next)}
+      onClick={() => setLanguage(next)}
     >
       <Languages className="size-icon-md" strokeWidth={1.5} aria-hidden />
-      <span className="hidden type-label uppercase tracking-wide md:inline">
-        {locale === "en" ? "EN" : "AR"}
+      <span className="hidden type-label tracking-wide md:inline">
+        {language === "en" ? t("shell.language.badge.en") : t("shell.language.badge.ar")}
       </span>
     </ShellControl>
   );

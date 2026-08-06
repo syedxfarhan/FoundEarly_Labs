@@ -4,7 +4,15 @@ import * as React from "react";
 import { FileText, Folder } from "lucide-react";
 
 import { DOC_FOLDERS, OS_DOCUMENTS, getProjectName } from "@/data/contractorOs";
-import { t } from "@/lib/content";
+import {
+  documentNameKey,
+  projectNameKey,
+  projectNameShortKey,
+  resolveContentKey,
+  translateDocFolder,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   ModuleToolbar,
   Reveal,
@@ -13,7 +21,17 @@ import {
 } from "@/features/contractor-os/ui";
 import { cn } from "@/utils/cn";
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 export function DocumentsModule() {
+  const t = useT();
+
   const [search, setSearch] = React.useState("");
   const [folder, setFolder] = React.useState<string>("all");
   const [selectedId, setSelectedId] = React.useState<string | null>(OS_DOCUMENTS[0]?.id ?? null);
@@ -52,7 +70,10 @@ export function DocumentsModule() {
         filterLabel={t("os.documents.folder")}
         filterOptions={[
           { value: "all", label: t("os.filter.all") },
-          ...DOC_FOLDERS.map((name) => ({ value: name, label: name })),
+          ...DOC_FOLDERS.map((name) => ({
+            value: name,
+            label: translateDocFolder(name, t),
+          })),
         ]}
       />
 
@@ -91,7 +112,7 @@ export function DocumentsModule() {
                     )}
                   >
                     <Folder className="size-icon-sm" strokeWidth={1.5} aria-hidden />
-                    {name}
+                    {translateDocFolder(name, t)}
                   </button>
                 </li>
               ))}
@@ -123,12 +144,17 @@ export function DocumentsModule() {
                       aria-hidden
                     />
                     <span className="min-w-0 flex-1">
-                      <span className="block type-body font-medium text-foreground">{doc.name}</span>
+                      <span className="block type-body font-medium text-foreground">
+                        {resolveContentKey(documentNameKey(doc.id), doc.name, t)}
+                      </span>
                       <span className="mt-1 block type-body-sm text-muted-foreground">
-                        {doc.category} · {doc.updated}
+                        {translateDocFolder(doc.category, t)} · {doc.updated}
                       </span>
                     </span>
-                    <StatusBadge label={doc.status} tone={scheduleTone(doc.status)} />
+                    <StatusBadge
+                      label={translateStatus(doc.status, t)}
+                      tone={scheduleTone(doc.status)}
+                    />
                   </button>
                 </li>
               ))}
@@ -146,7 +172,9 @@ export function DocumentsModule() {
               <div className="mt-4 space-y-4">
                 <div className="flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-md border border-border bg-surface-muted p-6 text-center">
                   <FileText className="size-icon-lg text-brand" strokeWidth={1.5} aria-hidden />
-                  <p className="type-body font-medium text-foreground">{selected.name}</p>
+                  <p className="type-body font-medium text-foreground">
+                    {resolveContentKey(documentNameKey(selected.id), selected.name, t)}
+                  </p>
                   <p className="type-body-sm text-muted-foreground">
                     {t("os.documents.previewHint")}
                   </p>
@@ -167,7 +195,13 @@ export function DocumentsModule() {
                       {t("os.documents.meta.project")}
                     </dt>
                     <dd className="mt-1 type-body text-foreground">
-                      {selected.projectId ? getProjectName(selected.projectId) : "—"}
+                      {selected.projectId
+                        ? translateOsProjectName(
+                            selected.projectId,
+                            getProjectName(selected.projectId),
+                            t,
+                          )
+                        : "—"}
                     </dd>
                   </div>
                   <div>
@@ -175,7 +209,10 @@ export function DocumentsModule() {
                       {t("os.documents.meta.status")}
                     </dt>
                     <dd className="mt-1">
-                      <StatusBadge label={selected.status} tone={scheduleTone(selected.status)} />
+                      <StatusBadge
+                        label={translateStatus(selected.status, t)}
+                        tone={scheduleTone(selected.status)}
+                      />
                     </dd>
                   </div>
                 </dl>

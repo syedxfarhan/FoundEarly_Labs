@@ -1,10 +1,12 @@
 "use client";
 
 import { SERVICES } from "@/data/corporateWebsite";
-import { t } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { PageIntro, Reveal } from "@/features/corporate-website/ui";
 
 export function ServicesPage() {
+  const t = useT();
+
   return (
     <div data-website-page="services">
       <section className="border-b border-border bg-surface">
@@ -23,8 +25,12 @@ export function ServicesPage() {
                 <span className="type-label text-muted-foreground">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h2 className="type-h3 text-foreground">{service.title}</h2>
-                <p className="type-body text-muted-foreground">{service.summary}</p>
+                <h2 className="type-h3 text-foreground">
+                  {t(`website.service.${service.id}.title` as ContentKey)}
+                </h2>
+                <p className="type-body text-muted-foreground">
+                  {t(`website.service.${service.id}.summary` as ContentKey)}
+                </p>
               </article>
             </Reveal>
           ))}

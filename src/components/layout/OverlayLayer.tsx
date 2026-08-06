@@ -3,6 +3,7 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 
+import { useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 export type PortalLayerProps = {
@@ -49,6 +50,8 @@ export function OverlayLayer({
   labelledBy,
   describedBy,
 }: OverlayLayerProps) {
+  const t = useT();
+
   React.useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -77,7 +80,7 @@ export function OverlayLayer({
       <div className="fixed inset-0 z-50" data-layout="overlay-layer" role="presentation">
         <button
           type="button"
-          aria-label="Close overlay"
+          aria-label={t("overlay.close")}
           className="absolute inset-0 bg-neutral-900/40 transition-opacity duration-base ease-enter"
           onClick={() => {
             if (dismissOnBackdrop) onClose?.();

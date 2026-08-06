@@ -2,11 +2,21 @@
 
 import { PROJECTS } from "@/data/corporateWebsite";
 import { formatSar } from "@/lib/formatters";
-import { t } from "@/lib/content";
+import {
+  projectScopeKey,
+  resolveContentKey,
+  translateLocation,
+  translateProjectName,
+  translateProjectType,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import { PageIntro, Reveal } from "@/features/corporate-website/ui";
 import { ProjectVisual } from "@/features/corporate-website/ProjectVisual";
 
 export function ProjectsPage() {
+  const t = useT();
+
   return (
     <div data-website-page="projects">
       <section className="border-b border-border bg-surface">
@@ -27,17 +37,23 @@ export function ProjectsPage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="type-label text-muted-foreground">{project.id}</span>
                     <span className="rounded-md border border-border px-2 py-1 type-label text-foreground">
-                      {project.status}
+                      {translateStatus(project.status, t)}
                     </span>
                   </div>
-                  <h2 className="type-h3 text-foreground">{project.name}</h2>
-                  <p className="type-body text-muted-foreground">{project.scope}</p>
+                  <h2 className="type-h3 text-foreground">
+                    {translateProjectName(project.id, project.name, t)}
+                  </h2>
+                  <p className="type-body text-muted-foreground">
+                    {resolveContentKey(projectScopeKey(project.id), project.scope, t)}
+                  </p>
                   <dl className="mt-auto grid grid-cols-2 gap-4 border-t border-border pt-4">
                     <div>
                       <dt className="type-label text-muted-foreground">
                         {t("website.projects.meta.location")}
                       </dt>
-                      <dd className="mt-1 type-body text-foreground">{project.location}</dd>
+                      <dd className="mt-1 type-body text-foreground">
+                        {translateLocation(project.location, t)}
+                      </dd>
                     </div>
                     <div>
                       <dt className="type-label text-muted-foreground">
@@ -57,7 +73,9 @@ export function ProjectsPage() {
                       <dt className="type-label text-muted-foreground">
                         {t("website.projects.meta.scope")}
                       </dt>
-                      <dd className="mt-1 type-body text-foreground">{project.typeLabel}</dd>
+                      <dd className="mt-1 type-body text-foreground">
+                        {translateProjectType(project.typeLabel, t)}
+                      </dd>
                     </div>
                   </dl>
                 </div>

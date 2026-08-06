@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { EmptyState } from "@/components/empty/EmptyState";
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import type { WorkspaceLifecycleState } from "@/types/workspace";
 
 export type WorkspaceEmptyProps = {
@@ -58,6 +58,8 @@ const variantConfig = {
 };
 
 export function WorkspaceEmpty({ variant = "workspace", lifecycle }: WorkspaceEmptyProps) {
+  const t = useT();
+
   const resolved =
     variant !== "workspace"
       ? variant

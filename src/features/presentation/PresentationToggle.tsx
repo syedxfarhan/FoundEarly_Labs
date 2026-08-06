@@ -3,11 +3,13 @@
 import { Presentation } from "lucide-react";
 
 import { ShellControl } from "@/components/layout/ShellControl";
-import { t } from "@/lib/content";
+import { useT } from "@/lib/content";
 import { usePresentation } from "@/providers/PresentationProvider";
 
 /** Presentation Mode toggle — chrome quieting only; no Presenter Toolbar yet. */
 export function PresentationToggle() {
+  const t = useT();
+
   const { isPresentationMode, togglePresentationMode } = usePresentation();
 
   return (

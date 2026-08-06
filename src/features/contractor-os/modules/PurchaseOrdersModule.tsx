@@ -4,7 +4,13 @@ import * as React from "react";
 
 import { OS_PURCHASE_ORDERS, getProjectName } from "@/data/contractorOs";
 import { formatSar } from "@/lib/formatters";
-import { t } from "@/lib/content";
+import {
+  projectNameKey,
+  projectNameShortKey,
+  resolveContentKey,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   DataTable,
   ModuleToolbar,
@@ -13,7 +19,17 @@ import {
   scheduleTone,
 } from "@/features/contractor-os/ui";
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 export function PurchaseOrdersModule() {
+  const t = useT();
+
   const [search, setSearch] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState("all");
 
@@ -43,12 +59,12 @@ export function PurchaseOrdersModule() {
         filterLabel={t("os.filter.status")}
         filterOptions={[
           { value: "all", label: t("os.filter.all") },
-          { value: "Draft", label: "Draft" },
-          { value: "Pending Approval", label: "Pending Approval" },
-          { value: "Approved", label: "Approved" },
-          { value: "Issued to Vendor", label: "Issued to Vendor" },
-          { value: "Delivered", label: "Delivered" },
-          { value: "On Hold", label: "On Hold" },
+          { value: "Draft", label: translateStatus("Draft", t) },
+          { value: "Pending Approval", label: translateStatus("Pending Approval", t) },
+          { value: "Approved", label: translateStatus("Approved", t) },
+          { value: "Issued to Vendor", label: translateStatus("Issued to Vendor", t) },
+          { value: "Delivered", label: translateStatus("Delivered", t) },
+          { value: "On Hold", label: translateStatus("On Hold", t) },
         ]}
       />
 
@@ -74,11 +90,14 @@ export function PurchaseOrdersModule() {
                 {formatSar(po.amountSar)}
               </td>
               <td className="px-table-x py-3">
-                <StatusBadge label={po.status} tone={scheduleTone(po.status)} />
+                <StatusBadge
+                  label={translateStatus(po.status, t)}
+                  tone={scheduleTone(po.status)}
+                />
               </td>
               <td className="px-table-x py-3 type-body text-muted-foreground">{po.approval}</td>
               <td className="px-table-x py-3 type-body text-muted-foreground">
-                {getProjectName(po.projectId)}
+                {translateOsProjectName(po.projectId, getProjectName(po.projectId), t)}
               </td>
             </tr>
           ))}

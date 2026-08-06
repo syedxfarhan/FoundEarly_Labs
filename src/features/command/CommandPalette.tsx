@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 
 import { OverlayLayer } from "@/components/layout/OverlayLayer";
 import { overlayIds, storageKeys } from "@/config/constants";
-import { t, type ContentKey } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { useCommands } from "@/providers/CommandProvider";
 import { useShellUi } from "@/providers/ShellUiProvider";
 import type { CommandDefinition, CommandSection } from "@/lib/commands/registry";
@@ -39,6 +39,8 @@ function loadRecent(): string[] {
  * Docs/16 §4 Workspace Launcher foundation.
  */
 export function CommandPalette() {
+  const t = useT();
+
   const { isOverlayOpen, closeOverlay } = useShellUi();
   const open = isOverlayOpen(overlayIds.commandPalette);
   const { commands, runCommand } = useCommands();

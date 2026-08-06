@@ -23,7 +23,7 @@ import { MainLandmark } from "@/components/system/MainLandmark";
 import { slideUpVariants } from "@/animations/presets";
 import { workspaceHref } from "@/config/workspaces";
 import { useMotion } from "@/hooks/useMotion";
-import { t, type ContentKey } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
 const SHOWCASE_HREF = workspaceHref("project-command", "overview");
@@ -159,6 +159,8 @@ function Reveal({
  * Outside WorkspaceShell; brand is hero-level (docs/19 §1.2).
  */
 export function CredibilityLanding() {
+  const t = useT();
+
   return (
     <div className="min-h-svh bg-background text-foreground" data-surface="credibility-landing">
       <header className="border-b border-border bg-surface">
@@ -172,7 +174,7 @@ export function CredibilityLanding() {
             </span>
             <span className="type-body font-medium">{t("landing.hero.brand")}</span>
           </a>
-          <nav className="flex items-center gap-2" aria-label="Landing">
+          <nav className="flex items-center gap-2" aria-label={t("landing.nav.aria")}>
             <a
               href="#what-we-build"
               className="hidden min-h-touch items-center px-3 type-body text-muted-foreground hover:text-foreground md:inline-flex"
@@ -219,7 +221,7 @@ export function CredibilityLanding() {
         </section>
 
         {/* Trust strip */}
-        <section aria-label="Capabilities" className="border-b border-border bg-surface-muted/40">
+        <section aria-label={t("landing.capabilities.aria")} className="border-b border-border bg-surface-muted/40">
           <div className="mx-auto flex max-w-content flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 md:px-6">
             {TRUST_KEYS.map((key) => (
               <span key={key} className="type-body-sm font-medium text-muted-foreground">

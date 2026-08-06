@@ -2,8 +2,10 @@
 
 import * as React from "react";
 
-import { t, type ContentKey } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { Reveal, primaryButtonClassName, secondaryButtonClassName } from "@/features/contractor-os/ui";
+import { useLocale } from "@/providers/LocaleProvider";
+import type { LocaleCode } from "@/types/workspace";
 import { cn } from "@/utils/cn";
 
 const SECTIONS = [
@@ -35,7 +37,29 @@ const SUPPORT_KEYS: Record<SettingsSection, ContentKey> = {
   permissions: "os.settings.permissions.support",
 };
 
+const ROLE_ROWS = [
+  {
+    roleKey: "os.settings.roles.projectDirector" as const,
+    accessKey: "os.settings.roles.projectDirector.access" as const,
+  },
+  {
+    roleKey: "os.settings.roles.projectManager" as const,
+    accessKey: "os.settings.roles.projectManager.access" as const,
+  },
+  {
+    roleKey: "os.settings.roles.procurementLead" as const,
+    accessKey: "os.settings.roles.procurementLead.access" as const,
+  },
+  {
+    roleKey: "os.settings.roles.documentController" as const,
+    accessKey: "os.settings.roles.documentController.access" as const,
+  },
+];
+
 export function SettingsModule() {
+  const t = useT();
+  const { language, setLanguage } = useLocale();
+
   const [active, setActive] = React.useState<SettingsSection>("branding");
   const [saved, setSaved] = React.useState(false);
 
@@ -111,13 +135,22 @@ export function SettingsModule() {
 
               {active === "language" ? (
                 <>
-                  <Select
-                    label={t("os.settings.language.ui")}
-                    options={["English", "Arabic (preview)"]}
-                  />
+                  <label className="block space-y-2 sm:col-span-1">
+                    <span className="type-label text-muted-foreground">
+                      {t("os.settings.language.ui")}
+                    </span>
+                    <select
+                      value={language}
+                      onChange={(event) => setLanguage(event.target.value as LocaleCode)}
+                      className="w-full rounded-md border border-border bg-background px-3 py-2.5 type-body text-foreground"
+                    >
+                      <option value="en">{t("os.settings.language.option.en")}</option>
+                      <option value="ar">{t("os.settings.language.option.ar")}</option>
+                    </select>
+                  </label>
                   <Select
                     label={t("os.settings.language.dates")}
-                    options={["DD MMM YYYY", "YYYY-MM-DD"]}
+                    options={[t("os.settings.language.dateFormat"), "YYYY-MM-DD"]}
                   />
                 </>
               ) : null}
@@ -126,21 +159,27 @@ export function SettingsModule() {
                 <>
                   <Select
                     label={t("os.settings.theme.mode")}
-                    options={["System", "Light", "Dark"]}
+                    options={[
+                      t("os.settings.theme.option.system"),
+                      t("os.settings.theme.option.light"),
+                      t("os.settings.theme.option.dark"),
+                    ]}
                   />
                   <Select
                     label={t("os.settings.theme.density")}
-                    options={["Comfortable", "Compact"]}
+                    options={[
+                      t("os.settings.theme.option.comfortable"),
+                      t("os.settings.theme.option.compact"),
+                    ]}
                   />
                 </>
               ) : null}
 
               {active === "roles" ? (
                 <>
-                  <RoleRow role="Project Director" access="Full portfolio" />
-                  <RoleRow role="Project Manager" access="Assigned projects" />
-                  <RoleRow role="Procurement Lead" access="POs and vendors" />
-                  <RoleRow role="Document Controller" access="Registers and drawings" />
+                  {ROLE_ROWS.map((row) => (
+                    <RoleRow key={row.roleKey} role={t(row.roleKey)} access={t(row.accessKey)} />
+                  ))}
                 </>
               ) : null}
 
@@ -220,6 +259,8 @@ function Toggle({ label, defaultChecked }: { label: string; defaultChecked?: boo
 }
 
 function RoleRow({ role, access }: { role: string; access: string }) {
+  const t = useT();
+
   return (
     <div className="flex items-center justify-between gap-3 rounded-md border border-border bg-background px-4 py-3 sm:col-span-2">
       <div>

@@ -6,10 +6,12 @@ import { WorkspaceEmpty } from "@/features/workspace/WorkspaceEmpty";
 import { WorkspaceLoader } from "@/features/workspace/WorkspaceLoader";
 import { useWorkspaceEngine } from "@/features/workspace/WorkspaceEngine";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { tKey } from "@/lib/content";
+import { useTKey } from "@/lib/content";
 
 /** Resolves lifecycle → loader / empty / coming-soon canvas content. */
 export function WorkspaceCanvas({ children }: { children?: React.ReactNode }) {
+  const tKey = useTKey();
+
   const { lifecycle, section, workspace } = useWorkspaceEngine();
 
   if (lifecycle === "loading") {

@@ -5,7 +5,16 @@ import { ArrowLeft } from "lucide-react";
 
 import { OS_PROJECTS, getProjectById, type OsProject } from "@/data/contractorOs";
 import { formatSar } from "@/lib/formatters";
-import { t } from "@/lib/content";
+import {
+  projectNameKey,
+  projectNameShortKey,
+  projectSummaryKey,
+  resolveContentKey,
+  translateLocation,
+  translateProjectType,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   ModuleToolbar,
   ProgressBar,
@@ -15,6 +24,14 @@ import {
   scheduleTone,
 } from "@/features/contractor-os/ui";
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 function ProjectOverview({
   project,
   onBack,
@@ -22,26 +39,37 @@ function ProjectOverview({
   project: OsProject;
   onBack: () => void;
 }) {
+  const t = useT();
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-3">
         <button type="button" onClick={onBack} className={secondaryButtonClassName()}>
-          <ArrowLeft className="size-icon-sm" strokeWidth={1.5} aria-hidden />
+          <ArrowLeft className="size-icon-sm rtl:rotate-180" strokeWidth={1.5} aria-hidden />
           {t("os.projects.back")}
         </button>
-        <StatusBadge label={project.status} tone={scheduleTone(project.status)} />
+        <StatusBadge
+          label={translateStatus(project.status, t)}
+          tone={scheduleTone(project.status)}
+        />
       </div>
 
       <Reveal>
         <div className="rounded-lg border border-border bg-surface p-6">
           <p className="type-label text-muted-foreground">{project.id}</p>
-          <h2 className="mt-2 type-h2 text-foreground">{project.name}</h2>
-          <p className="mt-3 max-w-3xl type-body-lg text-muted-foreground">{project.summary}</p>
+          <h2 className="mt-2 type-h2 text-foreground">
+            {translateOsProjectName(project.id, project.name, t)}
+          </h2>
+          <p className="mt-3 max-w-3xl type-body-lg text-muted-foreground">
+            {resolveContentKey(projectSummaryKey(project.id), project.summary, t)}
+          </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <p className="type-label text-muted-foreground">{t("os.projects.meta.location")}</p>
-              <p className="mt-1 type-body text-foreground">{project.location}</p>
+              <p className="mt-1 type-body text-foreground">
+                {translateLocation(project.location, t)}
+              </p>
             </div>
             <div>
               <p className="type-label text-muted-foreground">{t("os.projects.meta.value")}</p>
@@ -59,7 +87,9 @@ function ProjectOverview({
             </div>
             <div>
               <p className="type-label text-muted-foreground">{t("os.projects.meta.type")}</p>
-              <p className="mt-1 type-body text-foreground">{project.typeLabel}</p>
+              <p className="mt-1 type-body text-foreground">
+                {translateProjectType(project.typeLabel, t)}
+              </p>
             </div>
             <div>
               <p className="type-label text-muted-foreground">{t("os.projects.meta.completion")}</p>
@@ -77,6 +107,8 @@ function ProjectOverview({
 }
 
 export function ProjectsModule() {
+  const t = useT();
+
   const [search, setSearch] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState("all");
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
@@ -113,10 +145,10 @@ export function ProjectsModule() {
         filterLabel={t("os.filter.status")}
         filterOptions={[
           { value: "all", label: t("os.filter.all") },
-          { value: "On Track", label: "On Track" },
-          { value: "At Risk", label: "At Risk" },
-          { value: "Delayed", label: "Delayed" },
-          { value: "Complete", label: "Complete" },
+          { value: "On Track", label: translateStatus("On Track", t) },
+          { value: "At Risk", label: translateStatus("At Risk", t) },
+          { value: "Delayed", label: translateStatus("Delayed", t) },
+          { value: "Complete", label: translateStatus("Complete", t) },
         ]}
       />
 
@@ -131,10 +163,17 @@ export function ProjectsModule() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <p className="type-label text-muted-foreground">{project.id}</p>
-                  <h3 className="mt-1 type-h3 text-foreground">{project.name}</h3>
-                  <p className="mt-1 type-body-sm text-muted-foreground">{project.location}</p>
+                  <h3 className="mt-1 type-h3 text-foreground">
+                    {translateOsProjectName(project.id, project.name, t)}
+                  </h3>
+                  <p className="mt-1 type-body-sm text-muted-foreground">
+                    {translateLocation(project.location, t)}
+                  </p>
                 </div>
-                <StatusBadge label={project.status} tone={scheduleTone(project.status)} />
+                <StatusBadge
+                  label={translateStatus(project.status, t)}
+                  tone={scheduleTone(project.status)}
+                />
               </div>
               <ProgressBar value={project.progress} />
               <dl className="grid grid-cols-2 gap-3 border-t border-border pt-4">

@@ -3,7 +3,15 @@
 import * as React from "react";
 
 import { OS_EMPLOYEES, getProjectName } from "@/data/contractorOs";
-import { t } from "@/lib/content";
+import {
+  projectNameKey,
+  projectNameShortKey,
+  resolveContentKey,
+  translateJobRole,
+  translateLocation,
+  translateStatus,
+  useT,
+} from "@/lib/content";
 import {
   Avatar,
   DataTable,
@@ -13,7 +21,17 @@ import {
   scheduleTone,
 } from "@/features/contractor-os/ui";
 
+function translateOsProjectName(id: string, fallback: string, t: ReturnType<typeof useT>) {
+  return resolveContentKey(
+    projectNameShortKey(id),
+    resolveContentKey(projectNameKey(id), fallback, t),
+    t,
+  );
+}
+
 export function WorkforceModule() {
+  const t = useT();
+
   const [search, setSearch] = React.useState("");
   const [statusFilter, setStatusFilter] = React.useState("all");
 
@@ -43,9 +61,9 @@ export function WorkforceModule() {
         filterLabel={t("os.filter.status")}
         filterOptions={[
           { value: "all", label: t("os.filter.all") },
-          { value: "On Site", label: "On Site" },
-          { value: "Off Shift", label: "Off Shift" },
-          { value: "Leave", label: "Leave" },
+          { value: "On Site", label: translateStatus("On Site", t) },
+          { value: "Off Shift", label: translateStatus("Off Shift", t) },
+          { value: "Leave", label: translateStatus("Leave", t) },
         ]}
       />
 
@@ -74,14 +92,25 @@ export function WorkforceModule() {
                   </div>
                 </div>
               </td>
-              <td className="px-table-x py-3 type-body text-foreground">{employee.role}</td>
-              <td className="px-table-x py-3 type-body text-muted-foreground">{employee.site}</td>
-              <td className="px-table-x py-3">
-                <StatusBadge label={employee.status} tone={scheduleTone(employee.status)} />
+              <td className="px-table-x py-3 type-body text-foreground">
+                {translateJobRole(employee.role, t)}
               </td>
-              <td className="px-table-x py-3 type-body text-foreground">{employee.shift}</td>
               <td className="px-table-x py-3 type-body text-muted-foreground">
-                {employee.projectId ? getProjectName(employee.projectId) : "—"}
+                {translateLocation(employee.site, t)}
+              </td>
+              <td className="px-table-x py-3">
+                <StatusBadge
+                  label={translateStatus(employee.status, t)}
+                  tone={scheduleTone(employee.status)}
+                />
+              </td>
+              <td className="px-table-x py-3 type-body text-foreground">
+                {translateStatus(employee.shift, t)}
+              </td>
+              <td className="px-table-x py-3 type-body text-muted-foreground">
+                {employee.projectId
+                  ? translateOsProjectName(employee.projectId, getProjectName(employee.projectId), t)
+                  : "—"}
               </td>
             </tr>
           ))}

@@ -1,10 +1,20 @@
 "use client";
 
 import { COMPANY, LEADERSHIP } from "@/data/corporateWebsite";
-import { t } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { PageIntro, Reveal } from "@/features/corporate-website/ui";
 
+const CERT_KEYS = [
+  "website.company.cert.iso9001",
+  "website.company.cert.iso45001",
+  "website.company.cert.iso14001",
+  "website.company.cert.aramco",
+  "website.company.cert.grade2",
+] as const satisfies ReadonlyArray<ContentKey>;
+
 export function AboutPage() {
+  const t = useT();
+
   return (
     <div data-website-page="about">
       <section className="border-b border-border bg-surface">
@@ -66,8 +76,12 @@ export function AboutPage() {
                       .join("")}
                   </div>
                   <h3 className="mt-4 type-h3 text-foreground">{leader.name}</h3>
-                  <p className="mt-1 type-body font-medium text-brand">{leader.role}</p>
-                  <p className="mt-3 type-body text-muted-foreground">{leader.focus}</p>
+                  <p className="mt-1 type-body font-medium text-brand">
+                    {t(`fixture.leader.${leader.id}.role` as ContentKey)}
+                  </p>
+                  <p className="mt-3 type-body text-muted-foreground">
+                    {t(`fixture.leader.${leader.id}.focus` as ContentKey)}
+                  </p>
                 </article>
               </Reveal>
             ))}
@@ -95,9 +109,9 @@ export function AboutPage() {
           </Reveal>
           <ul className="grid gap-3 md:grid-cols-2">
             {COMPANY.certifications.map((cert, index) => (
-              <Reveal key={cert} delay={Math.min(index, 5) * 0.02}>
+              <Reveal key={CERT_KEYS[index] ?? cert} delay={Math.min(index, 5) * 0.02}>
                 <li className="rounded-md border border-border bg-surface px-4 py-4 type-body text-foreground">
-                  {cert}
+                  {CERT_KEYS[index] ? t(CERT_KEYS[index]) : cert}
                 </li>
               </Reveal>
             ))}

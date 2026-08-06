@@ -7,12 +7,12 @@ import { LoaderCircle, Search } from "lucide-react";
 import { OverlayLayer } from "@/components/layout/OverlayLayer";
 import { EmptyState } from "@/components/empty/EmptyState";
 import { overlayIds } from "@/config/constants";
-import { t } from "@/lib/content";
+import { type ContentKey, useT } from "@/lib/content";
 import { useSearch, type SearchCategoryId, type SearchHit } from "@/providers/SearchProvider";
 import { useShellUi } from "@/providers/ShellUiProvider";
 import { cn } from "@/utils/cn";
 
-const CATEGORY_LABEL: Record<SearchCategoryId, Parameters<typeof t>[0]> = {
+const CATEGORY_LABEL: Record<SearchCategoryId, ContentKey> = {
   workspaces: "search.category.workspaces",
   sections: "search.category.sections",
   commands: "search.category.commands",
@@ -20,6 +20,8 @@ const CATEGORY_LABEL: Record<SearchCategoryId, Parameters<typeof t>[0]> = {
 };
 
 export function GlobalSearch() {
+  const t = useT();
+
   const { isOverlayOpen, closeOverlay } = useShellUi();
   const open = isOverlayOpen(overlayIds.globalSearch);
   const {
