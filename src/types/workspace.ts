@@ -3,7 +3,13 @@
  * Domain entity types for fixtures arrive with later Phase 1 data modules.
  */
 
-export type ProjectCode = "P-1042" | "P-1058" | "P-1071" | "P-1083" | "P-1096";
+export type ProjectCode =
+  | "P-1042"
+  | "P-1058"
+  | "P-1071"
+  | "P-1083"
+  | "P-1096"
+  | "P-1102";
 
 export type ThemeMode = "light" | "dark" | "system";
 
@@ -17,6 +23,7 @@ export type LocaleCode = "en" | "ar";
 export type WorkspaceId =
   | "project-command"
   | "corporate-website"
+  | "contractor-os"
   | "procurement"
   | "document-control"
   | "rfi-submittals";

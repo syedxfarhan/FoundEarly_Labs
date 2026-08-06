@@ -173,12 +173,16 @@ function RegisterShellCommands() {
     const offGw = registerShortcut("g+w", () => {
       router.push(workspaceHref("corporate-website"));
     });
+    const offGo = registerShortcut("g+o", () => {
+      router.push(workspaceHref("contractor-os"));
+    });
     const offGh = registerShortcut("g+h", () => {
       router.push("/");
     });
     return () => {
       offGd();
       offGw();
+      offGo();
       offGh();
     };
   }, [registerShortcut, router]);
@@ -208,6 +212,14 @@ function RegisterShellCommands() {
         keywords: ["website", "demo", "alburaq", "corporate"],
         shortcutHint: "G W",
         run: () => router.push(workspaceHref("corporate-website")),
+      }),
+      registerCommand({
+        id: "nav.contractor-os",
+        label: tKey("workspace.contractorOs.label"),
+        section: "navigation",
+        keywords: ["contractor", "os", "demo", "management"],
+        shortcutHint: "G O",
+        run: () => router.push(workspaceHref("contractor-os")),
       }),
       registerCommand({
         id: "nav.about",

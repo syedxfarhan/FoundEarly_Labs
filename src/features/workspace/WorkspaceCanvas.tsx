@@ -1,5 +1,6 @@
 "use client";
 
+import { ContractorOS } from "@/features/contractor-os";
 import { CorporateWebsite } from "@/features/corporate-website";
 import { WorkspaceEmpty } from "@/features/workspace/WorkspaceEmpty";
 import { WorkspaceLoader } from "@/features/workspace/WorkspaceLoader";
@@ -37,6 +38,14 @@ export function WorkspaceCanvas({ children }: { children?: React.ReactNode }) {
     return (
       <PageContainer className="p-0 md:p-0">
         <CorporateWebsite />
+      </PageContainer>
+    );
+  }
+
+  if (workspace.id === "contractor-os") {
+    return (
+      <PageContainer>
+        <ContractorOS />
       </PageContainer>
     );
   }

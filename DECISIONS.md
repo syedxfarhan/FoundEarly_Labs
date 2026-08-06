@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-010 — 2026-08-06 — Demo 02 ContractorOS as a workspace
+
+**Decision:** Ship Demo 02 (ContractorOS) as an available workspace (`contractor-os`) with seven modules: Dashboard, Projects, Workforce, Equipment, Documents, Purchase Orders, Settings. All fixtures remain under Al-Buraq Horizon Contracting (D-002). Project overview is an in-module drill-down (local UI state), not a separate deep ERP surface. Workforce/equipment operational statuses (`On Site`, `Assigned`, `Maintenance`, etc.) are showcase labels rendered via a local badge — not expansions of the RFI/Submittal StatusChip closed vocabulary in `docs/06` §6.
+
+**Context / alternatives considered:** Replacing Project Command with ContractorOS was rejected — Project Command remains the Phase 1 flagship workspace stub. Building auth/CRUD/backend was rejected per the demo brief. Inventing a second company was rejected under D-002. AI Assistant / Discovery Simulator remain out of scope.
+
+**Consequences:** Future operational demos plug into the same registry. Canonical schedule/PO/document statuses continue to follow `docs/06` §6 where applicable.
+
+---
+
 ## D-009 — 2026-08-06 — Demo 01 Corporate Website as a workspace
 
 **Decision:** Ship Demo 01 (premium Al-Buraq Horizon corporate website) as an available workspace in the existing registry/shell (`corporate-website`), with section routes for Home / About / Services / Projects / Careers / Contact. Credibility Landing remains the root entry; the website demo does not replace it. Marketing fixtures stay under Al-Buraq Horizon (D-002), including portfolio projects from `docs/08` plus one additional completed warehouse package (`P-1102`) for a six-project showcase.

@@ -28,6 +28,7 @@ import { cn } from "@/utils/cn";
 
 const SHOWCASE_HREF = workspaceHref("project-command", "overview");
 const WEBSITE_DEMO_HREF = workspaceHref("corporate-website", "home");
+const CONTRACTOR_OS_HREF = workspaceHref("contractor-os", "dashboard");
 
 const TRUST_KEYS: ContentKey[] = [
   "landing.trust.customSoftware",
@@ -278,6 +279,17 @@ export function CredibilityLanding() {
               {BUILD.map((item, index) => {
                 const Icon = item.icon;
                 const isWebsiteDemo = item.titleKey === "landing.build.websites.title";
+                const isContractorDemo = item.titleKey === "landing.build.contractor.title";
+                const demoHref = isWebsiteDemo
+                  ? WEBSITE_DEMO_HREF
+                  : isContractorDemo
+                    ? CONTRACTOR_OS_HREF
+                    : null;
+                const ctaKey = isWebsiteDemo
+                  ? ("landing.build.websites.cta" as const)
+                  : isContractorDemo
+                    ? ("landing.build.contractor.cta" as const)
+                    : null;
                 const card = (
                   <article className="flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-colors duration-fast ease-enter hover:border-border-strong">
                     <Icon
@@ -287,9 +299,9 @@ export function CredibilityLanding() {
                     />
                     <h3 className="type-h3 text-foreground">{t(item.titleKey)}</h3>
                     <p className="type-body text-muted-foreground">{t(item.bodyKey)}</p>
-                    {isWebsiteDemo ? (
+                    {ctaKey ? (
                       <span className="mt-auto inline-flex items-center gap-2 pt-2 type-body font-medium text-brand">
-                        {t("landing.build.websites.cta")}
+                        {t(ctaKey)}
                         <ArrowRight className="size-icon-sm" strokeWidth={1.5} aria-hidden />
                       </span>
                     ) : null}
@@ -297,8 +309,8 @@ export function CredibilityLanding() {
                 );
                 return (
                   <Reveal key={item.titleKey} delay={Math.min(index, 5) * 0.03}>
-                    {isWebsiteDemo ? (
-                      <Link href={WEBSITE_DEMO_HREF} className="block h-full rounded-lg">
+                    {demoHref ? (
+                      <Link href={demoHref} className="block h-full rounded-lg">
                         {card}
                       </Link>
                     ) : (
