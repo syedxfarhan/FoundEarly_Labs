@@ -1,0 +1,60 @@
+---
+description: Motion timing, philosophy, transitions, hover, and reduced-motion rules
+globs:
+  - "src/**/*.{ts,tsx,css}"
+  - "src/animations/**/*"
+  - "docs/05_*.md"
+alwaysApply: false
+---
+
+# Motion Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Keep motion calm, expensive, and explanatory. Entertainment motion reads as consumer/startup and undercuts enterprise trust in the room.
+
+## Scope
+
+All animation, transitions, hover effects, loading choreography, and Presentation/Simulator motion. Canonical source: `docs/05_MOTION_SYSTEM.md`, tokens in `docs/09_DESIGN_TOKENS.md` §7.
+
+## Mandatory Rules
+
+1. Motion only explains state change (where did it go, what changed, what is loading, what is next).
+2. Durations only from the token scale: instant 0 / fast 120 / base 200 / moderate 320 / slow 450 / deliberate 600–800 sequence budget.
+3. Easing: enter `cubic-bezier(0.2, 0, 0, 1)`; exit `cubic-bezier(0.4, 0, 1, 1)`.
+4. Hover: `motion-fast`, color/opacity/elevation only — no layout shift on hover.
+5. Workspace nav: shell stays still; content cross-fades at `motion-base`.
+6. Simulator steps: `motion-slow`; Capability Reveal uses deliberate stagger (≤4 cards).
+7. Dashboard mount stagger once per mount (≤6 items); never re-stagger on filter/sort.
+8. Reduced motion: central resolver collapses long durations; content still appears.
+9. Loading is bounded (Skeleton/Spinner only); AI Moment simulation ~900–1400ms.
+
+## Forbidden Patterns
+
+- Spring, bounce, elastic, or playful easing
+- Idle/ambient looping animations, floating blobs, continuous pulse for decoration
+- Layout-shifting hover
+- Full-page blocking spinners in Phase 1
+- Re-animating large tables on every data tweak
+- Per-component `prefers-reduced-motion` forks instead of the central token resolver
+- Motion durations not on the token scale
+
+## Examples
+
+**Good:** Drawer slides from the right at `motion-moderate` with enter easing; Esc closes with exit easing.
+**Bad:** Drawer bounces in with a spring and takes 900ms.
+
+**Good:** Capability Reveal staggers four cards over ~600–800ms while the rep talks.
+**Bad:** Every dashboard widget endlessly fades in a loop.
+
+## Quality Checklist
+
+- [ ] Duration/easing from tokens
+- [ ] No bounce/spring
+- [ ] Hover does not reflow layout
+- [ ] Reduced motion verified
+- [ ] Presentation/Simulator motion matches `docs/05` §9
+
+## Escalation
+
+New motion patterns require `docs/05_MOTION_SYSTEM.md` (and token updates in `docs/09` if new durations) before implementation.

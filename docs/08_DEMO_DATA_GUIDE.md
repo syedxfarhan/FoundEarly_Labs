@@ -145,5 +145,6 @@ These are the rules the automated fixture-data consistency test (`07_IMPLEMENTAT
 ## 9. Extension Rules for Future Phases
 
 - **New workspaces (Phase 2) extend this same world** — new entities (e.g., additional PO detail, inspection records) must reference existing projects/roster/vendors from this document, not introduce a second fictional company.
+- **New domain terms** must be defined in `13_CONSTRUCTION_DOMAIN_GUIDE.md` (and UI-frequent terms also in `06_COPY_GUIDELINES.md` §10) in the same PR that introduces fixture fields using them.
 - **New fictional projects may be added** if a specific sales narrative needs a project type not covered by §3 (e.g., a pure Oil & Gas EPC project for an Aramco-specific pitch), but must be added *to* Al-Buraq Horizon's portfolio, following the exact ID conventions and consistency rules above, and recorded as an addition to this document in the same PR that adds the fixture code.
 - **The Client-Branded Variant Mode (Roadmap Phase 4)** swaps cosmetic tokens/branding only — it never swaps the underlying fictional company or its data model, because the entire fixture ecosystem's internal consistency (§8) is the expensive, hard-won asset; reskinning it is cheap, rebuilding it is not.

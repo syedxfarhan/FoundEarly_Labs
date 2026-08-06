@@ -11,8 +11,10 @@ Delete any section below that is genuinely not applicable, and say why inline.
 
 <!-- List every docs/*.md file updated in this PR, or state explicitly why none needed updating. -->
 
-## Design Quality Checklist (docs/02_PRODUCT_DESIGN_MANUAL.md §11)
+## Design Quality Checklist (docs/02_PRODUCT_DESIGN_MANUAL.md §11 + docs/12_DESIGN_REVIEW_CHECKLIST.md)
 
+- [ ] Author self-check (docs/02 §11) complete
+- [ ] Design reviewer ran docs/12 (or N/A with reason)
 - [ ] Spacing/type/tokens used exclusively — no raw values
 - [ ] Currency/date formatting matches docs/02 §10
 - [ ] Primary action is singular and unambiguous
@@ -21,6 +23,7 @@ Delete any section below that is genuinely not applicable, and say why inline.
 - [ ] Keyboard nav + focus states verified
 - [ ] Contrast checked (light + dark)
 - [ ] Motion durations/easing match docs/05; reduced-motion verified
+- [ ] No Enterprise Design Anti-Patterns (docs/02 §13)
 - [ ] No console errors on load/interact/idle
 
 ## Implementation Checklist (docs/07_IMPLEMENTATION_RULES.md §15)

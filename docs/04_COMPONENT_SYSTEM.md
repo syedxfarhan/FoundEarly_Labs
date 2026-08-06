@@ -34,7 +34,7 @@ Organized by tier, per `10_PROJECT_STRUCTURE.md` ownership model (Primitives →
 - **Variants:** `primary` (one per screen, per `02_PRODUCT_DESIGN_MANUAL.md` §2.3), `secondary`, `ghost`, `danger`, `link`.
 - **Sizes:** `sm` (32px height), `md` (40px, default), `lg` (48px, used only on credibility/narrative surfaces).
 - **States:** `default`, `hover`, `focus-visible`, `active`, `disabled`, `loading` (shows inline spinner, label remains visible but dimmed, control is non-interactive).
-- **Composition:** optional leading/trailing icon slot (from the shared icon set, §7 of design manual); never more than one icon per side.
+- **Composition:** optional leading/trailing icon slot (from the shared icon set per `14_ICONOGRAPHY_GUIDE.md` and `02_PRODUCT_DESIGN_MANUAL.md` §7); never more than one icon per side.
 - **Accessibility:** minimum 40×40 hit area even at `sm` size via padding, not visual size, to satisfy `02_PRODUCT_DESIGN_MANUAL.md` §9 touch target rule; `aria-busy` when `loading`.
 - **Usage rule:** `danger` variant requires a confirmation step (via `Dialog`, §3.9) before the destructive action fires — no single-click destructive actions anywhere in the system, because an accidental destructive click during a live demo is unrecoverable in the room.
 

@@ -118,11 +118,11 @@ At every step, the rep has a visible, single-tap way to (a) skip forward to the 
 
 ## 6. Presentation Mode (Cross-Cutting Display State)
 
-Presentation Mode is not a page — it is a state toggle available from any Workspace that:
+Presentation Mode is not a page — it is a state toggle available from any Workspace. **Full operational handbook:** `16_PRESENTATION_MODE_GUIDE.md` (shortcuts, toolbar, demo reset, recovery, offline, meeting flow). Summary:
 
 - Increases base type scale slightly (better legibility on a shared screen/projector).
 - Visually quiets (not hides) secondary navigation chrome, per `02_PRODUCT_DESIGN_MANUAL.md` §6.5.
-- Surfaces a rep-only control rail (visible only to the operator's side of the screen conceptually — in practice, a subtle, low-contrast affordance a client is unlikely to notice or touch) with quick actions: "Jump to Simulator Step X," "Reset Demo State," "Switch Fictional Company Profile."
+- Surfaces a rep-only Presenter Toolbar with quick actions: Workspace Launcher, Simulator navigation, Demo Reset, shortcut cheatsheet (see `16`).
 - Disables any control explicitly marked `illustrative-only` in the component spec (`04_COMPONENT_SYSTEM.md`) that could otherwise lead a curious client into a dead-end or unfinished state.
 
 ## 7. Transparency Surface: "About This Demo"

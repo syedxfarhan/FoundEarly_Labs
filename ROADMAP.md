@@ -2,11 +2,11 @@
 
 This roadmap is directional, not a delivery commitment with dates. Per project convention, we characterize scope and dependency, not calendar time. See `docs/01_PROJECT_SSOT.md` §10 for the version of this roadmap embedded in the SSOT — this file is the maintained, standalone, more detailed version; if they ever diverge, update both in the same PR.
 
-## Phase 0 — Governance & Foundation (current)
+## Phase 0 — Governance & Foundation (current — hardening complete)
 
-**Scope:** Complete documentation layer (`/docs`), root governance files, decision log, fictional demo-data world, design token specification, component specification, and repository structure blueprint. Zero application code.
+**Scope:** Complete documentation layer (`/docs` 01–19), root governance files, decision log, fictional demo-data world, design token specification, component specification, repository structure blueprint, Cursor AI rules, design anti-patterns, presentation/runbook ops, brand/i18n conventions. Zero application code.
 
-**Exit criteria:** A new engineer with no prior context can read `/docs` end-to-end and implement Phase 1 without needing a clarifying conversation. Reviewed against the Self-Review section maintained alongside this initialization (see `CHANGELOG.md` Phase 0 entry).
+**Exit criteria:** A new engineer with no prior context can read `/docs` end-to-end and implement Phase 1 without needing a clarifying conversation on settled topics. `docs/17_PHASE1_DEFINITION_OF_DONE.md` sign-off obtained. Hardening pass (docs 11–18 + `.cursor/rules`) complete.
 
 ## Phase 1 — Foundation Showcase
 

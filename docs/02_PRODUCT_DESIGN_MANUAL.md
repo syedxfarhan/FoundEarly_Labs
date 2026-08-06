@@ -79,8 +79,8 @@ We use an **8-point spacing scale** as the base rhythm, with a 4pt half-step ava
 
 ## 7. Icons
 
-- **Single icon library, outline-first.** One consistent icon set (e.g., an outline-style set such as Phosphor/Lucide-equivalent), stroke-based, 1.5px stroke at 24px base size, scaled via token (`09_DESIGN_TOKENS.md` icon sizing table: `16 / 20 / 24 / 32`).
-- **No mixed styles.** Never combine outline and filled icons in the same view except to encode a deliberate state (e.g., filled = active/selected, outline = inactive) — and that pairing must be defined once in `04_COMPONENT_SYSTEM.md` and reused everywhere, not reinvented per screen.
+- **Single icon library, outline-first.** Full rules live in `14_ICONOGRAPHY_GUIDE.md` (primary library, custom SVG path, sizing, color, placement). Summary: one consistent outline icon set, stroke-based, 1.5px stroke at 24px base size, scaled via token (`09_DESIGN_TOKENS.md` icon sizing table: `16 / 20 / 24 / 32`).
+- **No mixed styles.** Never combine outline and filled icons in the same view except to encode a deliberate state (e.g., filled = active/selected, outline = inactive) — and that pairing must be defined once in `04_COMPONENT_SYSTEM.md` / `14_ICONOGRAPHY_GUIDE.md` and reused everywhere, not reinvented per screen.
 - **Icons never carry meaning alone.** Every status/action icon pairs with a text label or is documented in a legend, because color-blind accessibility and translation into Arabic both require it.
 - **Construction-specific iconography** (crane, blueprint, hard hat, rebar, etc.) is permitted only in the credibility/marketing surfaces to establish industry context — never inside dense data workspaces, where generic UI icons (status, document, calendar, flag) are correct and industry icons would read as decorative noise.
 
@@ -111,9 +111,9 @@ These rules exist because generic enterprise UI conventions occasionally clash w
 6. **Org charts and approval chains must reflect real hierarchy depth** (site engineer → project engineer → project manager → client PM), not a flattened two-step "requested/approved" toy version — this is one of the clearest signals of whether the vendor understands the industry.
 7. **Tables are a first-class UI pattern, not an afterthought.** This industry lives in spreadsheets and tabular reports (BOQs, RFI logs, submittal registers). Our tables must be the best-designed surface in the product — see `04_COMPONENT_SYSTEM.md` Table component spec — because a mediocre table here undoes strong work everywhere else.
 
-## 11. Quality Checklist (Design Review Gate)
+## 11. Quality Checklist (Author Self-Check)
 
-No screen ships to the demo build without passing every item below. This checklist is copied into the PR template referenced in `CONTRIBUTING.md`.
+No screen ships to the demo build without the author completing every item below **before** requesting review. The **official design approval gate** used by reviewers is the expanded checklist in `12_DESIGN_REVIEW_CHECKLIST.md` — both must pass. This shorter list is copied into the PR template referenced in `CONTRIBUTING.md`.
 
 - [ ] Every spacing value maps to a token (§3); no raw pixel values.
 - [ ] Type scale used exactly as specified (§4); no ad hoc font sizes/weights.
@@ -124,15 +124,78 @@ No screen ships to the demo build without passing every item below. This checkli
 - [ ] Color used for status is paired with icon + text (§9).
 - [ ] Keyboard navigation and focus states verified.
 - [ ] Contrast checked against both light and dark token sets.
-- [ ] No mixed icon styles on the same screen (§7).
+- [ ] No mixed icon styles on the same screen (§7); icons follow `14_ICONOGRAPHY_GUIDE.md`.
 - [ ] Motion durations/easing match `05_MOTION_SYSTEM.md`; reduced-motion fallback verified.
 - [ ] Screen reviewed at the three core breakpoints (`09_DESIGN_TOKENS.md`) with no layout breakage.
 - [ ] Screen makes narrative sense inside its flow per `03_INFORMATION_ARCHITECTURE.md` (why does this screen exist right now?).
+- [ ] No Enterprise Design Anti-Patterns (§13) present.
 - [ ] No console errors/warnings when the screen is opened, interacted with, and left idle for 60 seconds.
 
 ## 12. Design Review Process
 
 1. **Spec first.** Every new screen or component variant is specified in the relevant `/docs` file (updating `04_COMPONENT_SYSTEM.md` if it introduces a new component/variant) *before* implementation begins. Implementation without a spec update is a review blocker.
 2. **Design review happens on a build, not a static mock**, wherever feasible — because motion, real data density, and real interaction latency are part of what's being judged, and static mocks hide exactly the risks this product cares most about (§1, §2).
-3. **Two-person review minimum**: one reviewer evaluates against this manual's checklist (§11); a second reviewer role-plays the client persona from `01_PROJECT_SSOT.md` §2.1 and tries to break the happy path.
+3. **Two-person review minimum**: one reviewer evaluates against this manual's short checklist (§11) and the official gate in `12_DESIGN_REVIEW_CHECKLIST.md`; a second reviewer role-plays the client persona from `01_PROJECT_SSOT.md` §2.1 and tries to break the happy path.
 4. **Any exception to this manual requires a written rationale** recorded in `/DECISIONS.md`, not a silent deviation. Silent deviations are how design systems rot.
+
+## 13. Enterprise Design Anti-Patterns
+
+These approaches are **permanently forbidden** in this product. They are listed because AI-assisted and junior-enterprise UI work converges on them by default. Each item includes **why** it is banned — so the rule survives convenience pressure.
+
+### 13.1 Generic framework defaults
+- **Forbidden:** Shipping unscoped shadcn/ui or Tailwind UI kit aesthetics without applying FoundEarly tokens (spacing, color, radius, type).
+- **Why:** A client who has seen three other vendors with the same default card/button look concludes we used a template. Templates do not win Aramco-adjacent trust.
+
+### 13.2 Gradient and glow fashion
+- **Forbidden:** Purple-on-white themes, purple-to-indigo meshes, neon/outer glows, aurora backgrounds, mesh gradients as primary atmosphere.
+- **Why:** This is the default "AI startup 2024–2026" look. It signals trend-chasing, not construction-grade seriousness (`§1` anti-references).
+
+### 13.3 Glassmorphism and heavy translucency
+- **Forbidden:** Frosted-glass panels, blur-heavy overlays as primary containers, translucent cards over busy photography.
+- **Why:** Reduces contrast, fails projector readability, and reads as consumer fashion. Presentation Mode cannot afford illegibility.
+
+### 13.4 Oversized shadows and elevation theater
+- **Forbidden:** Multi-layer dramatic drop shadows, floating "product shot" card stacks, shadow as decoration rather than elevation token.
+- **Why:** Elevation tokens (`09_DESIGN_TOKENS.md` §5) already encode calm depth. Bigger shadows do not encode more importance — they encode insecurity.
+
+### 13.5 Rounded-everything / pill clusters
+- **Forbidden:** `rounded-full` on every container; pill-shaped filter clusters used as visual filler; capsule badges competing with `StatusChip`.
+- **Why:** Extreme rounding is a consumer-app cue. Our radius scale tops out at purposeful `radius-lg` (16px) for cards (`09_DESIGN_TOKENS.md` §4).
+
+### 13.6 Random or mixed iconography
+- **Forbidden:** Mixing icon packs on one screen; filled+outline chaos; emoji as UI icons; decorative industry icons inside dense data tables.
+- **Why:** Icon inconsistency is an instant "assembled, not designed" tell. See `14_ICONOGRAPHY_GUIDE.md`.
+
+### 13.7 AI-generated spacing and eyeballed layout
+- **Forbidden:** Arbitrary pixel values (`mt-[13px]`, `gap-[22px]`); "nudge until it looks right" without token mapping; asymmetric padding that doesn't match the scale.
+- **Why:** Spacing drift across contributors is how systems rot. The scale exists so decisions are lookups, not inventions (`§3`).
+
+### 13.8 Poor whitespace (cramped or fake-sparse)
+- **Forbidden:** Colliding elements; content flush to edges; OR huge empty regions used to hide lack of real content instead of an `EmptyState`.
+- **Why:** Both extremes read as unfinished. Whitespace must be intentional composition, not absence of work (`12_DESIGN_REVIEW_CHECKLIST.md` §2, §14).
+
+### 13.9 Dribbble aesthetics over usability
+- **Forbidden:** Layouts optimized for portfolio screenshots (hero illustrations, overlapping cards, tiny gray labels) that fail at 2m viewing distance or under client interaction.
+- **Why:** This product is used live in meetings, not posted to Dribbble. Scannability and recovery beat visual cleverness (`01_PROJECT_SSOT.md` §6).
+
+### 13.10 Consumer-app animation
+- **Forbidden:** Bounce, spring, elastic easing; idle floating motion; confetti; playful micro-interactions; hover that reflows layout.
+- **Why:** Motion must explain state, not entertain (`05_MOTION_SYSTEM.md` §1). Bounce reads as toy software to this audience.
+
+### 13.11 Fancy charts without meaning
+- **Forbidden:** 3D charts, ornamental gauges, rainbow categorical palettes, charts that cannot reconcile to fixture tables, chart-only insights with no auditable detail path.
+- **Why:** Construction professionals will ask "where does that number come from?" Unreconcilable chrome is a credibility bug (`15_DATA_VISUALIZATION_GUIDE.md`).
+
+### 13.12 Decorative illustrations and sticker overlays
+- **Forbidden:** Generic undraw/storyset people illustrations as empty states; floating badges/stickers on heroes; collage/tiled media blocks on narrative surfaces unless IA explicitly requires them.
+- **Why:** Decorative illustration signals marketing site, not operational capability. Empty states use a single quiet icon (`04_COMPONENT_SYSTEM.md` §3.16).
+
+### 13.13 Status and color malpractice
+- **Forbidden:** Color-only status; inventing status labels; using brand accent as a status color; traffic-light metaphors without text.
+- **Why:** Closed vocabulary + semantic tokens exist specifically to prevent this (`06_COPY_GUIDELINES.md` §6, `09_DESIGN_TOKENS.md` §1.3).
+
+### 13.14 Fake density and fake features
+- **Forbidden:** Disabled controls that look active; "Coming soon" on client-reachable paths; lorem ipsum; charts with invented series that contradict `08_DEMO_DATA_GUIDE.md`.
+- **Why:** Live demos have no patch window. Illustrative capabilities must be guarded under Presentation Mode (`16_PRESENTATION_MODE_GUIDE.md`), not left as landmines.
+
+**Enforcement:** Any of the above appearing in a PR is an automatic design review failure under `12_DESIGN_REVIEW_CHECKLIST.md` §16 (AI Slop Detection) regardless of other merits.

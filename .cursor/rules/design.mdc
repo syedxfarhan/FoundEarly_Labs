@@ -1,0 +1,64 @@
+---
+description: Design system, spacing, typography, hierarchy, and forbidden UI patterns for the FoundEarly Interactive Capability Showcase
+globs:
+  - "src/**/*.{tsx,ts,css}"
+  - "docs/02_*.md"
+  - "docs/09_*.md"
+  - "docs/12_*.md"
+  - "docs/14_*.md"
+alwaysApply: false
+---
+
+# Design Rules — FoundEarly Labs Showcase
+
+## Purpose
+
+Ensure every visual decision matches the enterprise design constitution. This product is presented live to Saudi construction executives; generic AI/SaaS aesthetics destroy trust.
+
+## Scope
+
+UI layout, typography, spacing, color, icons, components, dashboards, and any visual change. Canonical sources: `docs/02_PRODUCT_DESIGN_MANUAL.md`, `docs/09_DESIGN_TOKENS.md`, `docs/04_COMPONENT_SYSTEM.md`, `docs/12_DESIGN_REVIEW_CHECKLIST.md`, `docs/14_ICONOGRAPHY_GUIDE.md`.
+
+## Mandatory Rules
+
+1. Use design tokens only — no raw px/hex/duration values outside the documented allowlist (`docs/07_IMPLEMENTATION_RULES.md` §7, `docs/09_DESIGN_TOKENS.md`).
+2. Type scale and weights (400/500/600 only) per `docs/09_DESIGN_TOKENS.md` §2.
+3. Spacing from the 4/8pt scale only (`space-1` … `space-32`).
+4. One primary action per screen; cards never nest; status always uses `StatusChip` + closed vocabulary.
+5. Icons from the primary library only (`docs/14_ICONOGRAPHY_GUIDE.md`); never decorative.
+6. Currency `SAR 1,250,000`; dates `DD MMM YYYY`; metric units only.
+7. Spec-first: update `docs/04_COMPONENT_SYSTEM.md` before new components/variants.
+8. Pass `docs/12_DESIGN_REVIEW_CHECKLIST.md` before calling a screen complete.
+
+## Forbidden Patterns
+
+- Purple-on-white / purple-indigo gradients, glassmorphism, neon glow, blob shapes
+- Oversized shadows, rounded-everything (use `radius-sm/md/lg` only), pill clusters as decoration
+- Inter/Roboto/Arial as intentional brand choices when a tokenized `font-sans` is defined — follow tokens
+- Generic shadcn/Tailwind "default product" look without brand tokens applied
+- Emoji in UI chrome or data surfaces
+- Consumer bounce/spring animations
+- Dribbble aesthetics that sacrifice scannability
+- Hardcoded left/right that blocks RTL (`docs/09_DESIGN_TOKENS.md` §12)
+- Ad hoc status colors or labels outside `docs/06_COPY_GUIDELINES.md` §6
+
+## Examples
+
+**Good:** KPI row of `KPIStat` cards using `text-numeric-lg`, semantic trend icons, `dashboard-card-gap`.
+**Bad:** A glassmorphic card with a purple gradient header, emoji, and a bounce-in animation.
+
+**Good:** RFI table with `StatusChip` labels `Overdue` / `Pending Response`.
+**Bad:** Colored dots without text, or labels like "Open Ticket."
+
+## Quality Checklist
+
+- [ ] Tokens only (spacing, type, color, radius, motion)
+- [ ] Hierarchy clear in <2s
+- [ ] Icons consistent and meaningful
+- [ ] Construction formatting correct (SAR, dates, units)
+- [ ] No anti-patterns from `docs/02_PRODUCT_DESIGN_MANUAL.md` Enterprise Design Anti-Patterns
+- [ ] `docs/12_DESIGN_REVIEW_CHECKLIST.md` considered
+
+## Escalation
+
+If a visual need conflicts with these rules, stop and update the owning doc + `DECISIONS.md` in the same change. Do not silently deviate.
