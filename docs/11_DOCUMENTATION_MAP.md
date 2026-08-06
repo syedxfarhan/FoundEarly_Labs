@@ -33,7 +33,7 @@
 | Icons | `14_ICONOGRAPHY_GUIDE.md` | Random SVG downloads |
 | Charts / KPIs / dashboards | `15_DATA_VISUALIZATION_GUIDE.md` | Chart library demos |
 | Live meeting / Presentation Mode | `16_PRESENTATION_MODE_GUIDE.md` | IA §6 alone (summary only) |
-| Brand application / i18n keys | `19_BRAND_AND_I18N_CONVENTIONS.md` | Ad hoc string literals |
+| Phase 1.1 foundation checklist | `20_PHASE_1_1_COMPLETION_CHECKLIST.md` | Informal "app boots" |
 | When Phase 1 may start / DoD | `17_PHASE1_DEFINITION_OF_DONE.md` | Informal "looks ready" |
 | In-room failure response | `18_LIVE_DEMO_RUNBOOK.md` | Improvised panic |
 

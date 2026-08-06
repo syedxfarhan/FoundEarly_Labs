@@ -4,6 +4,23 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Phase 1.1] — 2026-08-06 — Enterprise Foundation
+
+### Added
+- Next.js 15 + TypeScript + Tailwind + pnpm application scaffold under `src/`
+- Design token system (`src/config/tokens.ts`, `src/styles/tokens.css`) aligned to `docs/09`
+- Theme / tooltip / toast / motion / presentation / command / keyboard providers
+- Motion presets (`src/animations`), formatters, a11y helpers, command registry
+- DX: ESLint, Prettier, EditorConfig, path aliases, env validation, error boundary
+- `DEPENDENCIES.md`, `docs/20_PHASE_1_1_COMPLETION_CHECKLIST.md`
+- `DECISIONS.md` D-006 (Lucide lock, static export, foundation-only scope)
+
+### Notes
+- No product UI, dashboards, simulator, or fixture data (deferred).
+- Root route is an internal foundation boot surface only.
+
+---
+
 ## [Phase 0 Hardening] — 2026-08-06 — Enterprise hardening pass
 
 ### Added

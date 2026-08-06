@@ -27,6 +27,8 @@ Icons exist to accelerate recognition of actions, statuses, document types, and 
 
 Once chosen in Phase 1 scaffolding, the library name is locked in `DECISIONS.md` and never mixed with another set on the same screen.
 
+**Phase 1.1 lock:** Lucide (`lucide-react`) — see `DECISIONS.md` D-006.
+
 ## 3. Secondary Icon Library
 
 **None, by default.** A secondary library creates the exact inconsistency this guide exists to prevent.
