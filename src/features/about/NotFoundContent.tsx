@@ -5,7 +5,7 @@ import { FileQuestion } from "lucide-react";
 
 import { EmptyState } from "@/components/empty/EmptyState";
 import { PageContainer } from "@/components/layout/PageContainer";
-import { workspaceHref } from "@/config/workspaces";
+import { SHOWCASE_PATH } from "@/config/showcase";
 import { useT } from "@/lib/content";
 
 export function NotFoundContent() {
@@ -20,7 +20,7 @@ export function NotFoundContent() {
         size="lg"
         action={
           <Link
-            href={workspaceHref("project-command")}
+            href={SHOWCASE_PATH}
             className="inline-flex min-h-touch items-center rounded-md bg-brand px-4 type-body font-medium text-brand-foreground hover:bg-brand-hover"
           >
             {t("notFound.action")}

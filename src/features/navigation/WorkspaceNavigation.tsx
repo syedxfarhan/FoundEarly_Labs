@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 
 import { getNavItemsForGroup } from "@/config/navigation";
-import { WORKSPACE_REGISTRY, workspaceHref } from "@/config/workspaces";
+import { SHOWCASE_PATH } from "@/config/showcase";
+import { WORKSPACE_REGISTRY } from "@/config/workspaces";
 import { ShellControl } from "@/components/layout/ShellControl";
 import { useWorkspaceEngine } from "@/features/workspace/WorkspaceEngine";
 import { useT, useTKey } from "@/lib/content";
@@ -34,7 +35,7 @@ export function WorkspaceSwitcher() {
   const tKey = useTKey();
 
   const { workspaceId, navigateToWorkspace } = useWorkspaceEngine();
-  const items = getNavItemsForGroup("workspaces");
+  const items = getNavItemsForGroup("workspaces").filter((item) => item.available);
 
   return (
     <div className="space-y-1" data-nav="workspace-switcher">
@@ -49,25 +50,18 @@ export function WorkspaceSwitcher() {
             <li key={item.id}>
               <button
                 type="button"
-                disabled={!item.available}
-                onClick={() => {
-                  if (item.available) navigateToWorkspace(workspace.id);
-                }}
+                onClick={() => navigateToWorkspace(workspace.id)}
                 className={cn(
                   "flex w-full min-h-touch items-center gap-3 rounded-md px-3 py-2 text-start type-body",
                   "transition-colors duration-fast ease-enter",
                   active
                     ? "bg-brand/10 font-medium text-brand"
                     : "text-foreground hover:bg-surface-muted",
-                  !item.available && "cursor-not-allowed opacity-50",
                 )}
                 aria-current={active ? "page" : undefined}
               >
                 <Icon className="size-icon-md shrink-0" strokeWidth={1.5} aria-hidden />
                 <span className="min-w-0 flex-1 truncate">{tKey(item.labelKey)}</span>
-                {!item.available ? (
-                  <span className="type-label text-muted-foreground">{t("common.comingSoon")}</span>
-                ) : null}
               </button>
             </li>
           );
@@ -159,5 +153,5 @@ export function QuickSwitcherTrigger({ onOpen }: { onOpen: () => void }) {
 }
 
 export function workspaceDefaultHref(): string {
-  return workspaceHref("project-command");
+  return SHOWCASE_PATH;
 }

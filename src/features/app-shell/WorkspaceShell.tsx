@@ -14,6 +14,7 @@ import { WorkspaceHeader } from "@/components/layout/WorkspaceHeader";
 import { WorkspaceLayout } from "@/components/layout/WorkspaceLayout";
 import { MainLandmark } from "@/components/system/MainLandmark";
 import { overlayIds } from "@/config/constants";
+import { SHOWCASE_PATH } from "@/config/showcase";
 import { workspaceHref } from "@/config/workspaces";
 import { CommandPalette } from "@/features/command/CommandPalette";
 import {
@@ -45,7 +46,7 @@ function BrandMark() {
 
   return (
     <Link
-      href={workspaceHref("project-command")}
+      href={SHOWCASE_PATH}
       className="flex items-center gap-3 rounded-md focus-visible:outline-none"
     >
       <span
@@ -177,7 +178,7 @@ function RegisterShellCommands() {
 
   React.useEffect(() => {
     const offGd = registerShortcut("g+d", () => {
-      router.push(workspaceHref("project-command"));
+      router.push(SHOWCASE_PATH);
     });
     const offGw = registerShortcut("g+w", () => {
       router.push(workspaceHref("corporate-website"));
@@ -207,12 +208,12 @@ function RegisterShellCommands() {
         run: () => router.push("/"),
       }),
       registerCommand({
-        id: "nav.project-command",
-        label: tKey("workspace.projectCommand.label"),
+        id: "nav.showcase",
+        label: tKey("showcase.title"),
         section: "navigation",
-        keywords: ["dashboard", "workspace"],
+        keywords: ["showcase", "demos", "hub", "interactive"],
         shortcutHint: "G D",
-        run: () => router.push(workspaceHref("project-command")),
+        run: () => router.push(SHOWCASE_PATH),
       }),
       registerCommand({
         id: "nav.corporate-website",

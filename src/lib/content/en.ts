@@ -136,8 +136,8 @@ export const en = {
 
   "notFound.title": "Page not found",
   "notFound.description":
-    "That link is not part of the current showcase. Return to the Project Command workspace.",
-  "notFound.action": "Open Project Command",
+    "That link is not part of the current showcase. Return to the Interactive Showcase hub.",
+  "notFound.action": "Open Interactive Showcase",
 
   "landing.nav.solutions": "Solutions",
   "landing.nav.showcase": "Interactive Showcase",
@@ -695,6 +695,13 @@ export const en = {
   "fixture.activity.A-4.detail": "A-1042-STR-042 · Pipe Rack Framing · Current",
   "fixture.activity.A-5.detail": "Tariq Fahmy on night shift · P-1083 Yanbu",
   "os.settings.language.dateFormatIso": "YYYY-MM-DD",
+  "showcase.title": "Interactive Showcase",
+  "showcase.support": "Open a completed demonstration.",
+  "showcase.openDemo": "Open Demo",
+  "showcase.backHome": "Home",
+  "showcase.demo.corporateWebsite.description": "Premium corporate websites built for construction companies.",
+  "showcase.demo.contractorOs.description": "Project, workforce, equipment and document management software.",
+
 } as const;
 
 export type ContentKey = keyof typeof en;

@@ -10,6 +10,7 @@ import {
   resolveWorkspaceSection,
   workspaceHref,
 } from "@/config/workspaces";
+import { SHOWCASE_PATH } from "@/config/showcase";
 import { DEFAULT_PROJECT_CODE } from "@/config/constants";
 import type {
   ProjectCode,
@@ -66,7 +67,7 @@ export function WorkspaceEngineProvider({ children }: { children: React.ReactNod
 
   React.useEffect(() => {
     if (!workspace.available) {
-      setLifecycle("coming-soon");
+      router.replace(SHOWCASE_PATH);
       return;
     }
     if (section.status === "coming-soon") {
@@ -78,7 +79,7 @@ export function WorkspaceEngineProvider({ children }: { children: React.ReactNod
       return;
     }
     setLifecycle("ready");
-  }, [workspace, section]);
+  }, [workspace, section, router]);
 
   const navigateToWorkspace = React.useCallback(
     (id: WorkspaceId, sectionPath?: string) => {

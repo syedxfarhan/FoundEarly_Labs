@@ -21,12 +21,13 @@ import {
 
 import { MainLandmark } from "@/components/system/MainLandmark";
 import { slideUpVariants } from "@/animations/presets";
+import { SHOWCASE_PATH } from "@/config/showcase";
 import { workspaceHref } from "@/config/workspaces";
 import { useMotion } from "@/hooks/useMotion";
 import { type ContentKey, useT } from "@/lib/content";
 import { cn } from "@/utils/cn";
 
-const SHOWCASE_HREF = workspaceHref("project-command", "overview");
+const SHOWCASE_HREF = SHOWCASE_PATH;
 const WEBSITE_DEMO_HREF = workspaceHref("corporate-website", "home");
 const CONTRACTOR_OS_HREF = workspaceHref("contractor-os", "dashboard");
 

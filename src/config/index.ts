@@ -25,3 +25,4 @@ export {
   workspaceHref,
   WORKSPACE_REGISTRY,
 } from "./workspaces";
+export { getShowcaseDemos, SHOWCASE_PATH, type ShowcaseDemo } from "./showcase";

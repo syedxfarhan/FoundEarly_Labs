@@ -12,7 +12,7 @@ export const WORKSPACE_REGISTRY: readonly WorkspaceMeta[] = [
     descriptionKey: "workspace.projectCommand.description",
     path: "project-command",
     icon: "LayoutDashboard",
-    available: true,
+    available: false,
     phase: 1,
     defaultSectionId: "overview",
     sections: [
@@ -227,7 +227,7 @@ export const WORKSPACE_REGISTRY: readonly WorkspaceMeta[] = [
   },
 ] as const;
 
-export const DEFAULT_WORKSPACE_ID: WorkspaceId = "project-command";
+export const DEFAULT_WORKSPACE_ID: WorkspaceId = "corporate-website";
 
 export function getWorkspaceById(id: string): WorkspaceMeta | undefined {
   return WORKSPACE_REGISTRY.find((w) => w.id === id);

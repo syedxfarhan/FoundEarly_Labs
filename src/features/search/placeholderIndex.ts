@@ -1,29 +1,41 @@
+import { SHOWCASE_PATH } from "@/config/showcase";
 import { WORKSPACE_REGISTRY, workspaceHref } from "@/config/workspaces";
 import type { TranslateKeyFn } from "@/lib/content";
 import { createKeyTranslator } from "@/lib/content";
 import type { SearchHit } from "@/providers/SearchProvider";
 
-/** Placeholder search index — no real indexing (Phase 1.2 shell only). */
+/** Placeholder search index — indexes available workspaces and the showcase hub. */
 export function buildPlaceholderSearchIndex(
   tKey: TranslateKeyFn = createKeyTranslator("en"),
 ): SearchHit[] {
-  const hits: SearchHit[] = [];
+  const hits: SearchHit[] = [
+    {
+      id: "showcase-hub",
+      title: tKey("showcase.title"),
+      category: "workspaces",
+      href: SHOWCASE_PATH,
+      description: tKey("showcase.support"),
+    },
+  ];
 
   for (const workspace of WORKSPACE_REGISTRY) {
+    if (!workspace.available) continue;
+
     hits.push({
       id: `ws-${workspace.id}`,
       title: tKey(workspace.labelKey),
       category: "workspaces",
-      href: workspace.available ? workspaceHref(workspace.id) : undefined,
+      href: workspaceHref(workspace.id),
       description: tKey(workspace.descriptionKey),
     });
 
     for (const section of workspace.sections) {
+      if (section.status === "coming-soon") continue;
       hits.push({
         id: `sec-${workspace.id}-${section.id}`,
         title: `${tKey(workspace.labelKey)} · ${tKey(section.labelKey)}`,
         category: "sections",
-        href: workspace.available ? workspaceHref(workspace.id, section.path) : undefined,
+        href: workspaceHref(workspace.id, section.path),
       });
     }
   }
