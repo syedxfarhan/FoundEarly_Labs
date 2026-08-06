@@ -4,6 +4,22 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Demo 02] — 2026-08-06 — ContractorOS
+
+### Added
+- ContractorOS workspace (`contractor-os`) with Dashboard, Projects, Workforce, Equipment, Documents, Purchase Orders, Settings
+- Feature module `src/features/contractor-os` — KPI dashboard, searchable tables, document browser, settings UI
+- Operational fixtures `src/data/contractorOs.ts` for Al-Buraq Horizon Contracting Co.
+- Landing “Contractor Management Systems” card deep-links into Demo 02
+- Command / shortcut `G O` opens ContractorOS
+
+### Notes
+- Lives inside the Interactive Showcase shell; Credibility Landing and Demo 01 unchanged in scope.
+- Frontend showcase only — no CRUD, auth, backend, or ERP depth.
+- AI Assistant and Discovery Simulator remain out of scope.
+
+---
+
 ## [Demo 01] — 2026-08-06 — Premium Corporate Website
 
 ### Added

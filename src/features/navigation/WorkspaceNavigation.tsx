@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   Files,
   Globe,
+  HardHat,
   Info,
   LayoutDashboard,
   MessageSquareText,
@@ -21,6 +22,7 @@ import { cn } from "@/utils/cn";
 const iconMap: Record<string, LucideIcon> = {
   LayoutDashboard,
   Globe,
+  HardHat,
   Package,
   Files,
   MessageSquareText,

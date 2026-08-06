@@ -8,4 +8,5 @@ Static, versioned modules per `docs/08_DEMO_DATA_GUIDE.md`.
 
 | Module | Purpose |
 |---|---|
-| `corporateWebsite.ts` | Demo 01 — Al-Buraq Horizon corporate website marketing fixtures (company profile, services, projects, leadership, careers, clients). Aligns with `docs/08`; operational ERP fixtures arrive with later workspaces. |
+| `corporateWebsite.ts` | Demo 01 — Al-Buraq Horizon corporate website marketing fixtures |
+| `contractorOs.ts` | Demo 02 — ContractorOS operational showcase fixtures (projects, workforce, equipment, documents, POs) |
