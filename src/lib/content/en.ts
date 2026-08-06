@@ -688,6 +688,13 @@ export const en = {
   "fixture.deadline.D-2.label": "P-1058 stormwater ITP review",
   "fixture.deadline.D-3.label": "P-1083 planned finish",
   "fixture.deadline.D-4.label": "TC-1 tower crane maintenance",
+
+  "fixture.activity.A-1.detail": "PO-1042-018 · Nakheel Steel · SAR 2,340,000",
+  "fixture.activity.A-2.detail": "RFI-1042-013 · Structural loading for platform P-3",
+  "fixture.activity.A-3.detail": "GS-2 Generator · Al-Khobar Yard",
+  "fixture.activity.A-4.detail": "A-1042-STR-042 · Pipe Rack Framing · Current",
+  "fixture.activity.A-5.detail": "Tariq Fahmy on night shift · P-1083 Yanbu",
+  "os.settings.language.dateFormatIso": "YYYY-MM-DD",
 } as const;
 
 export type ContentKey = keyof typeof en;

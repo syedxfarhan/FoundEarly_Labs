@@ -148,6 +148,10 @@ export function activityLabelKey(id: string): string {
   return `fixture.activity.${id}.label`;
 }
 
+export function activityDetailKey(id: string): string {
+  return `fixture.activity.${id}.detail`;
+}
+
 export function deadlineLabelKey(id: string): string {
   return `fixture.deadline.${id}.label`;
 }

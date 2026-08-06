@@ -20,6 +20,7 @@ import {
 import { workspaceHref } from "@/config/workspaces";
 import { formatCount, formatPercent, formatSar } from "@/lib/formatters";
 import {
+  activityDetailKey,
   activityLabelKey,
   deadlineLabelKey,
   projectNameKey,
@@ -153,7 +154,9 @@ export function DashboardModule() {
                     <p className="type-body font-medium text-foreground">
                       {resolveContentKey(activityLabelKey(item.id), item.label, t)}
                     </p>
-                    <p className="type-body-sm text-muted-foreground">{item.detail}</p>
+                    <p className="type-body-sm text-muted-foreground">
+                      {resolveContentKey(activityDetailKey(item.id), item.detail, t)}
+                    </p>
                   </li>
                 ))}
               </ul>

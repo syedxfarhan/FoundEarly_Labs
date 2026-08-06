@@ -120,7 +120,10 @@ export function SettingsModule() {
                   />
                   <Field label={t("os.settings.branding.short")} defaultValue="Al-Buraq Horizon" />
                   <Field label={t("os.settings.branding.mark")} defaultValue="AH" />
-                  <Field label={t("os.settings.branding.accent")} defaultValue="Brand primary" />
+                  <Field
+                    label={t("os.settings.branding.accent")}
+                    defaultValue={t("os.settings.branding.accentValue")}
+                  />
                 </>
               ) : null}
 
@@ -150,7 +153,7 @@ export function SettingsModule() {
                   </label>
                   <Select
                     label={t("os.settings.language.dates")}
-                    options={[t("os.settings.language.dateFormat"), "YYYY-MM-DD"]}
+                    options={[t("os.settings.language.dateFormat"), t("os.settings.language.dateFormatIso")]}
                   />
                 </>
               ) : null}

@@ -605,4 +605,11 @@ export const ar = {
   "fixture.deadline.D-2.label": "مراجعة خطة فحص أعمال التصريف P-1058",
   "fixture.deadline.D-3.label": "الإنجاز المخطط لـ P-1083",
   "fixture.deadline.D-4.label": "صيانة الرافعة البرجية TC-1",
+
+  "fixture.activity.A-1.detail": "PO-1042-018 · نخيل للحديد · 2,340,000 ر.س",
+  "fixture.activity.A-2.detail": "RFI-1042-013 · التحميل الإنشائي للمنصة P-3",
+  "fixture.activity.A-3.detail": "مولّد GS-2 · ساحة الخبر",
+  "fixture.activity.A-4.detail": "A-1042-STR-042 · إطار رف الأنابيب · ساري",
+  "fixture.activity.A-5.detail": "طارق فهمي في الوردية الليلية · P-1083 ينبع",
+  "os.settings.language.dateFormatIso": "YYYY-MM-DD",
 } as const satisfies ContentDictionary;

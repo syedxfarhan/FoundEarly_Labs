@@ -17,6 +17,7 @@ export {
 } from "@/lib/content/resolve";
 export { useT, useTKey, useTranslations } from "@/hooks/useT";
 export {
+  activityDetailKey,
   activityLabelKey,
   deadlineLabelKey,
   documentNameKey,

@@ -13,7 +13,6 @@ import { TopBar } from "@/components/layout/TopBar";
 import { WorkspaceHeader } from "@/components/layout/WorkspaceHeader";
 import { WorkspaceLayout } from "@/components/layout/WorkspaceLayout";
 import { MainLandmark } from "@/components/system/MainLandmark";
-import { COMPANY_CONTEXT } from "@/config/navigation";
 import { overlayIds } from "@/config/constants";
 import { workspaceHref } from "@/config/workspaces";
 import { CommandPalette } from "@/features/command/CommandPalette";
@@ -274,6 +273,7 @@ function RegisterShellCommands() {
  */
 export function WorkspaceShell({ children }: { children?: React.ReactNode }) {
   const { isPresentationMode } = usePresentation();
+  const t = useT();
   const tKey = useTKey();
   const searchIndex = React.useMemo(() => buildPlaceholderSearchIndex(tKey), [tKey]);
 
@@ -283,12 +283,13 @@ export function WorkspaceShell({ children }: { children?: React.ReactNode }) {
         <RegisterShellCommands />
         <AppShell
           presentation={isPresentationMode}
+          utilityLabel={t("shell.rightUtility")}
           topBar={
             <TopBar
               brand={<BrandMark />}
               context={
                 <span className="truncate type-body-sm text-muted-foreground">
-                  {COMPANY_CONTEXT}
+                  {t("common.companyContext")}
                 </span>
               }
               actions={<ShellTopActions />}

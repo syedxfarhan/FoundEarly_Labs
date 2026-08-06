@@ -7,6 +7,8 @@ export type AppShellProps = {
   navigation?: React.ReactNode;
   children: React.ReactNode;
   utility?: React.ReactNode;
+  /** Localized aria-label for the utility region */
+  utilityLabel?: string;
   className?: string;
   /** Presentation mode quiets secondary chrome via CSS var --chrome-opacity */
   presentation?: boolean;
@@ -21,6 +23,7 @@ export function AppShell({
   navigation,
   children,
   utility,
+  utilityLabel,
   className,
   presentation = false,
 }: AppShellProps) {
@@ -61,7 +64,7 @@ export function AppShell({
             )}
             style={{ opacity: presentation ? "var(--chrome-opacity)" : undefined }}
             data-shell="utility"
-            aria-label="Contextual utilities"
+            aria-label={utilityLabel}
           >
             {utility}
           </aside>

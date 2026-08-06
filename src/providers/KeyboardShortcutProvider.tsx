@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { useCommands } from "@/providers/CommandProvider";
 import { usePresentation } from "@/providers/PresentationProvider";
+import { useT } from "@/lib/content";
 
 type ShortcutHandler = (event: KeyboardEvent) => void;
 
@@ -27,6 +28,7 @@ function normalizeCombo(event: KeyboardEvent): string {
  * Registers Presentation Mode defaults (P, F) and go-prefix chords (G then X).
  */
 export function KeyboardShortcutProvider({ children }: { children: React.ReactNode }) {
+  const t = useT();
   const handlersRef = React.useRef(new Map<string, Set<ShortcutHandler>>());
   const chordRef = React.useRef<{ prefix: string; expiresAt: number } | null>(null);
   const { togglePresentationMode, toggleFullscreen } = usePresentation();
@@ -97,7 +99,7 @@ export function KeyboardShortcutProvider({ children }: { children: React.ReactNo
   React.useEffect(() => {
     const offPresentation = registerCommand({
       id: "presentation.toggle",
-      label: "Toggle Presentation Mode",
+      label: t("shortcut.presentation"),
       section: "presentation",
       keywords: ["present", "demo"],
       shortcutHint: "P",
@@ -105,7 +107,7 @@ export function KeyboardShortcutProvider({ children }: { children: React.ReactNo
     });
     const offFullscreen = registerCommand({
       id: "presentation.fullscreen",
-      label: "Toggle Fullscreen",
+      label: t("shortcut.fullscreen"),
       section: "presentation",
       keywords: ["fullscreen", "projector"],
       shortcutHint: "F",
@@ -115,7 +117,7 @@ export function KeyboardShortcutProvider({ children }: { children: React.ReactNo
       offPresentation();
       offFullscreen();
     };
-  }, [registerCommand, togglePresentationMode, toggleFullscreen]);
+  }, [registerCommand, togglePresentationMode, toggleFullscreen, t]);
 
   const value = React.useMemo(() => ({ registerShortcut }), [registerShortcut]);
 
