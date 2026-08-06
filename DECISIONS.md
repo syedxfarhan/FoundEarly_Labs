@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-008 — 2026-08-06 — Phase 2.1 Credibility Landing as root entry
+
+**Decision:** Serve the Credibility Landing at `/` as a narrative entry surface outside `WorkspaceShell`. Interactive Showcase CTAs deep-link into `/workspace/project-command/overview`. Mode Selector remains deferred until Discovery Simulator work begins.
+
+**Context / alternatives considered:** Placing the landing inside the workspace shell was rejected — IA treats Credibility Landing as a first-touch entry surface, and shell chrome would dilute brand-first hero hierarchy (`docs/19`). Building Mode Selector in the same change was rejected as out of scope for this gate.
+
+**Consequences:** `G` then `H` returns to `/`. Future Mode Selector can sit between landing and showcase without reshaping either surface.
+
+---
+
 ## D-007 — 2026-08-06 — Phase 1.2 Enterprise Application Shell + Workspace Engine
 
 **Decision:** Implement Phase 1.2 as the persistent enterprise application shell and workspace engine only — `WorkspaceShell`, config-driven navigation/registry, command palette UI (cmdk), global search foundation, notification center shell, theme/locale/RTL preferences, layout primitives, and premium empty states — without Tier 1/2 design-system primitives, dashboard content, Discovery Simulator, or fixtures.

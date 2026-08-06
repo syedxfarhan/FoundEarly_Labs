@@ -167,7 +167,7 @@ function RegisterShellCommands() {
       router.push(workspaceHref("project-command"));
     });
     const offGh = registerShortcut("g+h", () => {
-      router.push(workspaceHref("project-command", "overview"));
+      router.push("/");
     });
     return () => {
       offGd();
@@ -177,6 +177,14 @@ function RegisterShellCommands() {
 
   React.useEffect(() => {
     const disposers = [
+      registerCommand({
+        id: "nav.home",
+        label: tKey("landing.hero.brand"),
+        section: "navigation",
+        keywords: ["home", "landing", "credibility"],
+        shortcutHint: "G H",
+        run: () => router.push("/"),
+      }),
       registerCommand({
         id: "nav.project-command",
         label: tKey("workspace.projectCommand.label"),

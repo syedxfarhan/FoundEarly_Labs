@@ -1,22 +1,15 @@
-"use client";
+import type { Metadata } from "next";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
+import { CredibilityLanding } from "@/features/credibility-landing";
+import { APP_NAME } from "@/config/constants";
 
-import { workspaceHref } from "@/config/workspaces";
-import { WorkspaceLoader } from "@/features/workspace/WorkspaceLoader";
+export const metadata: Metadata = {
+  title: `${APP_NAME} — AI and software for construction`,
+  description:
+    "FoundEarly Labs builds custom websites, internal software, AI systems, and business automation for construction companies.",
+};
 
-/** Static-export-safe entry redirect into the workspace engine. */
+/** Credibility Landing — entry surface (docs/03 §2). */
 export default function HomePage() {
-  const router = useRouter();
-
-  React.useEffect(() => {
-    router.replace(workspaceHref("project-command", "overview"));
-  }, [router]);
-
-  return (
-    <div className="flex min-h-svh items-center justify-center">
-      <WorkspaceLoader />
-    </div>
-  );
+  return <CredibilityLanding />;
 }

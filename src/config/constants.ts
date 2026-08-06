@@ -10,13 +10,14 @@ export const APP_PRODUCT = "Interactive Capability Showcase";
 export const DEFAULT_PROJECT_CODE = "P-1042" as const;
 
 export const featureFlags = {
-  /** Phase 1.2 — shell + workspace engine */
+  /** Phase 2.1 — credibility landing */
   discoverySimulator: false,
   projectDashboard: false,
   commandPaletteUi: true,
   presenterToolbarUi: false,
   globalSearchUi: true,
   notificationCenterUi: true,
+  credibilityLanding: true,
 } as const;
 
 export const storageKeys = {

@@ -117,6 +117,71 @@ export const en = {
   "notFound.description":
     "That link is not part of the current showcase. Return to the Project Command workspace.",
   "notFound.action": "Open Project Command",
+
+  "landing.nav.solutions": "Solutions",
+  "landing.nav.showcase": "Interactive Showcase",
+  "landing.hero.brand": "FoundEarly Labs",
+  "landing.hero.headline": "AI and software solutions built for construction companies.",
+  "landing.hero.support":
+    "We build custom websites, internal software, AI systems, and business automation for contractors and engineering firms who need tools that match how their projects actually run.",
+  "landing.hero.ctaPrimary": "Explore Solutions",
+  "landing.hero.ctaSecondary": "Interactive Showcase",
+
+  "landing.trust.customSoftware": "Custom Software",
+  "landing.trust.aiAutomation": "AI Automation",
+  "landing.trust.dashboards": "Enterprise Dashboards",
+  "landing.trust.workflows": "Construction Workflows",
+  "landing.trust.businessAutomation": "Business Automation",
+  "landing.trust.webPlatforms": "Web Platforms",
+
+  "landing.about.title": "About FoundEarly Labs",
+  "landing.about.body":
+    "We partner with construction companies to modernize operations with custom software. Our work is shaped by how contractors, MEP firms, and engineering teams actually approve RFIs, control documents, and run projects — not by generic SaaS templates.",
+
+  "landing.audience.title": "Who we help",
+  "landing.audience.support": "Teams that need operational software as serious as the work they deliver.",
+  "landing.audience.general": "General Contractors",
+  "landing.audience.mep": "MEP Contractors",
+  "landing.audience.civil": "Civil Contractors",
+  "landing.audience.industrial": "Industrial Contractors",
+  "landing.audience.engineering": "Engineering Consultants",
+  "landing.audience.aramco": "Aramco Approved Companies",
+
+  "landing.build.title": "What we build",
+  "landing.build.support": "Practical systems for the office, the site, and the executive table.",
+  "landing.build.websites.title": "Corporate Websites",
+  "landing.build.websites.body": "Credible web presence that reflects how your company actually wins work.",
+  "landing.build.contractor.title": "Contractor Management Systems",
+  "landing.build.contractor.body": "Internal platforms for projects, teams, vendors, and day-to-day control.",
+  "landing.build.ai.title": "AI Assistants",
+  "landing.build.ai.body": "Scoped assistants grounded in your documents, logs, and operating context.",
+  "landing.build.dashboards.title": "Executive Dashboards",
+  "landing.build.dashboards.body": "Schedule, budget, and risk visibility designed for decision-makers.",
+  "landing.build.mobile.title": "Mobile Applications",
+  "landing.build.mobile.body": "Field-ready apps for inspections, updates, and site coordination.",
+  "landing.build.automation.title": "Business Automation",
+  "landing.build.automation.body": "Replace spreadsheet handoffs with reliable, repeatable workflows.",
+  "landing.build.documents.title": "Document Management",
+  "landing.build.documents.body": "Controlled registers for drawings, submittals, and version history.",
+
+  "landing.why.title": "Why FoundEarly",
+  "landing.why.support": "Built as an engineering partner, not a packaged product pitch.",
+  "landing.why.traditional": "Traditional software",
+  "landing.why.foundearly": "FoundEarly Labs",
+  "landing.why.item1.traditional": "Forces your process into the product",
+  "landing.why.item1.ours": "Built around your workflow",
+  "landing.why.item2.traditional": "Rigid modules and slow change cycles",
+  "landing.why.item2.ours": "Scalable custom development",
+  "landing.why.item3.traditional": "Dense, dated interfaces",
+  "landing.why.item3.ours": "Modern, precise UI",
+  "landing.why.item4.traditional": "AI bolted on later",
+  "landing.why.item4.ours": "AI-ready from the start",
+  "landing.why.item5.traditional": "Long delivery timelines",
+  "landing.why.item5.ours": "Fast, focused delivery",
+
+  "landing.cta.title": "Let's build software around your business.",
+  "landing.cta.support": "Open the Interactive Capability Showcase to see how we design enterprise construction software.",
+  "landing.cta.action": "Open Interactive Showcase",
 } as const;
 
 export type ContentKey = keyof typeof en;
