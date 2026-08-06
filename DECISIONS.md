@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-006 — 2026-08-06 — Phase 1.1 Enterprise Foundation scaffold
+
+**Decision:** Implement Phase 1.1 as a Next.js 15 App Router application under `src/` per `docs/10`, with static `output: "export"` for offline presentation, Lucide as the locked primary icon library, CSS-variable tokens mirrored from `docs/09`, and provider/command/presentation architecture without product UI.
+
+**Context / alternatives considered:** Vite SPA was already rejected in `docs/07`. Shipping design-system components or demo surfaces in the same PR was rejected to keep Phase 1.1 a pure foundation (task brief). Zod v3 selected over v4 for ecosystem stability with react-hook-form. shadcn/ui is configured (`components.json` + Radix/CVA) but primitives are deferred to Phase 1.2 to avoid an unspec'd component dump.
+
+**Consequences:** Phase 1.2 must add components via `docs/04` spec-first. Lucide is locked (update `docs/14` / this log only if changing). Static export remains until Phase 5 revisits hosting. See `docs/20_PHASE_1_1_COMPLETION_CHECKLIST.md`.
+
+---
+
 ## D-005 — 2026-08-06 — Phase 0 enterprise hardening pass (docs 11–18 + Cursor rules)
 
 **Decision:** Before Phase 1 implementation, extend governance with: documentation map (`11`), official design review checklist (`12`), construction domain handbook (`13`), iconography guide (`14`), data visualization guide (`15`), presentation mode guide (`16`), Phase 1 definition of done (`17`), live demo runbook (`18`), brand/i18n conventions (`19`), Enterprise Design Anti-Patterns in `02` §13, and `.cursor/rules/` mirrors for AI-assisted work.

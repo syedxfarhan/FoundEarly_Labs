@@ -1,0 +1,115 @@
+/**
+ * CSS custom properties from docs/09_DESIGN_TOKENS.md.
+ * Channel values are HSL without the `hsl()` wrapper so Tailwind alpha works:
+ * `hsl(var(--background) / <alpha-value>)`.
+ */
+
+:root {
+  /* Surfaces — light (default / presentation-primary) */
+  --background: 0 0% 100%;
+  --foreground: 213 20% 7%;
+  --surface: 0 0% 100%;
+  --surface-muted: 210 11% 97%;
+  --surface-elevated: 0 0% 100%;
+  --border: 214 14% 90%;
+  --border-strong: 213 12% 82%;
+  --muted: 210 14% 94%;
+  --muted-foreground: 221 13% 34%;
+
+  /* Brand */
+  --brand: 192 72% 21%;
+  --brand-hover: 193 73% 17%;
+  --brand-foreground: 0 0% 100%;
+  --brand-accent: 36 52% 50%;
+
+  /* Semantic / construction status */
+  --semantic-neutral: 218 11% 46%;
+  --semantic-info: 210 63% 40%;
+  --semantic-success: 148 61% 30%;
+  --semantic-warning: 38 74% 41%;
+  --semantic-danger: 3 71% 41%;
+
+  /* Focus */
+  --focus-ring: 192 72% 21%;
+
+  /* Charts */
+  --chart-1: 192 72% 21%;
+  --chart-2: 210 63% 40%;
+  --chart-3: 148 61% 30%;
+  --chart-4: 38 74% 41%;
+  --chart-5: 221 13% 34%;
+
+  /* Elevation */
+  --elevation-0: none;
+  --elevation-1: 0 1px 2px rgba(15, 18, 22, 0.06), 0 1px 1px rgba(15, 18, 22, 0.04);
+  --elevation-2: 0 4px 8px rgba(15, 18, 22, 0.08), 0 1px 2px rgba(15, 18, 22, 0.04);
+  --elevation-3: 0 12px 24px rgba(15, 18, 22, 0.12), 0 2px 4px rgba(15, 18, 22, 0.06);
+
+  /* Motion (docs/05) */
+  --motion-instant: 0ms;
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-moderate: 320ms;
+  --motion-slow: 450ms;
+  --motion-deliberate: 700ms;
+  --ease-enter: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Layout */
+  --sidebar-width: 280px;
+  --content-max-width: 1280px;
+  --grid-gutter: 24px;
+
+  /* Presentation mode (scale bump applied when [data-presentation="true"]) */
+  --presentation-type-scale: 1;
+  --chrome-opacity: 1;
+}
+
+.dark {
+  --background: 220 14% 5%;
+  --foreground: 210 11% 97%;
+  --surface: 216 14% 8%;
+  --surface-muted: 216 14% 11%;
+  --surface-elevated: 210 8% 15%;
+  --border: 213 9% 20%;
+  --border-strong: 214 8% 31%;
+  --muted: 216 14% 11%;
+  --muted-foreground: 213 9% 64%;
+
+  --brand: 192 55% 38%;
+  --brand-hover: 192 55% 44%;
+  --brand-foreground: 0 0% 100%;
+  --brand-accent: 36 55% 58%;
+
+  --semantic-neutral: 218 11% 46%;
+  --semantic-info: 209 63% 60%;
+  --semantic-success: 148 40% 49%;
+  --semantic-warning: 36 67% 55%;
+  --semantic-danger: 3 69% 60%;
+
+  --focus-ring: 192 55% 48%;
+
+  --chart-1: 209 63% 60%;
+  --chart-2: 148 40% 49%;
+  --chart-3: 36 67% 55%;
+  --chart-4: 213 9% 64%;
+  --chart-5: 213 10% 80%;
+
+  --elevation-0: none;
+  --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(203, 208, 214, 0.08);
+  --elevation-2: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(203, 208, 214, 0.1);
+  --elevation-3: 0 16px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(203, 208, 214, 0.12);
+}
+
+[data-presentation="true"] {
+  --presentation-type-scale: 1.05;
+  --chrome-opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-moderate: 120ms;
+    --motion-slow: 120ms;
+    --motion-deliberate: 120ms;
+  }
+}

@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+    text-rendering: optimizeLegibility;
+    hanging-punctuation: first last;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground font-sans text-body;
+    min-height: 100%;
+  }
+
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1, "tnum" 0;
+  }
+
+  /* Tabular figures for numeric surfaces */
+  .tabular-nums,
+  [data-numeric="true"] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Focus ring — never outline:none without replacement (docs/02 §9) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-focus ring-offset-2 ring-offset-background;
+  }
+
+  ::selection {
+    @apply bg-brand/20 text-foreground;
+  }
+
+  /* Scrollbar — quiet, enterprise */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border-strong)) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border-strong));
+    border-radius: var(--radius-full, 9999px);
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  /* Skip link (a11y foundation) */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50;
+    @apply rounded-md bg-brand px-4 py-2 text-body font-medium text-brand-foreground;
+  }
+
+  /* Presentation mode type scale */
+  [data-presentation="true"] body,
+  body:has([data-presentation="true"]) {
+    font-size: calc(1rem * var(--presentation-type-scale));
+  }
+
+  /* RTL foundation — logical properties preferred in components */
+  [dir="rtl"] {
+    text-align: start;
+  }
+}
+
+@layer utilities {
+  .type-display {
+    @apply text-display;
+  }
+
+  .type-h1 {
+    @apply text-h1;
+  }
+
+  .type-h2 {
+    @apply text-h2;
+  }
+
+  .type-h3 {
+    @apply text-h3;
+  }
+
+  .type-body-lg {
+    @apply text-body-lg;
+  }
+
+  .type-body {
+    @apply text-body;
+  }
+
+  .type-body-sm {
+    @apply text-body-sm;
+  }
+
+  .type-label {
+    @apply text-label uppercase;
+  }
+
+  .type-numeric-lg {
+    @apply text-numeric-lg tabular-nums;
+  }
+
+  .type-numeric {
+    @apply text-numeric tabular-nums;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .surface {
+    @apply bg-surface text-foreground;
+  }
+
+  .surface-muted {
+    @apply bg-surface-muted text-foreground;
+  }
+
+  .elevation-1 {
+    box-shadow: var(--elevation-1);
+  }
+
+  .elevation-2 {
+    box-shadow: var(--elevation-2);
+  }
+
+  .elevation-3 {
+    box-shadow: var(--elevation-3);
+  }
+
+  .transition-fast {
+    transition-duration: var(--motion-fast);
+    transition-timing-function: var(--ease-enter);
+  }
+
+  .transition-base {
+    transition-duration: var(--motion-base);
+    transition-timing-function: var(--ease-enter);
+  }
+
+  .transition-moderate {
+    transition-duration: var(--motion-moderate);
+    transition-timing-function: var(--ease-enter);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

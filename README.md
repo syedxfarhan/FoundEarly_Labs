@@ -2,7 +2,7 @@
 
 **Company:** FoundEarly Labs Pvt. Ltd.
 **Project:** Interactive Capability Showcase
-**Status:** Phase 0 — Governance & Foundation (implementation has not started)
+**Status:** Phase 1.1 — Enterprise Foundation (complete). Product surfaces not started.
 
 ---
 
@@ -14,9 +14,20 @@ It is **not** a portfolio site, a landing page, or a SaaS product. See [`docs/01
 
 ## Current Phase
 
-We are in **Phase 0: Repository Governance**. This phase produces zero application code. Its output is a complete documentation and decision-making layer so that Phase 1 implementation can proceed with no ambiguity, by any engineer, at any time. If you are looking for the app itself, it does not exist yet by design — read on.
+**Phase 1.1 Enterprise Foundation is implemented.** Tokens, providers, motion presets, presentation/command architecture, and DX tooling live under `src/`. Product UI (simulator, dashboards, design-system primitives) is **not** in scope yet — see [`docs/20_PHASE_1_1_COMPLETION_CHECKLIST.md`](docs/20_PHASE_1_1_COMPLETION_CHECKLIST.md).
 
-## Start Here
+### Develop
+
+```bash
+pnpm install
+pnpm dev
+pnpm typecheck
+pnpm build
+```
+
+Requires Node ≥ 20 and pnpm.
+
+## Documentation
 
 If you do not know which document owns a question, open [`docs/11_DOCUMENTATION_MAP.md`](docs/11_DOCUMENTATION_MAP.md) first.
 
@@ -66,4 +77,4 @@ Otherwise read in this order:
 
 ## Repository State
 
-No application code exists yet. Contents are the governance layer above. See [`CHANGELOG.md`](CHANGELOG.md) and [`docs/17_PHASE1_DEFINITION_OF_DONE.md`](docs/17_PHASE1_DEFINITION_OF_DONE.md) for readiness status.
+Phase 0 governance + Phase 1.1 enterprise foundation. No Discovery Simulator, dashboards, or fixture datasets yet. See [`CHANGELOG.md`](CHANGELOG.md).
