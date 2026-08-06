@@ -34,6 +34,7 @@
 | Charts / KPIs / dashboards | `15_DATA_VISUALIZATION_GUIDE.md` | Chart library demos |
 | Live meeting / Presentation Mode | `16_PRESENTATION_MODE_GUIDE.md` | IA §6 alone (summary only) |
 | Phase 1.1 foundation checklist | `20_PHASE_1_1_COMPLETION_CHECKLIST.md` | Informal "app boots" |
+| Phase 1.2 shell checklist | `21_PHASE_1_2_COMPLETION_CHECKLIST.md` | Informal "shell exists" |
 | When Phase 1 may start / DoD | `17_PHASE1_DEFINITION_OF_DONE.md` | Informal "looks ready" |
 | In-room failure response | `18_LIVE_DEMO_RUNBOOK.md` | Improvised panic |
 

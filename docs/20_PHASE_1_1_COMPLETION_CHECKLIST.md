@@ -46,7 +46,7 @@ Enterprise Foundation gate. All items must pass before Phase 1.2 (design-system 
 - [x] DECISIONS.md updated for Phase 1.1
 
 ## Explicitly deferred (not Phase 1.1)
-- [ ] Design-system primitives (Button, DataTable, …) — Phase 1.2+
+- [ ] Design-system primitives (Button, DataTable, …) — Phase 1.3+
 - [ ] Discovery Simulator / dashboards / fixture data — later Phase 1
-- [ ] Command palette UI / Presenter Toolbar UI
+- [ ] Command palette UI / Presenter Toolbar UI — palette shipped in Phase 1.2; toolbar still deferred
 - [ ] Arabic locale packs

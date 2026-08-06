@@ -2,7 +2,7 @@
   "name": "foundearly-labs-showcase",
   "version": "0.1.0",
   "private": true,
-  "description": "FoundEarly Labs Interactive Capability Showcase — enterprise foundation",
+  "description": "FoundEarly Labs Interactive Capability Showcase — enterprise application shell",
   "packageManager": "pnpm@10.33.3",
   "engines": {
     "node": ">=20"

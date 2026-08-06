@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 
 import { AppProviders } from "@/providers/AppProviders";
 import { ErrorBoundary } from "@/components/system/ErrorBoundary";
-import { MainLandmark } from "@/components/system/MainLandmark";
 import { APP_NAME, APP_PRODUCT } from "@/config/constants";
 import { SKIP_NAV_TARGET_ID } from "@/lib/a11y";
+import { t } from "@/lib/content";
 
 import "@/styles/tokens.css";
 import "@/styles/globals.css";
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: `%s · ${APP_NAME}`,
   },
   description:
-    "Enterprise foundation for the FoundEarly Labs Interactive Capability Showcase.",
+    "Enterprise application shell for the FoundEarly Labs Interactive Capability Showcase.",
   robots: { index: false, follow: false },
 };
 
@@ -46,12 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" dir="ltr" className={inter.variable} suppressHydrationWarning>
       <body className="min-h-svh bg-background text-foreground">
         <a href={`#${SKIP_NAV_TARGET_ID}`} className="skip-link">
-          Skip to main content
+          {t("common.skipToContent")}
         </a>
         <AppProviders>
-          <ErrorBoundary>
-            <MainLandmark>{children}</MainLandmark>
-          </ErrorBoundary>
+          <ErrorBoundary>{children}</ErrorBoundary>
         </AppProviders>
       </body>
     </html>

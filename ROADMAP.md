@@ -10,6 +10,11 @@ This roadmap is directional, not a delivery commitment with dates. Per project c
 
 ## Phase 1 — Foundation Showcase
 
+**Delivery gates (informal sub-phases):**
+- **1.1** Enterprise Foundation (tokens, providers, motion, a11y) — complete; see `docs/20`.
+- **1.2** Enterprise Application Shell + Workspace Engine — see `docs/21`.
+- **1.3+** Design-system Tier 1/2 primitives, Credibility Landing, Discovery Simulator, Project Command content, fixtures.
+
 **Scope:**
 - Repository scaffolding per `docs/10_PROJECT_STRUCTURE.md`.
 - Design token implementation (Tailwind config generated from `docs/09_DESIGN_TOKENS.md`).

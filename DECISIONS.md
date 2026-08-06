@@ -6,6 +6,16 @@ This is the append-only record of material decisions made across this repository
 
 ---
 
+## D-007 — 2026-08-06 — Phase 1.2 Enterprise Application Shell + Workspace Engine
+
+**Decision:** Implement Phase 1.2 as the persistent enterprise application shell and workspace engine only — `WorkspaceShell`, config-driven navigation/registry, command palette UI (cmdk), global search foundation, notification center shell, theme/locale/RTL preferences, layout primitives, and premium empty states — without Tier 1/2 design-system primitives, dashboard content, Discovery Simulator, or fixtures.
+
+**Context / alternatives considered:** D-006 deferred product UI to Phase 1.2 as “design-system primitives / product surfaces.” Building Button/DataTable first was rejected for this gate so the operating shell can exist before business surfaces. Inventing a parallel top-level folder tree (`core/`, `shared/`) was rejected in favor of `docs/10` ownership (`features/*` modules + `components/layout`). Full Arabic packs remain Phase 3; locale switch here flips `dir`/`lang` only.
+
+**Consequences:** Phase 1.3 must add design-system primitives via `docs/04` spec-first, then plug dashboard/simulator content into the existing registry and shell without reshaping chrome. See `docs/21_PHASE_1_2_COMPLETION_CHECKLIST.md`.
+
+---
+
 ## D-006 — 2026-08-06 — Phase 1.1 Enterprise Foundation scaffold
 
 **Decision:** Implement Phase 1.1 as a Next.js 15 App Router application under `src/` per `docs/10`, with static `output: "export"` for offline presentation, Lucide as the locked primary icon library, CSS-variable tokens mirrored from `docs/09`, and provider/command/presentation architecture without product UI.
