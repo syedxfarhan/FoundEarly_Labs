@@ -4,6 +4,19 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Phase 2.1] — 2026-08-06 — Credibility Landing
+
+### Added
+- Credibility Landing entry surface at `/` (`src/features/credibility-landing`)
+- Sections: Hero, Trust strip, About, Who we help, What we build, Why FoundEarly, closing CTA
+- Showcase CTAs route into the existing workspace shell
+
+### Notes
+- Outside `WorkspaceShell` (entry narrative surface per IA).
+- No Discovery Simulator, ContractorOS, or AI Assistant demos.
+
+---
+
 ## [Phase 1.2] — 2026-08-06 — Enterprise Application Shell
 
 ### Added

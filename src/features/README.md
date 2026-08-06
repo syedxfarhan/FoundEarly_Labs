@@ -14,6 +14,7 @@ Feature composites and shell engines for the Interactive Capability Showcase.
 | `notifications/` | Notification center shell + badge |
 | `presentation/` | Presentation Mode toggle (toolbar deferred) |
 | `preferences/` | Theme + language/RTL foundation controls |
+| `credibility-landing/` | Entry Credibility Landing narrative surface |
 
 ## Deferred
 
