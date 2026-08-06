@@ -87,26 +87,54 @@ const BUILD: Array<{ titleKey: ContentKey; bodyKey: ContentKey; icon: LucideIcon
   },
 ];
 
-const WHY: Array<{ traditionalKey: ContentKey; oursKey: ContentKey }> = [
+const PHILOSOPHY_KEYS: ContentKey[] = [
+  "landing.philosophy.item1",
+  "landing.philosophy.item2",
+  "landing.philosophy.item3",
+  "landing.philosophy.item4",
+];
+
+const COMPANY_INFO_ROWS: Array<{ labelKey: ContentKey; valueKey: ContentKey }> = [
   {
-    traditionalKey: "landing.why.item1.traditional",
-    oursKey: "landing.why.item1.ours",
+    labelKey: "landing.companyInfo.legalName",
+    valueKey: "landing.companyInfo.legalName.value",
+  },
+  { labelKey: "landing.companyInfo.type", valueKey: "landing.companyInfo.type.value" },
+  { labelKey: "landing.companyInfo.country", valueKey: "landing.companyInfo.country.value" },
+  { labelKey: "landing.companyInfo.office", valueKey: "landing.companyInfo.office.value" },
+  { labelKey: "landing.companyInfo.cin", valueKey: "landing.companyInfo.cin.value" },
+  { labelKey: "landing.companyInfo.gstin", valueKey: "landing.companyInfo.gstin.value" },
+  { labelKey: "landing.companyInfo.pan", valueKey: "landing.companyInfo.pan.value" },
+  { labelKey: "landing.companyInfo.tan", valueKey: "landing.companyInfo.tan.value" },
+  { labelKey: "landing.companyInfo.year", valueKey: "landing.companyInfo.year.value" },
+  { labelKey: "landing.companyInfo.founder", valueKey: "landing.companyInfo.founder.value" },
+  { labelKey: "landing.companyInfo.email", valueKey: "landing.companyInfo.email.value" },
+  { labelKey: "landing.companyInfo.website", valueKey: "landing.companyInfo.website.value" },
+  { labelKey: "landing.companyInfo.hours", valueKey: "landing.companyInfo.hours.value" },
+  {
+    labelKey: "landing.companyInfo.industries",
+    valueKey: "landing.companyInfo.industries.value",
+  },
+];
+
+const CLIENTS_WHY: Array<{ titleKey: ContentKey; bodyKey: ContentKey }> = [
+  {
+    titleKey: "landing.clientsWhy.workflow.title",
+    bodyKey: "landing.clientsWhy.workflow.body",
+  },
+  { titleKey: "landing.clientsWhy.ux.title", bodyKey: "landing.clientsWhy.ux.body" },
+  { titleKey: "landing.clientsWhy.ai.title", bodyKey: "landing.clientsWhy.ai.body" },
+  {
+    titleKey: "landing.clientsWhy.analytics.title",
+    bodyKey: "landing.clientsWhy.analytics.body",
   },
   {
-    traditionalKey: "landing.why.item2.traditional",
-    oursKey: "landing.why.item2.ours",
+    titleKey: "landing.clientsWhy.custom.title",
+    bodyKey: "landing.clientsWhy.custom.body",
   },
   {
-    traditionalKey: "landing.why.item3.traditional",
-    oursKey: "landing.why.item3.ours",
-  },
-  {
-    traditionalKey: "landing.why.item4.traditional",
-    oursKey: "landing.why.item4.ours",
-  },
-  {
-    traditionalKey: "landing.why.item5.traditional",
-    oursKey: "landing.why.item5.ours",
+    titleKey: "landing.clientsWhy.partner.title",
+    bodyKey: "landing.clientsWhy.partner.body",
   },
 ];
 
@@ -222,7 +250,10 @@ export function CredibilityLanding() {
         </section>
 
         {/* Trust strip */}
-        <section aria-label={t("landing.capabilities.aria")} className="border-b border-border bg-surface-muted/40">
+        <section
+          aria-label={t("landing.capabilities.aria")}
+          className="border-b border-border bg-surface-muted/40"
+        >
           <div className="mx-auto flex max-w-content flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 md:px-6">
             {TRUST_KEYS.map((key) => (
               <span key={key} className="type-body-sm font-medium text-muted-foreground">
@@ -232,15 +263,114 @@ export function CredibilityLanding() {
           </div>
         </section>
 
-        {/* About */}
-        <section className="border-b border-border">
-          <div className="mx-auto grid max-w-content gap-8 px-4 py-16 md:grid-cols-12 md:px-6 md:py-24">
-            <Reveal className="md:col-span-4">
-              <h2 className="type-h2 text-foreground">{t("landing.about.title")}</h2>
+        {/* About FoundEarly Labs */}
+        <section id="about" className="border-b border-border scroll-mt-20">
+          <div className="mx-auto flex max-w-content flex-col gap-20 px-4 py-16 md:px-6 md:py-24 lg:gap-28 lg:py-28">
+            <Reveal className="max-w-3xl space-y-4">
+              <h2 className="type-h1 text-foreground">{t("landing.about.title")}</h2>
+              <p className="type-body-lg text-muted-foreground">{t("landing.about.support")}</p>
             </Reveal>
-            <Reveal className="md:col-span-8" delay={0.04}>
-              <p className="max-w-2xl type-body-lg text-muted-foreground">{t("landing.about.body")}</p>
+
+            {/* Founder */}
+            <div className="grid gap-8 md:grid-cols-12 md:gap-12">
+              <Reveal className="md:col-span-4">
+                <p className="type-label text-brand">{t("landing.founder.role")}</p>
+                <h3 className="mt-3 type-h2 text-foreground">{t("landing.founder.title")}</h3>
+              </Reveal>
+              <Reveal className="md:col-span-8" delay={0.04}>
+                <div className="max-w-2xl space-y-6">
+                  <div className="space-y-2">
+                    <p className="type-h3 text-foreground">{t("landing.founder.name")}</p>
+                    <p className="type-body text-muted-foreground">{t("landing.founder.location")}</p>
+                  </div>
+                  <p className="type-body-lg text-foreground">{t("landing.founder.intro")}</p>
+                  <p className="type-body text-muted-foreground">{t("landing.founder.clients")}</p>
+                  <p className="type-body text-muted-foreground">{t("landing.founder.approach")}</p>
+                  <p className="type-body text-muted-foreground">
+                    {t("landing.founder.intelligence")}
+                  </p>
+                  <div className="border-s-2 border-brand ps-5 pt-1">
+                    <p className="type-body-lg text-foreground">
+                      {t("landing.founder.emphasis.line1")}
+                    </p>
+                    <p className="mt-2 type-body-lg text-foreground">
+                      {t("landing.founder.emphasis.line2")}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Philosophy */}
+            <div className="grid gap-8 md:grid-cols-12 md:gap-12">
+              <Reveal className="md:col-span-4">
+                <h3 className="type-h2 text-foreground">{t("landing.philosophy.title")}</h3>
+              </Reveal>
+              <Reveal className="md:col-span-8" delay={0.04}>
+                <ul className="max-w-2xl space-y-6">
+                  {PHILOSOPHY_KEYS.map((key) => (
+                    <li key={key} className="type-body-lg text-foreground">
+                      {t(key)}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+
+            {/* Company */}
+            <div className="grid gap-8 md:grid-cols-12 md:gap-12">
+              <Reveal className="md:col-span-4">
+                <h3 className="type-h2 text-foreground">{t("landing.company.title")}</h3>
+              </Reveal>
+              <Reveal className="md:col-span-8" delay={0.04}>
+                <div className="max-w-2xl space-y-5">
+                  <p className="type-h3 text-foreground">{t("landing.company.legalName")}</p>
+                  <p className="type-body-lg text-muted-foreground">{t("landing.company.intro")}</p>
+                  <p className="type-body text-muted-foreground">{t("landing.company.builds")}</p>
+                  <p className="type-body text-muted-foreground">{t("landing.company.custom")}</p>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Company information card */}
+            <Reveal>
+              <div className="rounded-lg border border-border bg-surface">
+                <div className="border-b border-border px-6 py-5 md:px-8">
+                  <h3 className="type-h3 text-foreground">{t("landing.companyInfo.title")}</h3>
+                </div>
+                <dl className="divide-y divide-border">
+                  {COMPANY_INFO_ROWS.map((row) => (
+                    <div
+                      key={row.labelKey}
+                      className="grid gap-2 px-6 py-4 sm:grid-cols-12 sm:gap-6 md:px-8"
+                    >
+                      <dt className="type-label text-muted-foreground sm:col-span-4">
+                        {t(row.labelKey)}
+                      </dt>
+                      <dd className="type-body text-foreground sm:col-span-8">{t(row.valueKey)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </Reveal>
+
+            {/* Why clients work with us */}
+            <div className="space-y-10">
+              <Reveal className="max-w-2xl space-y-3">
+                <h3 className="type-h2 text-foreground">{t("landing.clientsWhy.title")}</h3>
+                <p className="type-body text-muted-foreground">{t("landing.clientsWhy.support")}</p>
+              </Reveal>
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {CLIENTS_WHY.map((item, index) => (
+                  <Reveal key={item.titleKey} delay={Math.min(index, 5) * 0.03}>
+                    <article className="flex h-full flex-col gap-3 border-s-2 border-brand ps-5">
+                      <h4 className="type-h3 text-foreground">{t(item.titleKey)}</h4>
+                      <p className="type-body text-muted-foreground">{t(item.bodyKey)}</p>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -262,7 +392,9 @@ export function CredibilityLanding() {
                         strokeWidth={1.5}
                         aria-hidden
                       />
-                      <span className="type-body font-medium text-foreground">{t(item.labelKey)}</span>
+                      <span className="type-body font-medium text-foreground">
+                        {t(item.labelKey)}
+                      </span>
                     </div>
                   </Reveal>
                 );
@@ -295,11 +427,7 @@ export function CredibilityLanding() {
                     : null;
                 const card = (
                   <article className="flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-6 transition-colors duration-fast ease-enter hover:border-border-strong">
-                    <Icon
-                      className="size-icon-lg text-brand"
-                      strokeWidth={1.5}
-                      aria-hidden
-                    />
+                    <Icon className="size-icon-lg text-brand" strokeWidth={1.5} aria-hidden />
                     <h3 className="type-h3 text-foreground">{t(item.titleKey)}</h3>
                     <p className="type-body text-muted-foreground">{t(item.bodyKey)}</p>
                     {ctaKey ? (
@@ -323,41 +451,6 @@ export function CredibilityLanding() {
                 );
               })}
             </div>
-          </div>
-        </section>
-
-        {/* Why FoundEarly */}
-        <section className="border-b border-border bg-surface">
-          <div className="mx-auto flex max-w-content flex-col gap-10 px-4 py-16 md:px-6 md:py-24">
-            <Reveal className="max-w-2xl space-y-3">
-              <h2 className="type-h2 text-foreground">{t("landing.why.title")}</h2>
-              <p className="type-body text-muted-foreground">{t("landing.why.support")}</p>
-            </Reveal>
-            <Reveal>
-              <div className="overflow-hidden rounded-lg border border-border">
-                <div className="grid grid-cols-1 border-b border-border md:grid-cols-2">
-                  <div className="bg-surface-muted/50 px-4 py-4 md:px-6">
-                    <p className="type-label text-muted-foreground">{t("landing.why.traditional")}</p>
-                  </div>
-                  <div className="border-t border-border bg-brand/5 px-4 py-4 md:border-t-0 md:border-s md:px-6">
-                    <p className="type-label text-brand">{t("landing.why.foundearly")}</p>
-                  </div>
-                </div>
-                {WHY.map((row) => (
-                  <div
-                    key={row.oursKey}
-                    className="grid grid-cols-1 border-b border-border last:border-b-0 md:grid-cols-2"
-                  >
-                    <div className="px-4 py-4 type-body text-muted-foreground md:px-6">
-                      {t(row.traditionalKey)}
-                    </div>
-                    <div className="border-t border-border px-4 py-4 type-body font-medium text-foreground md:border-t-0 md:border-s md:px-6">
-                      {t(row.oursKey)}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </section>
 
