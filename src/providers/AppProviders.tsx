@@ -9,26 +9,35 @@ import { ToastProvider } from "@/providers/ToastProvider";
 import { TooltipProvider } from "@/providers/TooltipProvider";
 import { CommandProvider } from "@/providers/CommandProvider";
 import { KeyboardShortcutProvider } from "@/providers/KeyboardShortcutProvider";
+import { LocaleProvider } from "@/providers/LocaleProvider";
+import { NotificationProvider } from "@/providers/NotificationProvider";
+import { ShellUiProvider } from "@/providers/ShellUiProvider";
 
 /**
  * Modular provider composition root (docs/07 §8, docs/10).
- * Order: theme → motion → presentation → command/keyboard → overlays.
+ * Order: theme → locale → motion → presentation → shell UI → command/keyboard → overlays.
  */
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider>
-      <MotionProvider>
-        <PresentationProvider>
-          <CommandProvider>
-            <KeyboardShortcutProvider>
-              <TooltipProvider>
-                {children}
-                <ToastProvider />
-              </TooltipProvider>
-            </KeyboardShortcutProvider>
-          </CommandProvider>
-        </PresentationProvider>
-      </MotionProvider>
+      <LocaleProvider>
+        <MotionProvider>
+          <PresentationProvider>
+            <NotificationProvider>
+              <CommandProvider>
+                <ShellUiProvider>
+                  <KeyboardShortcutProvider>
+                    <TooltipProvider>
+                      {children}
+                      <ToastProvider />
+                    </TooltipProvider>
+                  </KeyboardShortcutProvider>
+                </ShellUiProvider>
+              </CommandProvider>
+            </NotificationProvider>
+          </PresentationProvider>
+        </MotionProvider>
+      </LocaleProvider>
     </ThemeProvider>
   );
 }

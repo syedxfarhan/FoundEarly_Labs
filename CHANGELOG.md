@@ -4,6 +4,25 @@ This changelog tracks what has actually shipped in this repository, phase by pha
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/), adapted for a phase-based (not version-based) project.
 
+## [Phase 1.2] — 2026-08-06 — Enterprise Application Shell
+
+### Added
+- `WorkspaceShell` composite with top bar, 280px navigation rail, workspace canvas, right utility region
+- Workspace engine: registry, metadata, routing, lifecycle, loader, cross-fade transition, breadcrumbs
+- Config-driven navigation (`src/config/navigation.ts`, `src/config/workspaces.ts`)
+- Command palette UI (cmdk), global search foundation, notification center shell + badge
+- Theme switch (light/dark/system) and language/RTL direction foundation with persistence
+- Layout primitives: AppShell, TopBar, NavigationRail, WorkspaceLayout/Header, PageContainer, ContentGrid, Section, Panel, Toolbar, Breadcrumb, Overlay/Portal layers
+- Premium empty states (workspace, search, notifications, presentation, no-data, coming-soon)
+- Centralized English content keys (`src/lib/content`)
+- `docs/21_PHASE_1_2_COMPLETION_CHECKLIST.md`, `DECISIONS.md` D-007
+
+### Notes
+- No Tier 1/2 component library dump, no dashboard/simulator business content, no fixtures.
+- Workspace sections intentionally render empty/coming-soon experiences via the engine.
+
+---
+
 ## [Phase 1.1] — 2026-08-06 — Enterprise Foundation
 
 ### Added

@@ -75,6 +75,25 @@
   [dir="rtl"] {
     text-align: start;
   }
+
+  /* Smooth theme transition — applied only while switching (preferences) */
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition:
+      background-color var(--motion-moderate) var(--ease-enter),
+      color var(--motion-moderate) var(--ease-enter),
+      border-color var(--motion-moderate) var(--ease-enter),
+      fill var(--motion-moderate) var(--ease-enter),
+      stroke var(--motion-moderate) var(--ease-enter) !important;
+  }
+
+  /* Presentation quiet chrome helper */
+  [data-presentation="true"] [data-shell="navigation"],
+  [data-presentation="true"] [data-shell="utility"] {
+    opacity: var(--chrome-opacity);
+  }
 }
 
 @layer utilities {

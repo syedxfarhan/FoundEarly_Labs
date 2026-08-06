@@ -7,6 +7,7 @@ export {
   type CommandSearchDocument,
   type CommandSection,
 } from "./commands/registry";
+export { en, hasContentKey, t, tKey, type ContentKey } from "./content";
 export { formatCount, formatDate, formatPercent, formatSar } from "./formatters";
 export {
   enterFullscreen,

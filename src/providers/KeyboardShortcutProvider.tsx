@@ -24,11 +24,11 @@ function normalizeCombo(event: KeyboardEvent): string {
 
 /**
  * Keyboard manager foundation (docs/16 §3).
- * Registers Presentation Mode defaults (P, F, R with confirmation deferred to UI).
- * Chord sequences (G then X) arrive with Workspace Launcher UI.
+ * Registers Presentation Mode defaults (P, F) and go-prefix chords (G then X).
  */
 export function KeyboardShortcutProvider({ children }: { children: React.ReactNode }) {
   const handlersRef = React.useRef(new Map<string, Set<ShortcutHandler>>());
+  const chordRef = React.useRef<{ prefix: string; expiresAt: number } | null>(null);
   const { togglePresentationMode, toggleFullscreen } = usePresentation();
   const { registerCommand } = useCommands();
 
@@ -48,6 +48,28 @@ export function KeyboardShortcutProvider({ children }: { children: React.ReactNo
       const target = event.target as HTMLElement | null;
       const tag = target?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) {
+        return;
+      }
+
+      const key = event.key.toLowerCase();
+      const now = Date.now();
+
+      // Go-prefix chords: G then D / H / S (docs/16 §3)
+      if (chordRef.current && chordRef.current.expiresAt > now) {
+        const chord = `${chordRef.current.prefix}+${key}`;
+        chordRef.current = null;
+        const chordHandlers = handlersRef.current.get(chord);
+        if (chordHandlers && chordHandlers.size > 0) {
+          event.preventDefault();
+          chordHandlers.forEach((handler) => handler(event));
+          return;
+        }
+      } else {
+        chordRef.current = null;
+      }
+
+      if (key === "g" && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        chordRef.current = { prefix: "g", expiresAt: now + 800 };
         return;
       }
 
